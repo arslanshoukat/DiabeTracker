@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.alharoof.diabetracker"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}"
+//  AndroidX Support Libs
+    implementation "androidx.appcompat:appcompat:${appCompat}"
+    implementation "androidx.core:core-ktx:${kotlinExt}"
+    implementation "androidx.constraintlayout:constraintlayout:${constraintLayout}"
+//  Testing libs
+    testImplementation "junit:junit:${jUnit}"
+    androidTestImplementation "androidx.test:runner:${testRunner}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${espresso}"
+//  Room
+    implementation "androidx.room:room-runtime:${room}"
+    implementation "androidx.room:room-ktx:${room}"
+    implementation "androidx.room:room-rxjava2:${room}"
+    kapt "androidx.room:room-compiler:${room}"
+//  ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:${lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle}"
+    kapt "androidx.lifecycle:lifecycle-compiler:${lifecycle}"
+//  Reactive libs
+    implementation "io.reactivex.rxjava2:rxandroid:${rxAndroid}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rxKotlin}"
+    implementation "androidx.recyclerview:recyclerview:${recyclerView}"
+    implementation "com.google.android.material:material:${material}"
+}
