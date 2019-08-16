@@ -1,10 +1,10 @@
 package com.alharoof.diabetracker
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.alharoof.diabetracker.ui.main.MainFragment
+import dagger.android.support.DaggerAppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
