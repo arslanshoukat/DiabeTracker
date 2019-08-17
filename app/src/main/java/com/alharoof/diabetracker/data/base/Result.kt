@@ -5,7 +5,7 @@ import com.alharoof.diabetracker.data.base.Result.Success
 /**
  * Wrapper class to store data and status of requested data.
  * @param <T>
- * Created by ashoukat on Aug 17, 2019 10:30 AM.
+ * Created by Arslan Shoukat on Aug 17, 2019 10:30 AM.
  */
 
 sealed class Result<T>(
