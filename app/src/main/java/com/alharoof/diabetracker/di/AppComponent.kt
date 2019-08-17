@@ -14,7 +14,8 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         AppModule::class,
         ActivityBindingModule::class,
-        ViewModelFactoryModule::class]
+        ViewModelFactoryModule::class,
+        UseCaseModule::class]
 )
 interface AppComponent : AndroidInjector<DiabeTrackerApp> {
 

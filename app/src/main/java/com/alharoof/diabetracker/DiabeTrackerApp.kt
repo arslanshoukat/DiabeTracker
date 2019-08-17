@@ -1,6 +1,6 @@
 package com.alharoof.diabetracker
 
-import com.android.example.github.di.DaggerAppComponent
+import com.alharoof.diabetracker.di.DaggerAppComponent
 import com.facebook.stetho.Stetho
 import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.android.AndroidInjector
