@@ -1,4 +1,4 @@
-package com.android.example.github.di
+package com.alharoof.diabetracker.di
 
 import android.app.Application
 import android.content.Context
