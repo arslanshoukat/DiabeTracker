@@ -27,41 +27,51 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-//  Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}"
-    implementation "androidx.core:core-ktx:${kotlinExt}"
-//  AndroidX Support Libs
-    implementation "androidx.appcompat:appcompat:${appCompat}"
-    implementation "androidx.constraintlayout:constraintlayout:${constraintLayout}"
-    implementation "androidx.recyclerview:recyclerview:${recyclerView}"
-    implementation "com.google.android.material:material:${material}"
-//  Room for database
-    implementation "androidx.room:room-runtime:${room}"
-    implementation "androidx.room:room-ktx:${room}"
-    implementation "androidx.room:room-rxjava2:${room}"
-    kapt "androidx.room:room-compiler:${room}"
-//  ViewModel and LiveData
-    implementation "androidx.lifecycle:lifecycle-extensions:${lifecycle}"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle}"
-    kapt "androidx.lifecycle:lifecycle-compiler:${lifecycle}"
-//  Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:${navigation}"
-    implementation "androidx.navigation:navigation-ui-ktx:${navigation}"
-//  Reactive libs
-    implementation "io.reactivex.rxjava2:rxandroid:${rxAndroid}"
-    implementation "io.reactivex.rxjava2:rxkotlin:${rxKotlin}"
-//  ThreeTenABP for date time
-    implementation "com.jakewharton.threetenabp:threetenabp:${threeTenAbp}"
-//  Dagger for dependency injection
-    implementation "com.google.dagger:dagger:${dagger}"
-    kapt "com.google.dagger:dagger-compiler:${dagger}"
-    implementation "com.google.dagger:dagger-android:${dagger}"
-    implementation "com.google.dagger:dagger-android-support:${dagger}"
-    kapt "com.google.dagger:dagger-android-processor:${dagger}"
-//  Stetho for debugging
-    implementation 'com.facebook.stetho:stetho:1.5.1'
-//  Testing libs
-    testImplementation "junit:junit:${jUnit}"
-    androidTestImplementation "androidx.test:runner:${testRunner}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${espresso}"
+
+    //  Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+    implementation "androidx.core:core-ktx:${versions.kotlinExt}"
+
+    //  AndroidX Support Libs
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+    implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
+    implementation "com.google.android.material:material:${versions.material}"
+
+    //  Room for database
+    implementation "androidx.room:room-runtime:${versions.room}"
+    implementation "androidx.room:room-ktx:${versions.room}"
+    implementation "androidx.room:room-rxjava2:${versions.room}"
+    kapt "androidx.room:room-compiler:${versions.room}"
+
+    //  ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
+    kapt "androidx.lifecycle:lifecycle-compiler:${versions.lifecycle}"
+
+    //  Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
+    implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+
+    //  Reactive libs
+    implementation "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}"
+
+    //  ThreeTenABP for date time
+    implementation "com.jakewharton.threetenabp:threetenabp:${versions.threeTenAbp}"
+
+    //  Dagger for dependency injection
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    implementation "com.google.dagger:dagger-android:${versions.dagger}"
+    implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
+    kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+
+    //  Stetho for debugging
+    implementation "com.facebook.stetho:stetho:${versions.stetho}"
+
+    //  Testing libs
+    testImplementation "junit:junit:${versions.jUnit}"
+    androidTestImplementation "androidx.test:runner:${versions.testRunner}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
 }
