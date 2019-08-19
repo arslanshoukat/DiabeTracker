@@ -1,5 +1,6 @@
 package com.alharoof.diabetracker.di.main
 
+import com.alharoof.diabetracker.ui.bloodglucoselevel.AddBloodGlucoseLevelFragment
 import com.alharoof.diabetracker.ui.main.MainFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -13,4 +14,7 @@ abstract class MainFragmentsModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeMainFragment(): MainFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeAddBloodGlucoseLevelFragment(): AddBloodGlucoseLevelFragment
 }

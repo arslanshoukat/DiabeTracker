@@ -1,7 +1,7 @@
 package com.alharoof.diabetracker
 
 import android.os.Bundle
-import com.alharoof.diabetracker.ui.main.MainFragment
+import com.alharoof.diabetracker.ui.bloodglucoselevel.AddBloodGlucoseLevelFragment
 import dagger.android.support.DaggerAppCompatActivity
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -11,7 +11,7 @@ class MainActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
+                .replace(R.id.container, AddBloodGlucoseLevelFragment.newInstance())
                 .commitNow()
         }
     }

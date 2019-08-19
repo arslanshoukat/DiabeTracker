@@ -8,4 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="InputLabelText" parent="TextAppearance.AppCompat.Body2"></style>
+
 </resources>
