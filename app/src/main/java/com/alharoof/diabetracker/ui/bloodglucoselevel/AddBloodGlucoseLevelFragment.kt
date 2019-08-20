@@ -17,7 +17,11 @@ import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.DINNER
 import com.alharoof.diabetracker.util.showToast
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.btnAddBgl
-import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.etBgl
+import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.flBgl
+import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.sliderBgl
+import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvBloodGlucoseLevel
+import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvDate
+import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvTime
 import org.threeten.bp.ZonedDateTime
 import javax.inject.Inject
 
@@ -25,12 +29,19 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
 
     companion object {
         fun newInstance() = AddBloodGlucoseLevelFragment()
+
+        private const val MIN_BGL = 0
+        private const val MAX_BGL = 500
     }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: AddBloodGlucoseLevelViewModel
+
+    private var isSliderStartTextVisible: Boolean = true
+    private var isSliderEndTextVisible: Boolean = true
+    private lateinit var dt: ZonedDateTime
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.add_blood_glucose_level_fragment, container, false)
@@ -40,16 +51,61 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddBloodGlucoseLevelViewModel::class.java)
         setupObserver()
+        setInitialValues()
+
+        sliderBgl.positionListener = { pos ->
+            val selectedSliderValue = (MIN_BGL + MAX_BGL * pos).toInt()
+            sliderBgl.bubbleText = "$selectedSliderValue"
+            tvBloodGlucoseLevel.text = "$selectedSliderValue"
+
+            setStartEndSliderTextVisibility(selectedSliderValue)
+            setBGLColor(selectedSliderValue)
+        }
 
         btnAddBgl.setOnClickListener {
             viewModel.addBloodGlucoseLevel(
                 BloodGlucoseLevel(
-                    etBgl.text.toString().toFloat(),
-                    MILLIGRAMS_PER_DECILITRE,
-                    ZonedDateTime.now(),
-                    DINNER
+                    tvBloodGlucoseLevel.text.toString().toInt(),
+                    MILLIGRAMS_PER_DECILITRE, dt, DINNER
                 )
             )
+        }
+    }
+
+    private fun setInitialValues() {
+        dt = ZonedDateTime.now()
+
+        tvDate.text = "${dt.dayOfMonth} ${dt.month}, ${dt.year}"
+        tvTime.text = "${dt.hour}:${dt.minute}"
+        tvBloodGlucoseLevel.text = "100"
+        sliderBgl.position = 0.2f
+        sliderBgl.bubbleText = "${100}"
+    }
+
+    private fun setBGLColor(value: Int) {
+        when (value) {
+            in 0..70 -> flBgl.setBackgroundResource(R.color.bgl_low)
+            in 180..999 -> flBgl.setBackgroundResource(R.color.bgl_high)
+            else -> flBgl.setBackgroundResource(R.color.bgl_normal)
+        }
+    }
+
+    private fun setStartEndSliderTextVisibility(value: Int) {
+        if (value <= 50 && isSliderStartTextVisible) {
+            sliderBgl.startText = null
+            isSliderStartTextVisible = false
+        } else if (value >= 450 && isSliderEndTextVisible) {
+            sliderBgl.endText = null
+            isSliderEndTextVisible = false
+        } else if (value in 51..449) {
+            if (!isSliderStartTextVisible) {
+                sliderBgl.startText = "$MIN_BGL"
+                isSliderStartTextVisible = true
+            }
+            if (!isSliderEndTextVisible) {
+                sliderBgl.endText = "$MAX_BGL"
+                isSliderEndTextVisible = true
+            }
         }
     }
 
@@ -60,6 +116,7 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
                 }
                 is Success -> {
                     context?.showToast("Added Successfully")
+                    setInitialValues()
                 }
                 is Error -> {
                     context?.showToast("Failed!!!")

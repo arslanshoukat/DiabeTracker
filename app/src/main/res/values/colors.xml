@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">@color/blue_700</color>
+    <color name="colorPrimaryDark">@color/blue_900</color>
+    <color name="colorPrimaryLight">@color/blue_50</color>
+
+    <!--  accent A200  -->
+    <color name="colorAccentLight">#40C4FF</color>
+    <!--  accent A400  -->
+    <color name="colorAccent">#00b0FF</color>
+    <!--  accent A700  -->
+    <color name="colorAccentDark">#0091EA</color>
+
+    <color name="blue_50">#E1F5FE</color>
+    <color name="blue_100">#B3E5FC</color>
+    <color name="blue_900">#01579B</color>
+    <color name="blue_700">#0288D1</color>
+
+    <!--text-->
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+
+    <color name="colorIcons">#FFFFFF</color>
+    <color name="colorDivider">#BDBDBD</color>
+
+    <!--other-->
+    <color name="red_700">#D32F2F</color>
+    <color name="red_100">#FFCDD2</color>
+    <color name="green_500">#4CAF50</color>
+    <color name="green_700">#388E3C</color>
+    <color name="gray_300">#E0E0E0</color>
+
+    <!-- bgl -->
+    <color name="bgl_low">#2196F3</color>
+    <color name="bgl_normal">#4CAF50</color>
+    <color name="bgl_high">#F44336</color>
+
 </resources>

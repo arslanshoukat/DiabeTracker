@@ -12,7 +12,7 @@ import org.threeten.bp.ZonedDateTime
 object TestData {
 
     val bloodGlucoseLevel = BloodGlucoseLevel(
-        level = 100F, unit = MILLIMOLES_PER_LITRE,
+        level = 100, unit = MILLIMOLES_PER_LITRE,
         time = ZonedDateTime.parse("2019-08-19T22:52:30.725+05:00"), category = Category.BREAKFAST
     )
 }

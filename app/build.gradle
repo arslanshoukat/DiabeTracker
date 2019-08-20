@@ -73,6 +73,10 @@ dependencies {
     //  Stetho for debugging
     implementation "com.facebook.stetho:stetho:${versions.stetho}"
 
+    //  Ramotion Fluid Slider for setting bgl
+    implementation 'com.ramotion.fluidslider:fluid-slider:0.3.1'
+    implementation 'com.github.florent37:shapeofview:1.4.7'
+
     //  Testing libs
     testImplementation "junit:junit:${versions.jUnit}"
     androidTestImplementation "androidx.test:runner:${versions.testRunner}"

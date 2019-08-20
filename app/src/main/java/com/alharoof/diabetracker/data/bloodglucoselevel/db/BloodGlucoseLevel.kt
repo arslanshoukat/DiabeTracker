@@ -8,11 +8,12 @@ import org.threeten.bp.ZonedDateTime
 
 @Entity
 data class BloodGlucoseLevel(
-    val level: Float, // blood glucose level
+    val level: Int, // blood glucose level
     val unit: BGLUnit,
     val time: ZonedDateTime,
     val category: Category
 ) {
+
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
 }

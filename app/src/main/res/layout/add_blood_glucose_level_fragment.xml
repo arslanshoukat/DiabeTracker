@@ -27,15 +27,79 @@
         android:orientation="vertical"
         app:layout_constraintGuide_begin="@dimen/margin_normal" />
 
+    <com.github.florent37.shapeofview.shapes.CircleView
+        android:id="@+id/cvBgl"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:elevation="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shape_circle_borderWidth="2dp">
+
+        <FrameLayout
+            android:id="@+id/flBgl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bgl_normal">
+
+            <TextView
+                android:id="@+id/tvBloodGlucoseLevel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:maxLength="3"
+                android:paddingBottom="16dp"
+                android:singleLine="true"
+                android:text="100"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+                android:textColor="@android:color/white"
+                tools:text="325" />
+
+            <TextView
+                android:id="@+id/tvBglUnit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:gravity="center"
+                android:paddingBottom="24dp"
+                android:text="mg/dL"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+        </FrameLayout>
+    </com.github.florent37.shapeofview.shapes.CircleView>
+
+    <com.ramotion.fluidslider.FluidSlider
+        android:id="@+id/sliderBgl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        app:bar_color="@color/colorPrimaryDark"
+        app:bar_text_color="@color/colorPrimaryLight"
+        app:end_text="500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvBgl"
+        app:size="normal"
+        app:start_text="0"
+        app:text_size="18sp" />
+
     <ImageView
         android:id="@+id/ivDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:src="@drawable/ic_date_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/ivTime"
+        app:layout_constraintBottom_toTopOf="@+id/div1"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintTop_toBottomOf="@+id/sliderBgl"
+        app:layout_constraintVertical_bias="0.2"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
@@ -51,53 +115,14 @@
         app:layout_constraintStart_toEndOf="@+id/ivDate"
         app:layout_constraintTop_toTopOf="@+id/ivDate" />
 
-    <EditText
-        android:id="@+id/etDateDay"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:ems="10"
-        android:hint="DD"
-        android:inputType="number"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvDateLbl"
-        app:layout_constraintEnd_toStartOf="@+id/etDateMonth"
-        app:layout_constraintStart_toStartOf="@+id/guidelineMid" />
-
-    <EditText
-        android:id="@+id/etDateMonth"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:ems="10"
-        android:hint="MM"
-        android:inputType="number"
-        app:layout_constraintBaseline_toBaselineOf="@+id/etDateDay"
-        app:layout_constraintEnd_toStartOf="@+id/etDateYear"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/etDateDay" />
-
-    <EditText
-        android:id="@+id/etDateYear"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:ems="10"
-        android:hint="YYYY"
-        android:inputType="number"
-        app:layout_constraintBaseline_toBaselineOf="@+id/etDateDay"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/etDateMonth" />
-
     <ImageView
         android:id="@+id/ivTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_large"
         android:src="@drawable/ic_time_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/ivCategory"
+        app:layout_constraintBottom_toTopOf="@+id/div2"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/ivDate" />
+        app:layout_constraintTop_toBottomOf="@+id/div1" />
 
     <TextView
         android:id="@+id/tvTimeLbl"
@@ -112,43 +137,15 @@
         app:layout_constraintStart_toEndOf="@+id/ivTime"
         app:layout_constraintTop_toTopOf="@+id/ivTime" />
 
-    <EditText
-        android:id="@+id/etTimeHour"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:ems="10"
-        android:hint="HH"
-        android:inputType="number"
-        android:singleLine="true"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvTimeLbl"
-        app:layout_constraintEnd_toStartOf="@+id/etTimeMinute"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guidelineMid" />
-
-    <EditText
-        android:id="@+id/etTimeMinute"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:ems="10"
-        android:hint="MM"
-        android:inputType="number"
-        android:singleLine="true"
-        app:layout_constraintBaseline_toBaselineOf="@+id/etTimeHour"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/etTimeHour" />
-
     <ImageView
         android:id="@+id/ivCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginBottom="8dp"
         android:src="@drawable/ic_category_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/ivBgl"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddBgl"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/ivTime" />
+        app:layout_constraintTop_toBottomOf="@+id/div2" />
 
     <TextView
         android:id="@+id/tvCategoryLbl"
@@ -163,42 +160,32 @@
         app:layout_constraintStart_toEndOf="@+id/ivCategory"
         app:layout_constraintTop_toTopOf="@+id/ivCategory" />
 
-    <ImageView
-        android:id="@+id/ivBgl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_large"
-        android:src="@drawable/ic_blood_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddBgl"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/ivCategory" />
-
-    <TextView
-        android:id="@+id/tvBglLbl"
+    <View
+        android:id="@+id/div1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_small"
-        android:layout_marginStart="@dimen/margin_normal"
-        android:text="Blood Glucose Level"
-        android:textAppearance="@style/InputLabelText"
-        app:layout_constraintBottom_toBottomOf="@+id/ivBgl"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineMid"
-        app:layout_constraintStart_toEndOf="@+id/ivBgl"
-        app:layout_constraintTop_toTopOf="@+id/ivBgl" />
-
-    <EditText
-        android:id="@+id/etBgl"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_small"
-        android:ems="10"
-        android:hint="000"
-        android:inputType="number"
-        android:maxLength="4"
-        android:singleLine="true"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvBglLbl"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray_300"
+        app:layout_constraintBottom_toTopOf="@+id/ivTime"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintStart_toStartOf="@+id/guidelineMid" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/ivDate"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <View
+        android:id="@+id/div2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray_300"
+        app:layout_constraintBottom_toTopOf="@+id/ivCategory"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/ivTime" />
 
     <Button
         android:id="@+id/btnAddBgl"
@@ -213,21 +200,28 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="395dp"
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:counterEnabled="false"
-        app:counterMaxLength="2"
-        app:errorEnabled="true"
-        app:hintEnabled="false"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="433dp">
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvDateLbl"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineMid"
+        tools:text="24-11-2019" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="HH"
-            tools:text="333" />
-    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvTimeLbl"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineMid"
+        tools:text="05:25 PM" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
