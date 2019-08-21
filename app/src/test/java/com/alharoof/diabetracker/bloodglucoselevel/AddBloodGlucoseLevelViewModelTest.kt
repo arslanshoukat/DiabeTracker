@@ -1,7 +1,9 @@
 package com.alharoof.diabetracker.bloodglucoselevel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.alharoof.diabetracker.LiveDataTestUtil
 import com.alharoof.diabetracker.RxImmediateSchedulerRule
+import com.alharoof.diabetracker.data.base.Resource
 import com.alharoof.diabetracker.domain.bloodglucoselevel.AddBloodGlucoseLevelUseCase
 import com.alharoof.diabetracker.ui.bloodglucoselevel.AddBloodGlucoseLevelViewModel
 import io.reactivex.Completable
@@ -35,12 +37,27 @@ class AddBloodGlucoseLevelViewModelTest {
     }
 
     @Test
-    fun shouldAddBloodGlucoseLevel() {
+    fun shouldAddBloodGlucoseLevel_Success() {
         `when`(addBloodGlucoseLevelUseCase.execute(TestData.bloodGlucoseLevel)).thenReturn(Completable.complete())
 
         addBloodGlucoseLevelViewModel.addBloodGlucoseLevel(TestData.bloodGlucoseLevel)
 
         verify(addBloodGlucoseLevelUseCase).execute(TestData.bloodGlucoseLevel)
         verifyNoMoreInteractions(addBloodGlucoseLevelUseCase)
+
+        assert(LiveDataTestUtil.getValue(addBloodGlucoseLevelViewModel.insertStatus) is Resource.Success)
+    }
+
+    @Test
+    fun shouldNotAddBloodGlucoseLevel_Error() {
+        `when`(addBloodGlucoseLevelUseCase.execute(TestData.bloodGlucoseLevel))
+            .thenReturn(Completable.error(Exception()))
+
+        addBloodGlucoseLevelViewModel.addBloodGlucoseLevel(TestData.bloodGlucoseLevel)
+
+        verify(addBloodGlucoseLevelUseCase).execute(TestData.bloodGlucoseLevel)
+        verifyNoMoreInteractions(addBloodGlucoseLevelUseCase)
+
+        assert(LiveDataTestUtil.getValue(addBloodGlucoseLevelViewModel.insertStatus) is Resource.Error)
     }
 }

@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.alharoof.diabetracker.data.base.Resource
+import com.alharoof.diabetracker.data.base.Resource.Error
+import com.alharoof.diabetracker.data.base.Resource.Loading
+import com.alharoof.diabetracker.data.base.Resource.Success
 import com.alharoof.diabetracker.data.bloodglucoselevel.db.BloodGlucoseLevel
 import com.alharoof.diabetracker.domain.bloodglucoselevel.AddBloodGlucoseLevelUseCase
 import io.reactivex.CompletableObserver
@@ -25,16 +28,28 @@ class AddBloodGlucoseLevelViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : CompletableObserver {
                 override fun onComplete() {
-                    _insertStatus.value = Resource.Success()
+                    setSuccessResponse()
                 }
 
                 override fun onSubscribe(d: Disposable) {
-                    _insertStatus.value = Resource.Loading()
+                    setLoadingResponse()
                 }
 
                 override fun onError(e: Throwable) {
-                    _insertStatus.value = Resource.Error("Failed to insert")
+                    setErrorResponse()
                 }
             })
+    }
+
+    private fun setErrorResponse() {
+        _insertStatus.value = Error("Failed to insert")
+    }
+
+    private fun setLoadingResponse() {
+        _insertStatus.value = Loading()
+    }
+
+    private fun setSuccessResponse() {
+        _insertStatus.value = Success()
     }
 }
