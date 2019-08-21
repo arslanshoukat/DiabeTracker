@@ -38,12 +38,13 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
     implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
     implementation "com.google.android.material:material:${versions.material}"
+    implementation "androidx.legacy:legacy-support-v4:${versions.legacyV4}"
+    implementation "androidx.annotation:annotation:${versions.annotation}"
 
     //  Room for database
     implementation "androidx.room:room-runtime:${versions.room}"
     implementation "androidx.room:room-ktx:${versions.room}"
     implementation "androidx.room:room-rxjava2:${versions.room}"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:${versions.room}"
 
     //  ViewModel and LiveData

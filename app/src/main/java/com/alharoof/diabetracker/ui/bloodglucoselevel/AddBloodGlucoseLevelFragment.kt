@@ -2,6 +2,9 @@ package com.alharoof.diabetracker.ui.bloodglucoselevel
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
@@ -16,7 +19,6 @@ import com.alharoof.diabetracker.data.bloodglucoselevel.model.BGLUnit.MILLIGRAMS
 import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.DINNER
 import com.alharoof.diabetracker.util.showToast
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.btnAddBgl
 import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.flBgl
 import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.sliderBgl
 import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvBloodGlucoseLevel
@@ -44,12 +46,14 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
     private lateinit var dt: ZonedDateTime
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.add_blood_glucose_level_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddBloodGlucoseLevelViewModel::class.java)
+
         setupObserver()
         setInitialValues()
 
@@ -61,15 +65,27 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
             setStartEndSliderTextVisibility(selectedSliderValue)
             setBGLColor(selectedSliderValue)
         }
+    }
 
-        btnAddBgl.setOnClickListener {
-            viewModel.addBloodGlucoseLevel(
-                BloodGlucoseLevel(
-                    tvBloodGlucoseLevel.text.toString().toInt(),
-                    MILLIGRAMS_PER_DECILITRE, dt, DINNER
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_add_blood_glucose_level_fragment, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_action_save -> {
+                viewModel.addBloodGlucoseLevel(
+                    BloodGlucoseLevel(
+                        tvBloodGlucoseLevel.text.toString().toInt(),
+                        MILLIGRAMS_PER_DECILITRE, dt, DINNER
+                    )
                 )
-            )
+            }
+            else -> {
+            }
         }
+        return true
     }
 
     private fun setInitialValues() {

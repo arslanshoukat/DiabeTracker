@@ -115,6 +115,32 @@
         app:layout_constraintStart_toEndOf="@+id/ivDate"
         app:layout_constraintTop_toTopOf="@+id/ivDate" />
 
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvDateLbl"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineMid"
+        tools:text="24-11-2019" />
+
+    <View
+        android:id="@+id/div1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray_300"
+        app:layout_constraintBottom_toTopOf="@+id/ivTime"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/ivDate"
+        app:layout_constraintVertical_chainStyle="packed" />
+
     <ImageView
         android:id="@+id/ivTime"
         android:layout_width="wrap_content"
@@ -137,13 +163,38 @@
         app:layout_constraintStart_toEndOf="@+id/ivTime"
         app:layout_constraintTop_toTopOf="@+id/ivTime" />
 
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvTimeLbl"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineMid"
+        tools:text="05:25 PM" />
+
+    <View
+        android:id="@+id/div2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray_300"
+        app:layout_constraintBottom_toTopOf="@+id/ivCategory"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/ivTime" />
+
     <ImageView
         android:id="@+id/ivCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:src="@drawable/ic_category_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddBgl"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelineStart"
         app:layout_constraintTop_toBottomOf="@+id/div2" />
 
@@ -159,69 +210,5 @@
         app:layout_constraintEnd_toStartOf="@+id/guidelineMid"
         app:layout_constraintStart_toEndOf="@+id/ivCategory"
         app:layout_constraintTop_toTopOf="@+id/ivCategory" />
-
-    <View
-        android:id="@+id/div1"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/gray_300"
-        app:layout_constraintBottom_toTopOf="@+id/ivTime"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/ivDate"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <View
-        android:id="@+id/div2"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/gray_300"
-        app:layout_constraintBottom_toTopOf="@+id/ivCategory"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-        app:layout_constraintTop_toBottomOf="@+id/ivTime" />
-
-    <Button
-        android:id="@+id/btnAddBgl"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_small"
-        android:layout_marginStart="@dimen/margin_small"
-        android:text="Add Blood Glucose"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guidelineStart" />
-
-    <TextView
-        android:id="@+id/tvDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvDateLbl"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintStart_toStartOf="@+id/guidelineMid"
-        tools:text="24-11-2019" />
-
-    <TextView
-        android:id="@+id/tvTime"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvTimeLbl"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-        app:layout_constraintStart_toStartOf="@+id/guidelineMid"
-        tools:text="05:25 PM" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

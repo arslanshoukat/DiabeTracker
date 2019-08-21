@@ -6,4 +6,5 @@
     <dimen name="margin_large">32dp</dimen>
     <dimen name="spacing_normal">8dp</dimen>
     <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
