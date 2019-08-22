@@ -13,9 +13,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.alharoof.diabetracker.R
-import com.alharoof.diabetracker.data.base.Resource
-import com.alharoof.diabetracker.data.base.Resource.Loading
-import com.alharoof.diabetracker.data.base.Resource.Success
+import com.alharoof.diabetracker.data.base.Result
+import com.alharoof.diabetracker.data.base.Result.Loading
+import com.alharoof.diabetracker.data.base.Result.Success
 import com.alharoof.diabetracker.data.bloodglucoselevel.db.BloodGlucoseLevel
 import com.alharoof.diabetracker.data.bloodglucoselevel.model.BGLUnit.MILLIGRAMS_PER_DECILITRE
 import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.DINNER
@@ -173,13 +173,19 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
     }
 
     private fun setObservers() {
-        viewModel.insertStatus.observe(viewLifecycleOwner, Observer<Resource<BloodGlucoseLevel>> {
+        viewModel.insertStatus.observe(viewLifecycleOwner, Observer<Result<BloodGlucoseLevel>> {
             when (it) {
                 is Loading -> {
                 }
                 is Success -> {
                     context?.showToast("Added Successfully")
                     setInitialValues()
+
+                    activity?.let { act ->
+                        act.supportFragmentManager.beginTransaction()
+                            .replace(R.id.container, BloodGlucoseLevelLogFragment.newInstance())
+                            .commitNow()
+                    }
                 }
                 is Error -> {
                     context?.showToast("Failed!!!")

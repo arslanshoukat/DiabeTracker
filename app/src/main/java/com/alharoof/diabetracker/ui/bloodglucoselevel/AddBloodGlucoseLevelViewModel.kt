@@ -3,10 +3,10 @@ package com.alharoof.diabetracker.ui.bloodglucoselevel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.alharoof.diabetracker.data.base.Resource
-import com.alharoof.diabetracker.data.base.Resource.Error
-import com.alharoof.diabetracker.data.base.Resource.Loading
-import com.alharoof.diabetracker.data.base.Resource.Success
+import com.alharoof.diabetracker.data.base.Result
+import com.alharoof.diabetracker.data.base.Result.Error
+import com.alharoof.diabetracker.data.base.Result.Loading
+import com.alharoof.diabetracker.data.base.Result.Success
 import com.alharoof.diabetracker.data.bloodglucoselevel.db.BloodGlucoseLevel
 import com.alharoof.diabetracker.domain.bloodglucoselevel.AddBloodGlucoseLevelUseCase
 import io.reactivex.CompletableObserver
@@ -19,8 +19,8 @@ class AddBloodGlucoseLevelViewModel @Inject constructor(
     private val addBloodGlucoseLevelUseCase: AddBloodGlucoseLevelUseCase
 ) : ViewModel() {
 
-    private val _insertStatus: MutableLiveData<Resource<BloodGlucoseLevel>> = MutableLiveData()
-    val insertStatus get() = _insertStatus as LiveData<Resource<BloodGlucoseLevel>>
+    private val _insertStatus: MutableLiveData<Result<BloodGlucoseLevel>> = MutableLiveData()
+    val insertStatus get() = _insertStatus as LiveData<Result<BloodGlucoseLevel>>
 
     fun addBloodGlucoseLevel(bloodGlucoseLevel: BloodGlucoseLevel) {
         addBloodGlucoseLevelUseCase.execute(bloodGlucoseLevel)

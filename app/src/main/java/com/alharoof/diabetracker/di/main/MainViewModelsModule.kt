@@ -3,6 +3,7 @@ package com.alharoof.diabetracker.di.main
 import androidx.lifecycle.ViewModel
 import com.alharoof.diabetracker.di.ViewModelKey
 import com.alharoof.diabetracker.ui.bloodglucoselevel.AddBloodGlucoseLevelViewModel
+import com.alharoof.diabetracker.ui.bloodglucoselevel.BloodGlucoseLevelLogViewModel
 import com.alharoof.diabetracker.ui.main.MainViewModel
 import dagger.Binds
 import dagger.Module
@@ -24,4 +25,9 @@ abstract class MainViewModelsModule {
     @IntoMap
     @ViewModelKey(AddBloodGlucoseLevelViewModel::class)
     abstract fun bindAddBloodGlucoseLevelViewModel(viewModel: AddBloodGlucoseLevelViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BloodGlucoseLevelLogViewModel::class)
+    abstract fun bindBloodGlucoseLevelLogViewModel(viewModel: BloodGlucoseLevelLogViewModel): ViewModel
 }
