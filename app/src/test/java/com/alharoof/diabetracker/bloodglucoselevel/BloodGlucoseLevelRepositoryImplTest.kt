@@ -9,7 +9,6 @@ import org.junit.runner.*
 import org.mockito.*
 import org.mockito.Mockito.*
 import org.mockito.junit.*
-import java.io.IOException
 
 /**
  * Created by ashoukat on Aug 20, 2019 10:30 AM.
@@ -31,7 +30,7 @@ class BloodGlucoseLevelRepositoryImplTest {
     }
 
     @Test
-    fun shouldAddValidBloodGlucoseLevel() {
+    fun `check insert completes, if dao returns success(complete)`() {
         `when`(bloodGlucoseLevelDao.insert(TestData.bloodGlucoseLevel)).thenReturn(Completable.complete())
 
         bloodGlucoseLevelRepositoryImpl.addBloodGlucoseLevel(TestData.bloodGlucoseLevel).subscribe(testObserver)
@@ -44,9 +43,9 @@ class BloodGlucoseLevelRepositoryImplTest {
     }
 
     @Test
-    fun shouldNotAddInvalidBloodGlucoseLevel() {
+    fun `check if dao throws exception, bgl insert fails `() {
         `when`(bloodGlucoseLevelDao.insert(TestData.bloodGlucoseLevel))
-            .thenReturn(Completable.error(IOException()))
+            .thenReturn(Completable.error(Exception()))
 
         bloodGlucoseLevelRepositoryImpl.addBloodGlucoseLevel(TestData.bloodGlucoseLevel).subscribe(testObserver)
 
@@ -54,6 +53,6 @@ class BloodGlucoseLevelRepositoryImplTest {
         verifyNoMoreInteractions(bloodGlucoseLevelDao)
 
         testObserver.assertNotComplete()
-        testObserver.assertError(IOException::class.java)
+        testObserver.assertError(Exception::class.java)
     }
 }

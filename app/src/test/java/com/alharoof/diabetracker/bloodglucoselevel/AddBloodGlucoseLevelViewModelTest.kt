@@ -37,7 +37,7 @@ class AddBloodGlucoseLevelViewModelTest {
     }
 
     @Test
-    fun shouldAddBloodGlucoseLevel_Success() {
+    fun `check if insert bgl is successful, should return success`() {
         `when`(addBloodGlucoseLevelUseCase.execute(TestData.bloodGlucoseLevel)).thenReturn(Completable.complete())
 
         addBloodGlucoseLevelViewModel.addBloodGlucoseLevel(TestData.bloodGlucoseLevel)
@@ -49,7 +49,7 @@ class AddBloodGlucoseLevelViewModelTest {
     }
 
     @Test
-    fun shouldNotAddBloodGlucoseLevel_Error() {
+    fun `check if insert bgl failed, should return error`() {
         `when`(addBloodGlucoseLevelUseCase.execute(TestData.bloodGlucoseLevel))
             .thenReturn(Completable.error(Exception()))
 

@@ -1,5 +1,7 @@
 package com.alharoof.diabetracker.ui.bloodglucoselevel
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -24,6 +26,7 @@ import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.sliderBgl
 import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvBloodGlucoseLevel
 import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvDate
 import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvTime
+import org.threeten.bp.ZoneId
 import org.threeten.bp.ZonedDateTime
 import javax.inject.Inject
 
@@ -43,7 +46,17 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
 
     private var isSliderStartTextVisible: Boolean = true
     private var isSliderEndTextVisible: Boolean = true
-    private lateinit var dt: ZonedDateTime
+    private val currentDateTime: ZonedDateTime = ZonedDateTime.now()
+    private var selectedDateTime: ZonedDateTime = currentDateTime
+
+    private var datePickerDialog: DatePickerDialog? = null
+    private var timePickerDialog: TimePickerDialog? = null
+
+    private val onDateSetListener =
+        DatePickerDialog.OnDateSetListener { _, year, month, day -> updateSelectedDate(year, month, day) }
+
+    private val onTimeSetListener =
+        TimePickerDialog.OnTimeSetListener { _, hour, minute -> updateSelectedTime(hour, minute) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
@@ -54,17 +67,10 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddBloodGlucoseLevelViewModel::class.java)
 
-        setupObserver()
+        createDateTimeDialogs()
+        setListeners()
         setInitialValues()
-
-        sliderBgl.positionListener = { pos ->
-            val selectedSliderValue = (MIN_BGL + MAX_BGL * pos).toInt()
-            sliderBgl.bubbleText = "$selectedSliderValue"
-            tvBloodGlucoseLevel.text = "$selectedSliderValue"
-
-            setStartEndSliderTextVisibility(selectedSliderValue)
-            setBGLColor(selectedSliderValue)
-        }
+        setObservers()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -78,7 +84,7 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
                 viewModel.addBloodGlucoseLevel(
                     BloodGlucoseLevel(
                         tvBloodGlucoseLevel.text.toString().toInt(),
-                        MILLIGRAMS_PER_DECILITRE, dt, DINNER
+                        MILLIGRAMS_PER_DECILITRE, selectedDateTime, DINNER
                     )
                 )
             }
@@ -88,11 +94,52 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
         return true
     }
 
-    private fun setInitialValues() {
-        dt = ZonedDateTime.now()
+    private fun updateSelectedTime(hour: Int, minute: Int) {
+        selectedDateTime = ZonedDateTime.of(
+            selectedDateTime.year, selectedDateTime.monthValue, selectedDateTime.dayOfMonth,
+            hour, minute, selectedDateTime.second, selectedDateTime.nano, ZoneId.systemDefault()
+        )
+        tvTime.text = String.format("%02d:%02d", selectedDateTime.hour, selectedDateTime.minute)
+    }
 
-        tvDate.text = "${dt.dayOfMonth} ${dt.month}, ${dt.year}"
-        tvTime.text = "${dt.hour}:${dt.minute}"
+    private fun updateSelectedDate(selectedYear: Int, selectedMonth: Int, selectedDay: Int) {
+        selectedDateTime = ZonedDateTime.of(
+            selectedYear, selectedMonth, selectedDay, selectedDateTime.hour, selectedDateTime.minute,
+            selectedDateTime.second, selectedDateTime.nano, ZoneId.systemDefault()
+        )
+        tvDate.text =
+            String.format("%02d %s, %04d", selectedDateTime.dayOfMonth, selectedDateTime.month, selectedDateTime.year)
+    }
+
+    private fun createDateTimeDialogs() {
+        context?.let { ctx ->
+            datePickerDialog = DatePickerDialog(
+                ctx, onDateSetListener, currentDateTime.year, currentDateTime.monthValue, currentDateTime.dayOfMonth
+            )
+            timePickerDialog = TimePickerDialog(
+                ctx, onTimeSetListener, currentDateTime.hour, currentDateTime.minute, true
+            )
+        }
+    }
+
+    private fun setListeners() {
+        sliderBgl.positionListener = { pos ->
+            val selectedSliderValue = (MIN_BGL + MAX_BGL * pos).toInt()
+            sliderBgl.bubbleText = "$selectedSliderValue"
+            tvBloodGlucoseLevel.text = "$selectedSliderValue"
+
+            setStartEndSliderTextVisibility(selectedSliderValue)
+            setBGLColor(selectedSliderValue)
+        }
+
+        tvDate.setOnClickListener { datePickerDialog?.show() }
+        tvTime.setOnClickListener { timePickerDialog?.show() }
+    }
+
+    private fun setInitialValues() {
+        tvDate.text =
+            String.format("%02d %s, %04d", currentDateTime.dayOfMonth, currentDateTime.month, currentDateTime.year)
+        tvTime.text = String.format("%02d:%02d", currentDateTime.hour, currentDateTime.minute)
         tvBloodGlucoseLevel.text = "100"
         sliderBgl.position = 0.2f
         sliderBgl.bubbleText = "${100}"
@@ -125,7 +172,7 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
         }
     }
 
-    private fun setupObserver() {
+    private fun setObservers() {
         viewModel.insertStatus.observe(viewLifecycleOwner, Observer<Resource<BloodGlucoseLevel>> {
             when (it) {
                 is Loading -> {

@@ -30,7 +30,7 @@ class AddBloodGlucoseLevelUseCaseTest {
     }
 
     @Test
-    fun shouldAddBloodGlucoseLevel_ValidData() {
+    fun `check if valid bgl inserted, should call complete`() {
         `when`(bloodGlucoseLevelRepository.addBloodGlucoseLevel(TestData.bloodGlucoseLevel)).thenReturn(Completable.complete())
 
         addBloodGlucoseLevelUseCase.execute(TestData.bloodGlucoseLevel).subscribe(testObserver)
