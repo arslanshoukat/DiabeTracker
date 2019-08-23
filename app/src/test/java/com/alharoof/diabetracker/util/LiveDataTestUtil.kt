@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.alharoof.diabetracker
+package com.alharoof.diabetracker.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer

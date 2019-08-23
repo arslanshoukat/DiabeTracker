@@ -2,6 +2,7 @@ package com.alharoof.diabetracker.bloodglucoselevel
 
 import com.alharoof.diabetracker.data.bloodglucoselevel.BloodGlucoseLevelRepository
 import com.alharoof.diabetracker.domain.bloodglucoselevel.AddBloodGlucoseLevelUseCase
+import com.alharoof.diabetracker.util.TestData
 import io.reactivex.Completable
 import io.reactivex.observers.TestObserver
 import org.junit.*
@@ -29,8 +30,14 @@ class AddBloodGlucoseLevelUseCaseTest {
         addBloodGlucoseLevelUseCase = AddBloodGlucoseLevelUseCase(bloodGlucoseLevelRepository)
     }
 
+    @After
+    fun tearDown() {
+        reset(bloodGlucoseLevelRepository)
+        testObserver.dispose()
+    }
+
     @Test
-    fun `check if valid bgl inserted, should call complete`() {
+    fun `should create new bgl`() {
         `when`(bloodGlucoseLevelRepository.addBloodGlucoseLevel(TestData.bloodGlucoseLevel)).thenReturn(Completable.complete())
 
         addBloodGlucoseLevelUseCase.execute(TestData.bloodGlucoseLevel).subscribe(testObserver)

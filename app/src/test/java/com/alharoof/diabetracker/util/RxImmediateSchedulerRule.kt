@@ -1,4 +1,4 @@
-package com.alharoof.diabetracker
+package com.alharoof.diabetracker.util
 
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins

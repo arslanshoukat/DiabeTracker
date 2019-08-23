@@ -1,11 +1,12 @@
 package com.alharoof.diabetracker.bloodglucoselevel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.alharoof.diabetracker.LiveDataTestUtil
-import com.alharoof.diabetracker.RxImmediateSchedulerRule
 import com.alharoof.diabetracker.data.base.Result
 import com.alharoof.diabetracker.domain.bloodglucoselevel.AddBloodGlucoseLevelUseCase
 import com.alharoof.diabetracker.ui.bloodglucoselevel.AddBloodGlucoseLevelViewModel
+import com.alharoof.diabetracker.util.LiveDataTestUtil
+import com.alharoof.diabetracker.util.RxImmediateSchedulerRule
+import com.alharoof.diabetracker.util.TestData
 import io.reactivex.Completable
 import org.junit.*
 import org.junit.runner.*
