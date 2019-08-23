@@ -18,10 +18,28 @@ import com.alharoof.diabetracker.data.base.Result.Loading
 import com.alharoof.diabetracker.data.base.Result.Success
 import com.alharoof.diabetracker.data.bloodglucoselevel.db.BloodGlucoseLevel
 import com.alharoof.diabetracker.data.bloodglucoselevel.model.BGLUnit.MILLIGRAMS_PER_DECILITRE
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.AFTER_BREAKFAST
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.AFTER_DINNER
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.AFTER_EXERCISE
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.AFTER_LUNCH
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BEFORE_BREAKFAST
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BEFORE_DINNER
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BEFORE_EXERCISE
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BEFORE_LUNCH
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BEFORE_SLEEP
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BREAKFAST
 import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.DINNER
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.EXERCISE
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.FASTING
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.LUNCH
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.OTHER
+import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.SNACK
+import com.alharoof.diabetracker.util.CustomDividerItemDecoration
 import com.alharoof.diabetracker.util.showToast
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.flBgl
+import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.rvCategories
 import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.sliderBgl
 import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvBloodGlucoseLevel
 import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvDate
@@ -143,11 +161,16 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
         tvBloodGlucoseLevel.text = "100"
         sliderBgl.position = 0.2f
         sliderBgl.bubbleText = "${100}"
+
+        rvCategories.addItemDecoration(CustomDividerItemDecoration(activity!!, CustomDividerItemDecoration.GRID))
+        rvCategories.adapter = CategoriesAdapter(getCategories())
     }
 
     private fun setBGLColor(value: Int) {
         when (value) {
-            in 0..70 -> flBgl.setBackgroundResource(R.color.bgl_low)
+            in 0..69 -> flBgl.setBackgroundResource(R.color.bgl_high)
+            in 70..79 -> flBgl.setBackgroundResource(R.color.bgl_warn)
+            in 140..179 -> flBgl.setBackgroundResource(R.color.bgl_warn)
             in 180..999 -> flBgl.setBackgroundResource(R.color.bgl_high)
             else -> flBgl.setBackgroundResource(R.color.bgl_normal)
         }
@@ -192,5 +215,15 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
                 }
             }
         })
+    }
+
+    private fun getCategories(): List<Category> {
+        return listOf(
+            OTHER, FASTING, SNACK,
+            BEFORE_BREAKFAST, BREAKFAST, AFTER_BREAKFAST,
+            BEFORE_LUNCH, LUNCH, AFTER_LUNCH,
+            BEFORE_DINNER, DINNER, AFTER_DINNER,
+            BEFORE_EXERCISE, EXERCISE, AFTER_EXERCISE, BEFORE_SLEEP
+        )
     }
 }

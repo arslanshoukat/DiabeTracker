@@ -36,8 +36,9 @@ class BloodGlucoseLevelLogFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(BloodGlucoseLevelLogViewModel::class.java)
-
         setObservers()
+        //  fixme : load when viewmodel is initialized
+        viewModel.loadBloodGlucoseLevels()
     }
 
     private fun setObservers() {

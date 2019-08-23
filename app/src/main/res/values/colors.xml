@@ -20,6 +20,7 @@
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
 
+    <color name="colorIconsGray">@color/gray_800</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
 
@@ -28,11 +29,17 @@
     <color name="red_100">#FFCDD2</color>
     <color name="green_500">#4CAF50</color>
     <color name="green_700">#388E3C</color>
+    <color name="gray_100">#F5F5F5</color>
     <color name="gray_300">#E0E0E0</color>
+    <color name="gray_500">#9E9E9E</color>
+    <color name="gray_600">#757575</color>
+    <color name="gray_700">#616161</color>
+    <color name="gray_800">#424242</color>
+    <color name="gray_900">#212121</color>
 
     <!-- bgl -->
-    <color name="bgl_low">#2196F3</color>
     <color name="bgl_normal">#4CAF50</color>
+    <color name="bgl_warn">#FF9800</color>
     <color name="bgl_high">#F44336</color>
 
 </resources>
