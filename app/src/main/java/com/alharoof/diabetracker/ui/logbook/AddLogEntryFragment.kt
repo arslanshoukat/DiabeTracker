@@ -2,6 +2,7 @@ package com.alharoof.diabetracker.ui.logbook
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -9,6 +10,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -17,30 +19,25 @@ import com.alharoof.diabetracker.data.base.Result
 import com.alharoof.diabetracker.data.base.Result.Loading
 import com.alharoof.diabetracker.data.base.Result.Success
 import com.alharoof.diabetracker.data.logbook.db.LogEntry
-import com.alharoof.diabetracker.data.logbook.model.BglUnit.MILLIGRAMS_PER_DECILITRE
+import com.alharoof.diabetracker.data.logbook.model.BglUnit
 import com.alharoof.diabetracker.data.logbook.model.Category
-import com.alharoof.diabetracker.data.logbook.model.Category.AFTER_BREAKFAST
-import com.alharoof.diabetracker.data.logbook.model.Category.AFTER_DINNER
-import com.alharoof.diabetracker.data.logbook.model.Category.AFTER_EXERCISE
-import com.alharoof.diabetracker.data.logbook.model.Category.AFTER_LUNCH
-import com.alharoof.diabetracker.data.logbook.model.Category.BEFORE_BREAKFAST
-import com.alharoof.diabetracker.data.logbook.model.Category.BEFORE_DINNER
-import com.alharoof.diabetracker.data.logbook.model.Category.BEFORE_EXERCISE
-import com.alharoof.diabetracker.data.logbook.model.Category.BEFORE_LUNCH
-import com.alharoof.diabetracker.data.logbook.model.Category.BEFORE_SLEEP
-import com.alharoof.diabetracker.data.logbook.model.Category.BREAKFAST
-import com.alharoof.diabetracker.data.logbook.model.Category.DINNER
-import com.alharoof.diabetracker.data.logbook.model.Category.EXERCISE
-import com.alharoof.diabetracker.data.logbook.model.Category.FASTING
-import com.alharoof.diabetracker.data.logbook.model.Category.LUNCH
-import com.alharoof.diabetracker.data.logbook.model.Category.OTHER
-import com.alharoof.diabetracker.data.logbook.model.Category.SNACK
+import com.alharoof.diabetracker.data.logbook.model.DoseUnit
+import com.alharoof.diabetracker.data.logbook.model.Medication
+import com.alharoof.diabetracker.extensions.intTextOrNull
+import com.alharoof.diabetracker.extensions.isTextNotZero
 import com.alharoof.diabetracker.util.CustomDividerItemDecoration
+import com.alharoof.diabetracker.util.getBasalInsulins
+import com.alharoof.diabetracker.util.getBolusInsulins
 import com.alharoof.diabetracker.util.showToast
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.add_log_entry_fragment.etBasalDose
+import kotlinx.android.synthetic.main.add_log_entry_fragment.etBolusDose
+import kotlinx.android.synthetic.main.add_log_entry_fragment.etCarbs
 import kotlinx.android.synthetic.main.add_log_entry_fragment.flBgl
 import kotlinx.android.synthetic.main.add_log_entry_fragment.rvCategories
 import kotlinx.android.synthetic.main.add_log_entry_fragment.sliderBgl
+import kotlinx.android.synthetic.main.add_log_entry_fragment.spBasalMedication
+import kotlinx.android.synthetic.main.add_log_entry_fragment.spBolusMedication
 import kotlinx.android.synthetic.main.add_log_entry_fragment.tvBgl
 import kotlinx.android.synthetic.main.add_log_entry_fragment.tvDate
 import kotlinx.android.synthetic.main.add_log_entry_fragment.tvTime
@@ -53,8 +50,13 @@ class AddLogEntryFragment : DaggerFragment() {
     companion object {
         fun newInstance() = AddLogEntryFragment()
 
+        const val TAG = "AddLogEntryFragment"
+
         private const val MIN_BGL = 0
         private const val MAX_BGL = 500
+
+        private val basalInsulins = getBasalInsulins()
+        private val bolusInsulins = getBolusInsulins()
     }
 
     @Inject
@@ -70,6 +72,8 @@ class AddLogEntryFragment : DaggerFragment() {
     private var datePickerDialog: DatePickerDialog? = null
     private var timePickerDialog: TimePickerDialog? = null
 
+    private lateinit var ctx: Context
+
     private val onDateSetListener =
         DatePickerDialog.OnDateSetListener { _, year, month, day -> updateSelectedDate(year, month, day) }
 
@@ -79,6 +83,11 @@ class AddLogEntryFragment : DaggerFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.add_log_entry_fragment, container, false)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        ctx = context
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -101,9 +110,23 @@ class AddLogEntryFragment : DaggerFragment() {
             R.id.menu_action_save -> {
                 viewModel.addLogEntry(
                     LogEntry(
+                        dateTime = selectedDateTime,
                         bgl = tvBgl.text.toString().toInt(),
-                        bglUnit = MILLIGRAMS_PER_DECILITRE,
-                        dateTime = selectedDateTime
+                        bglUnit = BglUnit.MILLIGRAMS_PER_DECILITRE,
+                        basalMedication = if (etBasalDose.isTextNotZero())
+                            Medication(
+                                medCode = basalInsulins[spBasalMedication.selectedItemPosition],
+                                dose = etBasalDose.intTextOrNull() ?: 0,
+                                doseUnit = DoseUnit.INSULIN_UNIT
+                            ) else null,
+                        bolusMedication = if (etBolusDose.isTextNotZero())
+                            Medication(
+                                medCode = bolusInsulins[spBolusMedication.selectedItemPosition],
+                                dose = etBolusDose.intTextOrNull() ?: 0,
+                                doseUnit = DoseUnit.INSULIN_UNIT
+                            ) else null,
+                        carbs = if (etCarbs.isTextNotZero()) etCarbs.intTextOrNull() else null
+
                     )
                 )
             }
@@ -160,11 +183,24 @@ class AddLogEntryFragment : DaggerFragment() {
             String.format("%02d %s, %04d", currentDateTime.dayOfMonth, currentDateTime.month, currentDateTime.year)
         tvTime.text = String.format("%02d:%02d", currentDateTime.hour, currentDateTime.minute)
         tvBgl.text = "100"
+
         sliderBgl.position = 0.2f
         sliderBgl.bubbleText = "${100}"
 
-        rvCategories.addItemDecoration(CustomDividerItemDecoration(activity!!, CustomDividerItemDecoration.GRID))
-        rvCategories.adapter = CategoriesAdapter(getCategories())
+        val basalAdapter =
+            ArrayAdapter(ctx, android.R.layout.simple_spinner_item, basalInsulins.map { it.productName })
+        basalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spBasalMedication.prompt = "Rapid/Short Acting Insulin"
+        spBasalMedication.adapter = basalAdapter
+
+        val bolusAdapter =
+            ArrayAdapter(ctx, android.R.layout.simple_spinner_item, bolusInsulins.map { it.productName })
+        bolusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spBolusMedication.prompt = "Intermediate/Long Acting Insulin"
+        spBolusMedication.adapter = bolusAdapter
+
+        rvCategories.addItemDecoration(CustomDividerItemDecoration(ctx, CustomDividerItemDecoration.GRID))
+        rvCategories.adapter = CategoriesAdapter(categories = Category.values().asList())
     }
 
     private fun setBGLColor(value: Int) {
@@ -216,15 +252,5 @@ class AddLogEntryFragment : DaggerFragment() {
                 }
             }
         })
-    }
-
-    private fun getCategories(): List<Category> {
-        return listOf(
-            OTHER, FASTING, SNACK,
-            BEFORE_BREAKFAST, BREAKFAST, AFTER_BREAKFAST,
-            BEFORE_LUNCH, LUNCH, AFTER_LUNCH,
-            BEFORE_DINNER, DINNER, AFTER_DINNER,
-            BEFORE_EXERCISE, EXERCISE, AFTER_EXERCISE, BEFORE_SLEEP
-        )
     }
 }

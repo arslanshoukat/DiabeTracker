@@ -187,11 +187,161 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             android:background="@color/gray_300"
-            app:layout_constraintBottom_toTopOf="@+id/ivCategory"
+            app:layout_constraintBottom_toTopOf="@+id/spBasalMedication"
             app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@+id/ivTime" />
+
+        <Spinner
+            android:id="@+id/spBasalMedication"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            app:layout_constraintBottom_toTopOf="@+id/div3"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineMid"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/div2" />
+
+        <EditText
+            android:id="@+id/etBasalDose"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="000"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/spBasalMedication"
+            app:layout_constraintStart_toStartOf="@+id/guidelineMid"
+            app:layout_constraintTop_toTopOf="@+id/spBasalMedication"
+            tools:text="999" />
+
+        <TextView
+            android:id="@+id/tvBasalUnit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="U"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBaseline_toBaselineOf="@+id/etBasalDose"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+            app:layout_constraintStart_toEndOf="@+id/etBasalDose"
+            tools:text="U" />
+
+        <View
+            android:id="@+id/div3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/gray_300"
+            app:layout_constraintBottom_toTopOf="@+id/spBolusMedication"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/spBasalMedication" />
+
+        <Spinner
+            android:id="@+id/spBolusMedication"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog"
+            app:layout_constraintBottom_toTopOf="@+id/div4"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineMid"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/div3" />
+
+        <EditText
+            android:id="@+id/etBolusDose"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="000"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/spBolusMedication"
+            app:layout_constraintStart_toStartOf="@+id/guidelineMid"
+            app:layout_constraintTop_toTopOf="@+id/spBolusMedication"
+            tools:text="999" />
+
+        <TextView
+            android:id="@+id/tvBolusUnit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="U"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBaseline_toBaselineOf="@+id/etBolusDose"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+            app:layout_constraintStart_toEndOf="@+id/etBolusDose"
+            tools:text="U" />
+
+        <View
+            android:id="@+id/div4"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/gray_300"
+            app:layout_constraintBottom_toTopOf="@+id/tvCarbsLbl"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/spBolusMedication" />
+
+        <TextView
+            android:id="@+id/tvCarbsLbl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Carbs"
+            android:textAppearance="@style/InputLabelText"
+            app:layout_constraintBottom_toTopOf="@+id/div5"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineMid"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/div4" />
+
+        <EditText
+            android:id="@+id/etCarbs"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="0000"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLength="4"
+            android:singleLine="true"
+            android:textAlignment="center"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvCarbsLbl"
+            app:layout_constraintStart_toStartOf="@+id/guidelineMid"
+            tools:text="8888" />
+
+        <View
+            android:id="@+id/div5"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/gray_300"
+            app:layout_constraintBottom_toTopOf="@+id/ivCategory"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/tvCarbsLbl" />
 
         <ImageView
             android:id="@+id/ivCategory"
@@ -201,7 +351,7 @@
             android:src="@drawable/ic_category_black_24dp"
             app:layout_constraintBottom_toTopOf="@+id/rvCategories"
             app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/div2" />
+            app:layout_constraintTop_toBottomOf="@+id/div5" />
 
         <TextView
             android:id="@+id/tvCategoryLbl"
@@ -235,6 +385,18 @@
             app:spanCount="2"
             tools:itemCount="16"
             tools:listitem="@layout/category_list_item" />
+
+        <TextView
+            android:id="@+id/tvCarbsUnit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="grams"
+            app:layout_constraintBottom_toBottomOf="@+id/etCarbs"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+            app:layout_constraintStart_toEndOf="@+id/etCarbs" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
