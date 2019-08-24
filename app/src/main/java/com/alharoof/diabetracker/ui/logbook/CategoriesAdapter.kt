@@ -1,4 +1,4 @@
-package com.alharoof.diabetracker.ui.bloodglucoselevel
+package com.alharoof.diabetracker.ui.logbook
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,13 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.alharoof.diabetracker.R
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category
-import com.alharoof.diabetracker.ui.bloodglucoselevel.CategoriesAdapter.CategoryViewHolder
+import com.alharoof.diabetracker.data.logbook.model.Category
+import com.alharoof.diabetracker.ui.logbook.CategoriesAdapter.CategoryViewHolder
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.category_list_item.ivIcon
 import kotlinx.android.synthetic.main.category_list_item.tvTitle
 
-class CategoriesAdapter(private val categogyList: List<Category>) : Adapter<CategoryViewHolder>() {
+class CategoriesAdapter(private val categories: List<Category>) : Adapter<CategoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         return CategoryViewHolder(
@@ -22,10 +22,10 @@ class CategoriesAdapter(private val categogyList: List<Category>) : Adapter<Cate
         )
     }
 
-    override fun getItemCount(): Int = categogyList.size
+    override fun getItemCount(): Int = categories.size
 
     override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
-        viewHolder.bindView(categogyList[position])
+        viewHolder.bindView(categories[position])
     }
 
     class CategoryViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),

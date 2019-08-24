@@ -1,4 +1,4 @@
-package com.alharoof.diabetracker.data.bloodglucoselevel.model
+package com.alharoof.diabetracker.data.logbook.model
 
 import androidx.annotation.DrawableRes
 import com.alharoof.diabetracker.R

@@ -1,4 +1,4 @@
-package com.alharoof.diabetracker.ui.bloodglucoselevel
+package com.alharoof.diabetracker.ui.logbook
 
 import android.os.Bundle
 import android.util.Log
@@ -12,37 +12,37 @@ import com.alharoof.diabetracker.R
 import com.alharoof.diabetracker.data.base.Result
 import com.alharoof.diabetracker.data.base.Result.Loading
 import com.alharoof.diabetracker.data.base.Result.Success
-import com.alharoof.diabetracker.data.bloodglucoselevel.db.BloodGlucoseLevel
+import com.alharoof.diabetracker.data.logbook.db.LogEntry
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.blood_glucose_level_log_fragment.tvData
+import kotlinx.android.synthetic.main.log_book_fragment.tvData
 import javax.inject.Inject
 
-class BloodGlucoseLevelLogFragment : DaggerFragment() {
+class LogBookFragment : DaggerFragment() {
 
     companion object {
-        fun newInstance() = BloodGlucoseLevelLogFragment()
-        const val TAG = "BglLogFragment"
+        fun newInstance() = LogBookFragment()
+        const val TAG = "LogBookFragment"
     }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: BloodGlucoseLevelLogViewModel
+    private lateinit var bookViewModel: LogBookViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.blood_glucose_level_log_fragment, container, false)
+        return inflater.inflate(R.layout.log_book_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(BloodGlucoseLevelLogViewModel::class.java)
+        bookViewModel = ViewModelProviders.of(this, viewModelFactory).get(LogBookViewModel::class.java)
         setObservers()
         //  fixme : load when viewmodel is initialized
-        viewModel.loadBloodGlucoseLevels()
+        bookViewModel.loadLogEntries()
     }
 
     private fun setObservers() {
-        viewModel.bglList.observe(viewLifecycleOwner, Observer<Result<List<BloodGlucoseLevel>>> {
+        bookViewModel.logEntries.observe(viewLifecycleOwner, Observer<Result<List<LogEntry>>> {
             when (it) {
                 is Loading -> {
                 }

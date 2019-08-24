@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bloodglucoselevel.AddBloodGlucoseLevelFragment">
+    tools:context=".ui.logbook.AddLogEntryFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineMid"
@@ -51,7 +52,7 @@
                 android:background="@color/bgl_normal">
 
                 <TextView
-                    android:id="@+id/tvBloodGlucoseLevel"
+                    android:id="@+id/tvBgl"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"

@@ -4,9 +4,9 @@ import android.app.Application
 import android.content.Context
 import androidx.room.Room
 import com.alharoof.diabetracker.data.base.AppDatabase
-import com.alharoof.diabetracker.data.bloodglucoselevel.BloodGlucoseLevelRepository
-import com.alharoof.diabetracker.data.bloodglucoselevel.BloodGlucoseLevelRepositoryImpl
-import com.alharoof.diabetracker.data.bloodglucoselevel.db.BloodGlucoseLevelDao
+import com.alharoof.diabetracker.data.logbook.LogEntryRepository
+import com.alharoof.diabetracker.data.logbook.LogEntryRepositoryImpl
+import com.alharoof.diabetracker.data.logbook.db.LogEntryDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -24,10 +24,9 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideBloodGlucoseLevelDao(db: AppDatabase): BloodGlucoseLevelDao = db.bloodGlucoseLevelDao()
+    fun provideLogEntryDao(db: AppDatabase): LogEntryDao = db.logEntryDao()
 
     @Singleton
     @Provides
-    fun provideBloodGlucoseLevelRepository(bloodGlucoseLevelDao: BloodGlucoseLevelDao): BloodGlucoseLevelRepository =
-        BloodGlucoseLevelRepositoryImpl(bloodGlucoseLevelDao)
+    fun provideLogEntryRepository(logEntryDao: LogEntryDao): LogEntryRepository = LogEntryRepositoryImpl(logEntryDao)
 }

@@ -1,4 +1,4 @@
-package com.alharoof.diabetracker.ui.bloodglucoselevel
+package com.alharoof.diabetracker.ui.logbook
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,23 +7,23 @@ import com.alharoof.diabetracker.data.base.Result
 import com.alharoof.diabetracker.data.base.Result.Error
 import com.alharoof.diabetracker.data.base.Result.Loading
 import com.alharoof.diabetracker.data.base.Result.Success
-import com.alharoof.diabetracker.data.bloodglucoselevel.db.BloodGlucoseLevel
-import com.alharoof.diabetracker.domain.bloodglucoselevel.AddBloodGlucoseLevelUseCase
+import com.alharoof.diabetracker.data.logbook.db.LogEntry
+import com.alharoof.diabetracker.domain.logbook.AddLogEntryUseCase
 import io.reactivex.CompletableObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class AddBloodGlucoseLevelViewModel @Inject constructor(
-    private val addBloodGlucoseLevelUseCase: AddBloodGlucoseLevelUseCase
+class AddLogEntryViewModel @Inject constructor(
+    private val addLogEntryUseCase: AddLogEntryUseCase
 ) : ViewModel() {
 
-    private val _insertStatus: MutableLiveData<Result<BloodGlucoseLevel>> = MutableLiveData()
-    val insertStatus get() = _insertStatus as LiveData<Result<BloodGlucoseLevel>>
+    private val _insertStatus: MutableLiveData<Result<LogEntry>> = MutableLiveData()
+    val insertStatus get() = _insertStatus as LiveData<Result<LogEntry>>
 
-    fun addBloodGlucoseLevel(bloodGlucoseLevel: BloodGlucoseLevel) {
-        addBloodGlucoseLevelUseCase.execute(bloodGlucoseLevel)
+    fun addLogEntry(logEntry: LogEntry) {
+        addLogEntryUseCase.execute(logEntry)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : CompletableObserver {

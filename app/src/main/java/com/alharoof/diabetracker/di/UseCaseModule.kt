@@ -1,8 +1,8 @@
 package com.alharoof.diabetracker.di
 
-import com.alharoof.diabetracker.data.bloodglucoselevel.BloodGlucoseLevelRepository
-import com.alharoof.diabetracker.domain.bloodglucoselevel.AddBloodGlucoseLevelUseCase
-import com.alharoof.diabetracker.domain.bloodglucoselevel.LoadBloodGlucoseLevelsUseCase
+import com.alharoof.diabetracker.data.logbook.LogEntryRepository
+import com.alharoof.diabetracker.domain.logbook.AddLogEntryUseCase
+import com.alharoof.diabetracker.domain.logbook.LoadLogEntriesUseCase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -12,11 +12,11 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    internal fun provideAddBloodGlucoseLevelUseCase(bloodGlucoseLevelRepository: BloodGlucoseLevelRepository)
-            : AddBloodGlucoseLevelUseCase = AddBloodGlucoseLevelUseCase(bloodGlucoseLevelRepository)
+    internal fun provideAddLogEntryUseCase(logEntryRepository: LogEntryRepository)
+            : AddLogEntryUseCase = AddLogEntryUseCase(logEntryRepository)
 
     @Provides
     @Singleton
-    internal fun provideLoadBloodGlucoseLevelsUseCase(bloodGlucoseLevelRepository: BloodGlucoseLevelRepository)
-            : LoadBloodGlucoseLevelsUseCase = LoadBloodGlucoseLevelsUseCase(bloodGlucoseLevelRepository)
+    internal fun provideLoadLogEntriesUseCase(logEntryRepository: LogEntryRepository)
+            : LoadLogEntriesUseCase = LoadLogEntriesUseCase(logEntryRepository)
 }

@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.bloodglucoselevel.BloodGlucoseLevelLogFragment">
+    tools:context=".ui.logbook.LogBookFragment">
 
     <TextView
         android:id="@+id/tvData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="BloodGlucoseLevelLogFragment" />
+        android:text="LogBookFragment" />
 
 </FrameLayout>

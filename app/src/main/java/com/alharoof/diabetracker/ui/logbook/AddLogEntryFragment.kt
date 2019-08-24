@@ -1,4 +1,4 @@
-package com.alharoof.diabetracker.ui.bloodglucoselevel
+package com.alharoof.diabetracker.ui.logbook
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
@@ -16,42 +16,42 @@ import com.alharoof.diabetracker.R
 import com.alharoof.diabetracker.data.base.Result
 import com.alharoof.diabetracker.data.base.Result.Loading
 import com.alharoof.diabetracker.data.base.Result.Success
-import com.alharoof.diabetracker.data.bloodglucoselevel.db.BloodGlucoseLevel
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.BGLUnit.MILLIGRAMS_PER_DECILITRE
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.AFTER_BREAKFAST
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.AFTER_DINNER
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.AFTER_EXERCISE
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.AFTER_LUNCH
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BEFORE_BREAKFAST
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BEFORE_DINNER
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BEFORE_EXERCISE
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BEFORE_LUNCH
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BEFORE_SLEEP
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.BREAKFAST
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.DINNER
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.EXERCISE
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.FASTING
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.LUNCH
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.OTHER
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category.SNACK
+import com.alharoof.diabetracker.data.logbook.db.LogEntry
+import com.alharoof.diabetracker.data.logbook.model.BGLUnit.MILLIGRAMS_PER_DECILITRE
+import com.alharoof.diabetracker.data.logbook.model.Category
+import com.alharoof.diabetracker.data.logbook.model.Category.AFTER_BREAKFAST
+import com.alharoof.diabetracker.data.logbook.model.Category.AFTER_DINNER
+import com.alharoof.diabetracker.data.logbook.model.Category.AFTER_EXERCISE
+import com.alharoof.diabetracker.data.logbook.model.Category.AFTER_LUNCH
+import com.alharoof.diabetracker.data.logbook.model.Category.BEFORE_BREAKFAST
+import com.alharoof.diabetracker.data.logbook.model.Category.BEFORE_DINNER
+import com.alharoof.diabetracker.data.logbook.model.Category.BEFORE_EXERCISE
+import com.alharoof.diabetracker.data.logbook.model.Category.BEFORE_LUNCH
+import com.alharoof.diabetracker.data.logbook.model.Category.BEFORE_SLEEP
+import com.alharoof.diabetracker.data.logbook.model.Category.BREAKFAST
+import com.alharoof.diabetracker.data.logbook.model.Category.DINNER
+import com.alharoof.diabetracker.data.logbook.model.Category.EXERCISE
+import com.alharoof.diabetracker.data.logbook.model.Category.FASTING
+import com.alharoof.diabetracker.data.logbook.model.Category.LUNCH
+import com.alharoof.diabetracker.data.logbook.model.Category.OTHER
+import com.alharoof.diabetracker.data.logbook.model.Category.SNACK
 import com.alharoof.diabetracker.util.CustomDividerItemDecoration
 import com.alharoof.diabetracker.util.showToast
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.flBgl
-import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.rvCategories
-import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.sliderBgl
-import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvBloodGlucoseLevel
-import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvDate
-import kotlinx.android.synthetic.main.add_blood_glucose_level_fragment.tvTime
+import kotlinx.android.synthetic.main.add_log_entry_fragment.flBgl
+import kotlinx.android.synthetic.main.add_log_entry_fragment.rvCategories
+import kotlinx.android.synthetic.main.add_log_entry_fragment.sliderBgl
+import kotlinx.android.synthetic.main.add_log_entry_fragment.tvBgl
+import kotlinx.android.synthetic.main.add_log_entry_fragment.tvDate
+import kotlinx.android.synthetic.main.add_log_entry_fragment.tvTime
 import org.threeten.bp.ZoneId
 import org.threeten.bp.ZonedDateTime
 import javax.inject.Inject
 
-class AddBloodGlucoseLevelFragment : DaggerFragment() {
+class AddLogEntryFragment : DaggerFragment() {
 
     companion object {
-        fun newInstance() = AddBloodGlucoseLevelFragment()
+        fun newInstance() = AddLogEntryFragment()
 
         private const val MIN_BGL = 0
         private const val MAX_BGL = 500
@@ -60,7 +60,7 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: AddBloodGlucoseLevelViewModel
+    private lateinit var viewModel: AddLogEntryViewModel
 
     private var isSliderStartTextVisible: Boolean = true
     private var isSliderEndTextVisible: Boolean = true
@@ -78,12 +78,12 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.add_blood_glucose_level_fragment, container, false)
+        return inflater.inflate(R.layout.add_log_entry_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddBloodGlucoseLevelViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddLogEntryViewModel::class.java)
 
         createDateTimeDialogs()
         setListeners()
@@ -93,15 +93,15 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_add_blood_glucose_level_fragment, menu)
+        inflater.inflate(R.menu.menu_add_log_entry_fragment, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_action_save -> {
-                viewModel.addBloodGlucoseLevel(
-                    BloodGlucoseLevel(
-                        tvBloodGlucoseLevel.text.toString().toInt(),
+                viewModel.addLogEntry(
+                    LogEntry(
+                        tvBgl.text.toString().toInt(),
                         MILLIGRAMS_PER_DECILITRE, selectedDateTime, DINNER
                     )
                 )
@@ -144,7 +144,7 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
         sliderBgl.positionListener = { pos ->
             val selectedSliderValue = (MIN_BGL + MAX_BGL * pos).toInt()
             sliderBgl.bubbleText = "$selectedSliderValue"
-            tvBloodGlucoseLevel.text = "$selectedSliderValue"
+            tvBgl.text = "$selectedSliderValue"
 
             setStartEndSliderTextVisibility(selectedSliderValue)
             setBGLColor(selectedSliderValue)
@@ -158,7 +158,7 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
         tvDate.text =
             String.format("%02d %s, %04d", currentDateTime.dayOfMonth, currentDateTime.month, currentDateTime.year)
         tvTime.text = String.format("%02d:%02d", currentDateTime.hour, currentDateTime.minute)
-        tvBloodGlucoseLevel.text = "100"
+        tvBgl.text = "100"
         sliderBgl.position = 0.2f
         sliderBgl.bubbleText = "${100}"
 
@@ -196,7 +196,7 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
     }
 
     private fun setObservers() {
-        viewModel.insertStatus.observe(viewLifecycleOwner, Observer<Result<BloodGlucoseLevel>> {
+        viewModel.insertStatus.observe(viewLifecycleOwner, Observer<Result<LogEntry>> {
             when (it) {
                 is Loading -> {
                 }
@@ -206,7 +206,7 @@ class AddBloodGlucoseLevelFragment : DaggerFragment() {
 
                     activity?.let { act ->
                         act.supportFragmentManager.beginTransaction()
-                            .replace(R.id.container, BloodGlucoseLevelLogFragment.newInstance())
+                            .replace(R.id.container, LogBookFragment.newInstance())
                             .commitNow()
                     }
                 }

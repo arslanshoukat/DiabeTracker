@@ -1,8 +1,8 @@
 package com.alharoof.diabetracker.util
 
 import androidx.room.TypeConverter
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.BGLUnit
-import com.alharoof.diabetracker.data.bloodglucoselevel.model.Category
+import com.alharoof.diabetracker.data.logbook.model.BGLUnit
+import com.alharoof.diabetracker.data.logbook.model.Category
 import org.threeten.bp.ZonedDateTime
 
 class Converters {
