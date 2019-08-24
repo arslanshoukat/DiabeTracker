@@ -3,7 +3,7 @@ package com.alharoof.diabetracker.data.logbook.db
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.alharoof.diabetracker.data.logbook.model.BGLUnit
+import com.alharoof.diabetracker.data.logbook.model.BglUnit
 import com.alharoof.diabetracker.data.logbook.model.Category
 import com.alharoof.diabetracker.data.logbook.model.Medication
 import org.threeten.bp.ZonedDateTime
@@ -12,10 +12,10 @@ import org.threeten.bp.ZonedDateTime
 data class LogEntry(
     val dateTime: ZonedDateTime,
     val bgl: Int? = null,
-    val bglUnit: BGLUnit? = null,
-    @Embedded(prefix = "basal")
+    val bglUnit: BglUnit? = null,
+    @Embedded(prefix = "basal_")
     val basalMedication: Medication? = null,
-    @Embedded(prefix = "bolus")
+    @Embedded(prefix = "bolus_")
     val bolusMedication: Medication? = null,
     val carbs: Int? = null,
     val category: Category? = null

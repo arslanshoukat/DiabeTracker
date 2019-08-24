@@ -1,7 +1,7 @@
 package com.alharoof.diabetracker.util
 
 import androidx.room.TypeConverter
-import com.alharoof.diabetracker.data.logbook.model.BGLUnit
+import com.alharoof.diabetracker.data.logbook.model.BglUnit
 import com.alharoof.diabetracker.data.logbook.model.Category
 import com.alharoof.diabetracker.data.logbook.model.DoseUnit
 import com.alharoof.diabetracker.data.logbook.model.MedicationEnum
@@ -47,15 +47,15 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromBGLUnitEnumToCode(bglUnit: BGLUnit?): Int? {
+    fun fromBglUnitEnumToCode(bglUnit: BglUnit?): Int? {
         return bglUnit?.code
     }
 
     @TypeConverter
-    fun fromBGLUnitCodeToEnum(bglUnitCode: Int?): BGLUnit? {
+    fun fromBglUnitCodeToEnum(bglUnitCode: Int?): BglUnit? {
         return when (bglUnitCode) {
-            0 -> BGLUnit.MILLIMOLES_PER_LITRE
-            1 -> BGLUnit.MILLIGRAMS_PER_DECILITRE
+            0 -> BglUnit.MILLIMOLES_PER_LITRE
+            1 -> BglUnit.MILLIGRAMS_PER_DECILITRE
             else -> null
         }
     }

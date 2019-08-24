@@ -1,10 +1,10 @@
 package com.alharoof.diabetracker.data.logbook.model
 
 data class Medication(
-    val name: String,
     val medCode: MedicationEnum,
     val dose: Int,
-    val doseUnit: DoseUnit
+    val doseUnit: DoseUnit,
+    val name: String = medCode.productName
 ) {
 
     companion object {

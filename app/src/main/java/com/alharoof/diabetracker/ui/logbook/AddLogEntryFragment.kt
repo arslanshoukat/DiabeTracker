@@ -17,7 +17,7 @@ import com.alharoof.diabetracker.data.base.Result
 import com.alharoof.diabetracker.data.base.Result.Loading
 import com.alharoof.diabetracker.data.base.Result.Success
 import com.alharoof.diabetracker.data.logbook.db.LogEntry
-import com.alharoof.diabetracker.data.logbook.model.BGLUnit.MILLIGRAMS_PER_DECILITRE
+import com.alharoof.diabetracker.data.logbook.model.BglUnit.MILLIGRAMS_PER_DECILITRE
 import com.alharoof.diabetracker.data.logbook.model.Category
 import com.alharoof.diabetracker.data.logbook.model.Category.AFTER_BREAKFAST
 import com.alharoof.diabetracker.data.logbook.model.Category.AFTER_DINNER
@@ -101,8 +101,9 @@ class AddLogEntryFragment : DaggerFragment() {
             R.id.menu_action_save -> {
                 viewModel.addLogEntry(
                     LogEntry(
-                        tvBgl.text.toString().toInt(),
-                        MILLIGRAMS_PER_DECILITRE, selectedDateTime, DINNER
+                        bgl = tvBgl.text.toString().toInt(),
+                        bglUnit = MILLIGRAMS_PER_DECILITRE,
+                        dateTime = selectedDateTime
                     )
                 )
             }
