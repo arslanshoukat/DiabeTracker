@@ -3,6 +3,8 @@ package com.alharoof.diabetracker.util
 import androidx.room.TypeConverter
 import com.alharoof.diabetracker.data.logbook.model.BGLUnit
 import com.alharoof.diabetracker.data.logbook.model.Category
+import com.alharoof.diabetracker.data.logbook.model.DoseUnit
+import com.alharoof.diabetracker.data.logbook.model.MedicationEnum
 import org.threeten.bp.ZonedDateTime
 
 class Converters {
@@ -54,6 +56,49 @@ class Converters {
         return when (bglUnitCode) {
             0 -> BGLUnit.MILLIMOLES_PER_LITRE
             1 -> BGLUnit.MILLIGRAMS_PER_DECILITRE
+            else -> null
+        }
+    }
+
+    @TypeConverter
+    fun fromDoseUnitEnumToCode(doseUnit: DoseUnit?): Int? = doseUnit?.code
+
+    @TypeConverter
+    fun fromDoseUnitCodeToEnum(doseUnitCode: Int?): DoseUnit? {
+        return when (doseUnitCode) {
+            0 -> DoseUnit.INSULIN_UNIT
+            1 -> DoseUnit.MG
+            else -> null
+        }
+    }
+
+    @TypeConverter
+    fun fromMedicationEnumToCode(medicationEnum: MedicationEnum?): Int? = medicationEnum?.code
+
+    @TypeConverter
+    fun fromMedicationCodeToEnum(medicationCode: Int?): MedicationEnum? {
+        return when (medicationCode) {
+            1 -> MedicationEnum.AFREZZA
+            2 -> MedicationEnum.APIDRA
+            3 -> MedicationEnum.BASAGLAR
+            4 -> MedicationEnum.HUMALOG
+            5 -> MedicationEnum.HUMALOG_MIX_50_50
+            6 -> MedicationEnum.HUMALOG_MIX_75_25
+            7 -> MedicationEnum.HUMULIN_R
+            8 -> MedicationEnum.HUMULIN_N
+            9 -> MedicationEnum.HUMULIN_50_50
+            10 -> MedicationEnum.HUMULIN_70_30
+            11 -> MedicationEnum.LANTUS
+            12 -> MedicationEnum.LEVEMIR
+            13 -> MedicationEnum.NOVOLIN
+            14 -> MedicationEnum.NOVOLIN_70_30
+            15 -> MedicationEnum.NOVOLOG
+            16 -> MedicationEnum.NOVOLOG_MIX_70_30
+            17 -> MedicationEnum.NOVORAPID
+            18 -> MedicationEnum.NPH
+            19 -> MedicationEnum.TOUJEO
+            20 -> MedicationEnum.TRESIBA
+            21 -> MedicationEnum.VELOSULIN
             else -> null
         }
     }
