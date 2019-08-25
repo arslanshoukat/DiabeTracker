@@ -8,13 +8,16 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
 import com.alharoof.diabetracker.R
 import com.alharoof.diabetracker.data.base.Result
 import com.alharoof.diabetracker.data.base.Result.Loading
 import com.alharoof.diabetracker.data.base.Result.Success
 import com.alharoof.diabetracker.data.logbook.db.LogEntry
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.log_book_fragment.tvData
+import kotlinx.android.synthetic.main.log_book_fragment.progressBar
+import kotlinx.android.synthetic.main.log_book_fragment.rvLogEntries
+import kotlinx.android.synthetic.main.log_book_fragment.tvEmptyMessage
 import javax.inject.Inject
 
 class LogBookFragment : DaggerFragment() {
@@ -28,6 +31,7 @@ class LogBookFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var bookViewModel: LogBookViewModel
+    private val logEntriesAdapter = LogEntriesAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.log_book_fragment, container, false)
@@ -37,22 +41,38 @@ class LogBookFragment : DaggerFragment() {
         super.onActivityCreated(savedInstanceState)
         bookViewModel = ViewModelProviders.of(this, viewModelFactory).get(LogBookViewModel::class.java)
         setObservers()
+        setLogEntriesAdapter()
+
         //  fixme : load when viewmodel is initialized
         bookViewModel.loadLogEntries()
     }
 
+    private fun setLogEntriesAdapter() {
+        rvLogEntries.itemAnimator = DefaultItemAnimator()
+        rvLogEntries.adapter = logEntriesAdapter
+    }
+
     private fun setObservers() {
-        bookViewModel.logEntries.observe(viewLifecycleOwner, Observer<Result<List<LogEntry>>> {
-            when (it) {
+        bookViewModel.logEntries.observe(viewLifecycleOwner, Observer<Result<List<LogEntry>>> { result ->
+            when (result) {
                 is Loading -> {
+                    progressBar.visibility = View.VISIBLE
+                    tvEmptyMessage.visibility = View.GONE
                 }
                 is Success -> {
-                    val successMsg = it.data?.toString() ?: "Success"
-                    Log.d(TAG, successMsg)
-                    tvData.text = successMsg
+                    progressBar.visibility = View.GONE
+                    tvEmptyMessage.visibility = View.GONE
+
+                    Log.d(TAG, result.data.toString())
+
+                    result.data?.let {
+                        logEntriesAdapter.updateLogEntries(it)
+                    }
                 }
                 is Error -> {
-                    Log.d(TAG, it.message ?: "Error")
+                    progressBar.visibility = View.GONE
+                    tvEmptyMessage.visibility = View.VISIBLE
+                    tvEmptyMessage.text = result.message
                 }
             }
         })

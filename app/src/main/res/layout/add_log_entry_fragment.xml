@@ -100,12 +100,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:src="@drawable/ic_date_black_24dp"
             app:layout_constraintBottom_toTopOf="@+id/div1"
             app:layout_constraintStart_toStartOf="@+id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@+id/sliderBgl"
             app:layout_constraintVertical_bias="0.2"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            app:srcCompat="@drawable/ic_date_black_24dp" />
 
         <TextView
             android:id="@+id/tvDateLbl"
@@ -150,10 +150,10 @@
             android:id="@+id/ivTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_time_black_24dp"
             app:layout_constraintBottom_toTopOf="@+id/div2"
             app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/div1" />
+            app:layout_constraintTop_toBottomOf="@+id/div1"
+            app:srcCompat="@drawable/ic_time_black_24dp" />
 
         <TextView
             android:id="@+id/tvTimeLbl"
@@ -295,23 +295,35 @@
             android:layout_marginBottom="16dp"
             android:layout_marginTop="16dp"
             android:background="@color/gray_300"
-            app:layout_constraintBottom_toTopOf="@+id/tvCarbsLbl"
+            app:layout_constraintBottom_toTopOf="@+id/ivCarbs"
             app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/guidelineStart"
             app:layout_constraintTop_toBottomOf="@+id/spBolusMedication" />
+
+        <ImageView
+            android:id="@+id/ivCarbs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/div5"
+            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+            app:layout_constraintTop_toBottomOf="@+id/div4"
+            app:srcCompat="@drawable/ic_grain"
+            tools:layout_editor_absoluteY="545dp" />
 
         <TextView
             android:id="@+id/tvCarbsLbl"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
             android:text="Carbs"
             android:textAppearance="@style/InputLabelText"
-            app:layout_constraintBottom_toTopOf="@+id/div5"
+            app:layout_constraintBottom_toBottomOf="@+id/ivCarbs"
             app:layout_constraintEnd_toStartOf="@+id/guidelineMid"
-            app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/div4" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ivCarbs"
+            app:layout_constraintTop_toTopOf="@+id/ivCarbs" />
 
         <EditText
             android:id="@+id/etCarbs"
@@ -330,6 +342,18 @@
             app:layout_constraintStart_toStartOf="@+id/guidelineMid"
             tools:text="8888" />
 
+        <TextView
+            android:id="@+id/tvCarbsUnit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="grams"
+            app:layout_constraintBottom_toBottomOf="@+id/etCarbs"
+            app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
+            app:layout_constraintStart_toEndOf="@+id/etCarbs" />
+
         <View
             android:id="@+id/div5"
             android:layout_width="0dp"
@@ -341,17 +365,17 @@
             app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/tvCarbsLbl" />
+            app:layout_constraintTop_toBottomOf="@+id/ivCarbs" />
 
         <ImageView
             android:id="@+id/ivCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_category_black_24dp"
             app:layout_constraintBottom_toTopOf="@+id/rvCategories"
             app:layout_constraintStart_toStartOf="@+id/guidelineStart"
-            app:layout_constraintTop_toBottomOf="@+id/div5" />
+            app:layout_constraintTop_toBottomOf="@+id/div5"
+            app:srcCompat="@drawable/ic_category_black_24dp" />
 
         <TextView
             android:id="@+id/tvCategoryLbl"
@@ -375,7 +399,6 @@
             android:background="@color/gray_100"
             android:orientation="horizontal"
             android:scrollbars="none"
-            app:flow_horizontalSeparator=""
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -385,18 +408,6 @@
             app:spanCount="2"
             tools:itemCount="16"
             tools:listitem="@layout/category_list_item" />
-
-        <TextView
-            android:id="@+id/tvCarbsUnit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="grams"
-            app:layout_constraintBottom_toBottomOf="@+id/etCarbs"
-            app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
-            app:layout_constraintStart_toEndOf="@+id/etCarbs" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
