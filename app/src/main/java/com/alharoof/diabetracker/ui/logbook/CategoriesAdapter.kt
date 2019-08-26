@@ -12,7 +12,10 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.category_list_item.ivIcon
 import kotlinx.android.synthetic.main.category_list_item.tvTitle
 
-class CategoriesAdapter(private val categories: List<Category>) : Adapter<CategoryViewHolder>() {
+class CategoriesAdapter(
+    private val categories: List<Category>,
+    private var onListItemClickListener: OnListItemClickListener<Category>
+) : Adapter<CategoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         return CategoryViewHolder(
@@ -28,8 +31,16 @@ class CategoriesAdapter(private val categories: List<Category>) : Adapter<Catego
         viewHolder.bindView(categories[position])
     }
 
-    class CategoryViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
+    inner class CategoryViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
+
+        init {
+            itemView.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    onListItemClickListener.onItemClicked(categories[adapterPosition])
+                }
+            }
+        }
 
         fun bindView(category: Category) {
             tvTitle.text = category.title

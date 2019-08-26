@@ -68,6 +68,7 @@ class AddLogEntryFragment : DaggerFragment() {
     private var isSliderEndTextVisible: Boolean = true
     private val currentDateTime: ZonedDateTime = ZonedDateTime.now()
     private var selectedDateTime: ZonedDateTime = currentDateTime
+    private var selectedCategory: Category? = null
 
     private var datePickerDialog: DatePickerDialog? = null
     private var timePickerDialog: TimePickerDialog? = null
@@ -95,8 +96,8 @@ class AddLogEntryFragment : DaggerFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddLogEntryViewModel::class.java)
 
         createDateTimeDialogs()
-        setListeners()
         setInitialValues()
+        setListeners()
         setObservers()
     }
 
@@ -125,8 +126,8 @@ class AddLogEntryFragment : DaggerFragment() {
                                 dose = etBolusDose.intTextOrNull() ?: 0,
                                 doseUnit = DoseUnit.INSULIN_UNIT
                             ) else null,
-                        carbs = if (etCarbs.isTextNotZero()) etCarbs.intTextOrNull() else null
-
+                        carbs = if (etCarbs.isTextNotZero()) etCarbs.intTextOrNull() else null,
+                        category = selectedCategory
                     )
                 )
             }
@@ -200,7 +201,12 @@ class AddLogEntryFragment : DaggerFragment() {
         spBolusMedication.adapter = bolusAdapter
 
         rvCategories.addItemDecoration(CustomDividerItemDecoration(ctx, CustomDividerItemDecoration.GRID))
-        rvCategories.adapter = CategoriesAdapter(categories = Category.values().asList())
+        rvCategories.adapter = CategoriesAdapter(categories = Category.values().asList(),
+            onListItemClickListener = object : OnListItemClickListener<Category> {
+                override fun onItemClicked(category: Category) {
+                    selectedCategory = category
+                }
+            })
     }
 
     private fun setBGLColor(value: Int) {

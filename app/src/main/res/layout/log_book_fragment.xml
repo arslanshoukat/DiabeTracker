@@ -14,9 +14,7 @@
         android:layout_gravity="top|start"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/log_entry_list_item">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/log_entry_list_item" />
 
     <ProgressBar
         android:id="@+id/progressBar"
