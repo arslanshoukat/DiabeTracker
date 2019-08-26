@@ -13,8 +13,10 @@
         android:layout_height="match_parent"
         android:layout_gravity="top|start"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/log_entry_list_item" />
+        tools:listitem="@layout/log_entry_list_item"
+        tools:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -31,6 +33,8 @@
         android:gravity="center"
         android:padding="16dp"
         android:text="No log entry available to show."
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 </FrameLayout>

@@ -1,7 +1,6 @@
 package com.alharoof.diabetracker.ui.logbook
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +39,9 @@ class LogBookFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         bookViewModel = ViewModelProviders.of(this, viewModelFactory).get(LogBookViewModel::class.java)
+
+        activity?.let { act -> act.title = act.resources.getString(R.string.title_log_book) }
+
         setObservers()
         setLogEntriesAdapter()
 
@@ -56,21 +58,20 @@ class LogBookFragment : DaggerFragment() {
         bookViewModel.logEntries.observe(viewLifecycleOwner, Observer<Result<List<LogEntry>>> { result ->
             when (result) {
                 is Loading -> {
-                    progressBar.visibility = View.VISIBLE
                     tvEmptyMessage.visibility = View.GONE
+                    rvLogEntries.visibility = View.GONE
+                    progressBar.visibility = View.VISIBLE
                 }
                 is Success -> {
                     progressBar.visibility = View.GONE
                     tvEmptyMessage.visibility = View.GONE
+                    rvLogEntries.visibility = View.VISIBLE
 
-                    Log.d(TAG, result.data.toString())
-
-                    result.data?.let {
-                        logEntriesAdapter.updateLogEntries(it)
-                    }
+                    result.data?.let { logEntriesAdapter.updateLogEntries(it) }
                 }
                 is Error -> {
                     progressBar.visibility = View.GONE
+                    rvLogEntries.visibility = View.GONE
                     tvEmptyMessage.visibility = View.VISIBLE
                     tvEmptyMessage.text = result.message
                 }

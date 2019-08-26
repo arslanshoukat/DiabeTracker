@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">DiabeTracker</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_add_log_entry">Add Log Entry</string>
+    <string name="title_log_book">LogBook</string>
+    <string name="title_main">Main</string>
 </resources>

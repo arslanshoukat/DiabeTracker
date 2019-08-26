@@ -52,4 +52,8 @@ class AddLogEntryViewModel @Inject constructor(
     private fun setSuccessResponse() {
         _insertStatus.value = Success()
     }
+
+    fun resetStatus() {
+        _insertStatus.value = Loading()
+    }
 }

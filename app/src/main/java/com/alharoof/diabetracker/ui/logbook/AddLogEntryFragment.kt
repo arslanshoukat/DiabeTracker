@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.alharoof.diabetracker.R
 import com.alharoof.diabetracker.data.base.Result
 import com.alharoof.diabetracker.data.base.Result.Loading
@@ -94,6 +95,8 @@ class AddLogEntryFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddLogEntryViewModel::class.java)
+
+        activity?.let { act -> act.title = act.resources.getString(R.string.title_add_log_entry) }
 
         createDateTimeDialogs()
         setInitialValues()
@@ -247,14 +250,13 @@ class AddLogEntryFragment : DaggerFragment() {
                     context?.showToast("Added Successfully")
                     setInitialValues()
 
-                    activity?.let { act ->
-                        act.supportFragmentManager.beginTransaction()
-                            .replace(R.id.container, LogBookFragment.newInstance())
-                            .commitNow()
-                    }
+                    //  navigate to log book
+                    findNavController().navigate(R.id.action_global_logBookFragment)
+
+                    viewModel.resetStatus()
                 }
                 is Error -> {
-                    context?.showToast("Failed!!!")
+                    context?.showToast("Failed to add new entry!!!")
                 }
             }
         })

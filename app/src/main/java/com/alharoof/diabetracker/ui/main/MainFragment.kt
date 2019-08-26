@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.alharoof.diabetracker.R
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.main_fragment.btnAddLogEntry
+import kotlinx.android.synthetic.main.main_fragment.btnOpenLogBook
 import javax.inject.Inject
 
 class MainFragment : DaggerFragment() {
@@ -28,5 +31,19 @@ class MainFragment : DaggerFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
+
+        activity?.let { act -> act.title = act.resources.getString(R.string.title_main) }
+
+        setListeners()
+    }
+
+    private fun setListeners() {
+        btnAddLogEntry.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_addLogEntryFragment)
+
+        }
+        btnOpenLogBook.setOnClickListener {
+            findNavController().navigate(R.id.action_global_logBookFragment)
+        }
     }
 }
