@@ -1,0 +1,13 @@
+<resources>
+    <!--Shape-->
+
+    <!--Shape Appearance for small components like chips, buttons, text fields and FABs-->
+    <style name="ShapeAppearance.AppTheme.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent" />
+
+    <!--Shape Appearance for medium components like cards, alert dialogs-->
+    <style name="ShapeAppearance.AppTheme.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent" />
+
+    <!--Shape Appearance for large components like side and bottom navigation drawers-->
+    <style name="ShapeAppearance.AppTheme.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent" />
+
+</resources>

@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/blue_700</color>
-    <color name="colorPrimaryDark">@color/blue_900</color>
-    <color name="colorPrimaryLight">@color/blue_50</color>
+    <!--LIGHT COLOR THEME-->
 
-    <!--  accent A200  -->
-    <color name="colorAccentLight">#40C4FF</color>
-    <!--  accent A400  -->
-    <color name="colorAccent">#00b0FF</color>
-    <!--  accent A700  -->
-    <color name="colorAccentDark">#0091EA</color>
+    <!--colorPrimary colors map to components and elements, such as app bars and buttons. -->
+    <!--colorSecondary colors are most often used as accents on components, such as FABs and -->
+    <!--selection controls.-->
+    <color name="color_primary">@color/light_blue_900</color>
+    <color name="color_primary_variant">@color/light_blue_900_dark</color>
+    <color name="color_secondary">@color/cyan_a400</color>
+    <color name="color_secondary_variant">@color/cyan_a400_dark</color>
 
-    <color name="blue_50">#E1F5FE</color>
-    <color name="blue_100">#B3E5FC</color>
-    <color name="blue_900">#01579B</color>
-    <color name="blue_700">#0288D1</color>
+    <!--colorBackground appears behind scrollable content and is used for the default window-->
+    <!--background. colorSurface is mapped to the surface of components such as cards, sheets-->
+    <!--and menus. colorError is used to indicate an error state for components such as-->
+    <!--text fields.-->
+    <color name="color_background">#ffffff</color>
+    <color name="color_surface">#ffffff</color>
+    <color name="color_error">#b00020</color>
+
+    <!--"On" colors define how text, icons and strokes are colored in relation to the surface-->
+    <!--on which they appear.-->
+    <color name="color_on_primary">#ffffff</color>
+    <color name="color_on_secondary">#000000</color>
+    <color name="color_on_background">#000000</color>
+    <color name="color_on_surface">#000000</color>
+    <color name="color_on_error">#ffffff</color>
+
+    <!--    custom colors   -->
+    <color name="light_blue_900">#01579b</color>
+    <color name="light_blue_900_light">#4f83cc</color>
+    <color name="light_blue_900_dark">#002f6c</color>
+    <color name="cyan_a400">#00b8d4</color>
+    <color name="cyan_a400_light">#62ebff</color>
+    <color name="cyan_a400_dark">#0088a3</color>
 
     <!--text-->
     <color name="colorPrimaryText">#212121</color>

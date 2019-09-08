@@ -77,7 +77,7 @@ class AddLogEntryFragment : DaggerFragment() {
     private lateinit var ctx: Context
 
     private val onDateSetListener =
-        DatePickerDialog.OnDateSetListener { _, year, month, day -> updateSelectedDate(year, month, day) }
+        DatePickerDialog.OnDateSetListener { _, year, month, day -> updateSelectedDate(year, month + 1, day) }
 
     private val onTimeSetListener =
         TimePickerDialog.OnTimeSetListener { _, hour, minute -> updateSelectedTime(hour, minute) }
@@ -160,7 +160,11 @@ class AddLogEntryFragment : DaggerFragment() {
     private fun createDateTimeDialogs() {
         context?.let { ctx ->
             datePickerDialog = DatePickerDialog(
-                ctx, onDateSetListener, currentDateTime.year, currentDateTime.monthValue, currentDateTime.dayOfMonth
+                ctx,
+                onDateSetListener,
+                currentDateTime.year,
+                currentDateTime.monthValue - 1,
+                currentDateTime.dayOfMonth
             )
             timePickerDialog = TimePickerDialog(
                 ctx, onTimeSetListener, currentDateTime.hour, currentDateTime.minute, true
