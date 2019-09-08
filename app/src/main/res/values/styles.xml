@@ -10,6 +10,12 @@
 
     <style name="InputLabelText" parent="TextAppearance.AppCompat.Body2" />
 
+    <style name="UnitsWizardLabelTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Large</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
