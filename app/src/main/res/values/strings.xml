@@ -4,4 +4,5 @@
     <string name="title_add_log_entry">Add Log Entry</string>
     <string name="title_log_book">LogBook</string>
     <string name="title_main">Main</string>
+    <string name="title_activity_wizard">WizardActivity</string>
 </resources>

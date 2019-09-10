@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_100"
+    tools:background="@color/colorBackgroundGray"
     tools:context=".ui.wizard.TargetRangesWizardFragment">
 
     <androidx.cardview.widget.CardView
@@ -14,6 +14,7 @@
         android:layout_marginTop="16dp"
         app:contentPadding="16dp"
         app:layout_constraintBottom_toTopOf="@+id/cvRatios"
+        app:layout_constraintVertical_bias="0.3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,8 +41,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilLow"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
                 android:hint="Low"
                 app:layout_constraintBottom_toTopOf="@+id/tilHypo"
                 app:layout_constraintEnd_toStartOf="@+id/guideStart"
@@ -50,15 +53,19 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLow"
+                    style="@style/AppEditText.BglWizard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:nextFocusForward="@id/etTarget" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilHigh"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:hint="High"
                 app:layout_constraintBottom_toBottomOf="@+id/tilLow"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -66,31 +73,40 @@
                 app:layout_constraintTop_toTopOf="@+id/tilLow">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etHigh"
+                    style="@style/AppEditText.BglWizard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:nextFocusForward="@id/etHypo" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilTarget"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
                 android:hint="Target"
                 app:layout_constraintEnd_toStartOf="@+id/guideEnd"
                 app:layout_constraintStart_toStartOf="@+id/guideStart"
                 app:layout_constraintTop_toTopOf="@+id/tilLow">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTarget"
+                    style="@style/AppEditText.BglWizard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:nextFocusForward="@id/etHigh" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilHypo"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="4dp"
                 android:hint="Hypoglycemia"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideStart"
@@ -99,15 +115,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/tilLow">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etHypo"
+                    style="@style/AppEditText.BglWizard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:nextFocusForward="@id/etHyper" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilHyper"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:hint="Hyperglycemia"
                 app:layout_constraintBottom_toBottomOf="@+id/tilHypo"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -115,9 +135,10 @@
                 app:layout_constraintTop_toTopOf="@+id/tilHypo">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etHyper"
+                    style="@style/AppEditText.BglWizard"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -153,14 +174,13 @@
 
             <EditText
                 android:id="@+id/etIsf"
+                style="@style/AppEditText.RatioWizard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="16dp"
                 android:ems="10"
-                android:hint="0.0"
-                android:inputType="number"
-                android:singleLine="true"
+                android:hint="00.0"
                 app:layout_constraintBottom_toTopOf="@+id/etIcr"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -187,13 +207,13 @@
 
             <EditText
                 android:id="@+id/etIcr"
+                style="@style/AppEditText.RatioWizard"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:ems="10"
-                android:hint="0.0"
-                android:inputType="number"
-                android:singleLine="true"
+                android:hint="00.0"
+                android:imeOptions="actionDone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -201,5 +221,4 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

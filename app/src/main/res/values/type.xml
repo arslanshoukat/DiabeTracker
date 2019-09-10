@@ -1,30 +1,69 @@
 <resources>
     <!--Typography-->
 
-    <style name="TextAppearance.AppTheme.Headline1" parent="TextAppearance.MaterialComponents.Headline1" />
+    <style name="TextAppearance.AppTheme.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="fontFamily">@font/titillium_web_light</item>
+        <item name="android:fontFamily">@font/titillium_web_light</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Headline2" parent="TextAppearance.MaterialComponents.Headline2" />
+    <style name="TextAppearance.AppTheme.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/titillium_web_light</item>
+        <item name="android:fontFamily">@font/titillium_web_light</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Headline3" parent="TextAppearance.MaterialComponents.Headline3" />
+    <style name="TextAppearance.AppTheme.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="fontFamily">@font/titillium_web_regular</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Headline4" parent="TextAppearance.MaterialComponents.Headline4" />
+    <style name="TextAppearance.AppTheme.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="fontFamily">@font/titillium_web_regular</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Headline5" parent="TextAppearance.MaterialComponents.Headline5" />
+    <style name="TextAppearance.AppTheme.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="fontFamily">@font/titillium_web_regular</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Headline6" parent="TextAppearance.MaterialComponents.Headline6" />
+    <style name="TextAppearance.AppTheme.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/titillium_web_semibold</item>
+        <item name="android:fontFamily">@font/titillium_web_semibold</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1" />
+    <style name="TextAppearance.AppTheme.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="fontFamily">@font/titillium_web_regular</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2" />
+    <style name="TextAppearance.AppTheme.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="fontFamily">@font/titillium_web_semibold</item>
+        <item name="android:fontFamily">@font/titillium_web_semibold</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Body1" parent="TextAppearance.MaterialComponents.Body1" />
+    <style name="TextAppearance.AppTheme.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="fontFamily">@font/titillium_web_regular</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Body2" parent="TextAppearance.MaterialComponents.Body2" />
+    <style name="TextAppearance.AppTheme.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="fontFamily">@font/titillium_web_regular</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Button" parent="TextAppearance.MaterialComponents.Button" />
+    <style name="TextAppearance.AppTheme.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/titillium_web_semibold</item>
+        <item name="android:fontFamily">@font/titillium_web_semibold</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Caption" parent="TextAppearance.MaterialComponents.Caption" />
+    <style name="TextAppearance.AppTheme.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="fontFamily">@font/titillium_web_regular</item>
+    </style>
 
-    <style name="TextAppearance.AppTheme.Overline" parent="TextAppearance.MaterialComponents.Overline" />
+    <style name="TextAppearance.AppTheme.Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="fontFamily">@font/titillium_web_regular</item>
+    </style>
 
 </resources>

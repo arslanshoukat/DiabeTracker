@@ -81,6 +81,9 @@ dependencies {
     implementation 'com.ramotion.fluidslider:fluid-slider:0.3.1'
     implementation 'com.github.florent37:shapeofview:1.4.7'
 
+    //  Page indicator view
+    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+
     //  Testing libs
     testImplementation "junit:junit:${versions.jUnit}"
     androidTestImplementation "androidx.test:runner:${versions.testRunner}"

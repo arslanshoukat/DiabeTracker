@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="InputLabelText" parent="TextAppearance.AppTheme.Subtitle2" />
+    <style name="InputLabelText" parent="TextAppearance.AppTheme.Body1" />
 
     <style name="UnitsWizardLabelTextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textAppearance">?textAppearanceHeadline5</item>
@@ -30,4 +30,37 @@
         <item name="itemTextAppearance">?textAppearanceBody2</item>
     </style>
 
+    <style name="AppEditText" parent="Widget.AppCompat.EditText" />
+
+    <style name="AppEditText.SingleLineNumber">
+        <item name="android:inputType">number</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="AppEditText.SingleLineText">
+        <item name="android:inputType">text</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="AppEditText.BglWizard" parent="AppEditText.SingleLineNumber">
+        <item name="android:maxLength">3</item>
+        <item name="android:imeOptions">actionNext</item>
+    </style>
+
+    <style name="AppEditText.RatioWizard">
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLength">4</item>
+    </style>
+
+    <style name="AppEditText.DecimalPersonalInfo" parent="AppEditText.RatioWizard">
+        <item name="android:maxLength">5</item>
+    </style>
+
+    <style name="AppEditText.NamePersonalInfo" parent="AppEditText.SingleLineText">
+        <item name="android:inputType">textPersonName</item>
+    </style>
 </resources>
