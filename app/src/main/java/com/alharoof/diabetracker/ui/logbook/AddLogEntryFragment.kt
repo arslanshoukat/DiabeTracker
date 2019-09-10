@@ -198,13 +198,13 @@ class AddLogEntryFragment : DaggerFragment() {
         val basalAdapter =
             ArrayAdapter(ctx, android.R.layout.simple_spinner_item, basalInsulins.map { it.productName })
         basalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spBasalMedication.prompt = "Rapid/Short Acting Insulin"
+        spBasalMedication.prompt = "Intermediate/Long Acting Insulin"
         spBasalMedication.adapter = basalAdapter
 
         val bolusAdapter =
             ArrayAdapter(ctx, android.R.layout.simple_spinner_item, bolusInsulins.map { it.productName })
         bolusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spBolusMedication.prompt = "Intermediate/Long Acting Insulin"
+        spBolusMedication.prompt = "Rapid/Short Acting Insulin"
         spBolusMedication.adapter = bolusAdapter
 
         rvCategories.addItemDecoration(CustomDividerItemDecoration(ctx, CustomDividerItemDecoration.GRID))
@@ -218,8 +218,8 @@ class AddLogEntryFragment : DaggerFragment() {
 
     private fun setBGLColor(value: Int) {
         when (value) {
-            in 0..69 -> flBgl.setBackgroundResource(R.color.bgl_high)
-            in 70..79 -> flBgl.setBackgroundResource(R.color.bgl_warn)
+            in 0..70 -> flBgl.setBackgroundResource(R.color.bgl_high)
+            in 71..80 -> flBgl.setBackgroundResource(R.color.bgl_warn)
             in 140..179 -> flBgl.setBackgroundResource(R.color.bgl_warn)
             in 180..999 -> flBgl.setBackgroundResource(R.color.bgl_high)
             else -> flBgl.setBackgroundResource(R.color.bgl_normal)

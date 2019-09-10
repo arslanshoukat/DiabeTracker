@@ -11,12 +11,12 @@ fun getShortActingInsulins(): List<MedicationEnum> {
     return MedicationEnum.values().filter { it.type == Medication.SHORT_ACTING_INSULIN }.toList()
 }
 
-fun getBasalInsulins(): List<MedicationEnum> {
+fun getBolusInsulins(): List<MedicationEnum> {
     return MedicationEnum.values()
         .filter { it.type == Medication.RAPID_ACTING_INSULIN || it.type == Medication.SHORT_ACTING_INSULIN }.toList()
 }
 
-fun getBolusInsulins(): List<MedicationEnum> {
+fun getBasalInsulins(): List<MedicationEnum> {
     return MedicationEnum.values()
         .filter { it.type == Medication.INTERMEDIATE_ACTING_INSULIN || it.type == Medication.LONG_ACTING_INSULIN }
         .toList()

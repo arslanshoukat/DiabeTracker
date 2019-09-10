@@ -25,8 +25,8 @@
         android:id="@+id/rgTreatment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/cvInsulinInjections"
         app:layout_constraintEnd_toStartOf="@+id/guideEnd"
         app:layout_constraintStart_toStartOf="@+id/guideStart"
@@ -80,13 +80,14 @@
                     style="@style/InputLabelText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_small"
                     android:text="Intermediate / Long Acting Insulin" />
 
                 <Spinner
                     android:id="@+id/spBasalInsulins"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog" />
 
             </LinearLayout>
 
@@ -101,13 +102,14 @@
                     style="@style/InputLabelText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_small"
                     android:text="Rapid / Short Acting Insulin" />
 
                 <Spinner
                     android:id="@+id/spBolusInsulins"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dialog" />
 
             </LinearLayout>
 
