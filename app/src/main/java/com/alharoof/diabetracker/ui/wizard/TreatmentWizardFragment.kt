@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.alharoof.diabetracker.R
 import com.alharoof.diabetracker.util.getBasalInsulins
@@ -14,16 +13,18 @@ import com.alharoof.diabetracker.util.getBolusInsulins
 import kotlinx.android.synthetic.main.treatment_wizard_fragment.spBasalInsulins
 import kotlinx.android.synthetic.main.treatment_wizard_fragment.spBolusInsulins
 
-class TreatmentWizardFragment private constructor() : Fragment() {
+class TreatmentWizardFragment private constructor() : WizardFragment(TAG) {
 
     companion object {
+        private const val TAG = "TreatmentWizardFrag"
+        private val basalInsulins = getBasalInsulins()
+        private val bolusInsulins = getBolusInsulins()
+
         fun newInstance() = TreatmentWizardFragment()
     }
 
     private lateinit var viewModel: TreatmentWizardViewModel
     private lateinit var ctx: Context
-    private val basalInsulins = getBasalInsulins()
-    private val bolusInsulins = getBolusInsulins()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -49,5 +50,8 @@ class TreatmentWizardFragment private constructor() : Fragment() {
         bolusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spBolusInsulins.prompt = "Rapid/Short Acting Insulin"
         spBolusInsulins.adapter = bolusAdapter
+    }
+
+    override fun saveInputs() {
     }
 }

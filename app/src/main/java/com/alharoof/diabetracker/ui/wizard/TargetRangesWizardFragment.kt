@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.alharoof.diabetracker.R
 import com.alharoof.diabetracker.util.Constants
@@ -16,9 +15,11 @@ import kotlinx.android.synthetic.main.target_ranges_wizard_fragment.etIsf
 import kotlinx.android.synthetic.main.target_ranges_wizard_fragment.etLow
 import kotlinx.android.synthetic.main.target_ranges_wizard_fragment.etTarget
 
-class TargetRangesWizardFragment private constructor() : Fragment() {
+class TargetRangesWizardFragment private constructor() : WizardFragment(TAG) {
 
     companion object {
+        private const val TAG = "TargetRangesWizardFrag"
+
         fun newInstance() = TargetRangesWizardFragment()
     }
 
@@ -44,5 +45,8 @@ class TargetRangesWizardFragment private constructor() : Fragment() {
 
         etIcr.setText("${Constants.DEFAULT_INSULIN_TO_CARB_RATIO}")
         etIsf.setText("${Constants.DEFAULT_INSULIN_SENSITIVITY_FACTOR}")
+    }
+
+    override fun saveInputs() {
     }
 }

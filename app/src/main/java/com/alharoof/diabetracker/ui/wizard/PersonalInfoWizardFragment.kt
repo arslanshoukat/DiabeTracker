@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.alharoof.diabetracker.R.layout
 
-class PersonalInfoWizardFragment private constructor() : Fragment() {
+class PersonalInfoWizardFragment private constructor() : WizardFragment(TAG) {
 
     companion object {
+        private const val TAG = "PersonalInfoWizardFrag"
+
         fun newInstance() = PersonalInfoWizardFragment()
     }
 
@@ -23,5 +24,8 @@ class PersonalInfoWizardFragment private constructor() : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(PersonalInfoWizardViewModel::class.java)
+    }
+
+    override fun saveInputs() {
     }
 }

@@ -1,11 +1,14 @@
 package com.alharoof.diabetracker.ui.wizard
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import com.alharoof.diabetracker.MainActivity
 import com.alharoof.diabetracker.R
 import kotlinx.android.synthetic.main.activity_wizard.btnBack
 import kotlinx.android.synthetic.main.activity_wizard.btnNext
@@ -20,6 +23,11 @@ class WizardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_wizard)
 
         wizardPagerAdapter = WizardPagerAdapter(supportFragmentManager)
+        //  Disable swipe
+        vpWizard.swipeable = false
+        //  Set offscreen page limit to one less than total page count. This optimization increases smoothness of
+        //  paging interaction and reduces fragment(page) recreation as all fragments are kept in-memory.
+        vpWizard.offscreenPageLimit = wizardPagerAdapter.count - 1
         vpWizard.adapter = wizardPagerAdapter
 
         setListeners()
@@ -36,6 +44,8 @@ class WizardActivity : AppCompatActivity() {
                     0 -> {
                         tvTitle.text = "Select Units"
                         btnNext.text = "Next: Personal Information"
+                        //  hide pager back button
+                        btnBack.visibility = View.INVISIBLE
                     }
                     1 -> {
                         tvTitle.text = "Enter Personal Information"
@@ -54,26 +64,49 @@ class WizardActivity : AppCompatActivity() {
         })
 
         btnNext.setOnClickListener {
-            if (vpWizard.currentItem <= wizardPagerAdapter.count - 2) {
-                vpWizard.currentItem = vpWizard.currentItem + 1
+            var currentItem = vpWizard.currentItem
+            if (currentItem < wizardPagerAdapter.count - 1) {
+                //  save inputs in visible fragments
+                (wizardPagerAdapter.getItem(currentItem) as? WizardFragment)?.saveInputs()
+                //  and open next fragment
+                vpWizard.currentItem = ++currentItem
+
+                if (currentItem >= 1) {
+                    //  show pager back button
+                    btnBack.visibility = View.VISIBLE
+                }
+            } else if (currentItem == wizardPagerAdapter.count - 1) {
+                //  if  current fragment is last one in adapter
+                //  start main activity
+                startActivity(Intent(this, MainActivity::class.java))
+                //  finish this to restrict coming back to this activity when user presses back button
+                finish()
             }
         }
 
         btnBack.setOnClickListener {
-            if (vpWizard.currentItem >= 0) {
-                vpWizard.currentItem = vpWizard.currentItem - 1
+            if (vpWizard.currentItem > 0) {
+                vpWizard.currentItem--
             }
         }
     }
 
-    class WizardPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
+    /**
+     * WizardPagerAdapter provides pages (fragments) displayed in viewpager. These are used to get various
+     * information / inputs from user that are stored as user preferences. Appropriate values (units) /
+     * experience is provided to user based on these preferences.
+     */
+    class WizardPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+        private val fragmentList: List<WizardFragment> = listOf(
+            UnitsWizardFragment.newInstance(),
+            PersonalInfoWizardFragment.newInstance(),
+            TreatmentWizardFragment.newInstance(),
+            TargetRangesWizardFragment.newInstance()
+        )
+
         override fun getItem(position: Int): Fragment {
-            return when (position) {
-                0 -> UnitsWizardFragment.newInstance()
-                1 -> PersonalInfoWizardFragment.newInstance()
-                2 -> TreatmentWizardFragment.newInstance()
-                else -> TargetRangesWizardFragment.newInstance()
-            }
+            return fragmentList[position]
         }
 
         override fun getCount(): Int = 4
