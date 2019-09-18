@@ -3,6 +3,11 @@ package com.alharoof.diabetracker.di
 import com.alharoof.diabetracker.ui.logbook.AddLogEntryFragment
 import com.alharoof.diabetracker.ui.logbook.LogBookFragment
 import com.alharoof.diabetracker.ui.main.MainFragment
+import com.alharoof.diabetracker.ui.wizard.PersonalInfoWizardFragment
+import com.alharoof.diabetracker.ui.wizard.TargetRangesWizardFragment
+import com.alharoof.diabetracker.ui.wizard.TreatmentWizardFragment
+import com.alharoof.diabetracker.ui.wizard.UnitsWizardFragment
+import com.alharoof.diabetracker.ui.wizard.WizardFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -21,4 +26,19 @@ abstract class FragmentsModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeLogBookFragment(): LogBookFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeWizardFragment(): WizardFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributePersonalInfoWizardFragment(): PersonalInfoWizardFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeTargetRangesWizardFragment(): TargetRangesWizardFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeTreatmentWizardFragment(): TreatmentWizardFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeUnitsWizardFragment(): UnitsWizardFragment
 }

@@ -6,13 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import dagger.android.support.DaggerFragment
 
 /**
  * Created by ashoukat on Sep 18, 2019 11:01 AM.
  */
 
-open class BaseFragment(private val TAG: String) : Fragment() {
+open class BaseFragment(private val TAG: String) : DaggerFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

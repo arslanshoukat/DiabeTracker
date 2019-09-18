@@ -37,8 +37,11 @@ class TreatmentWizardFragment private constructor() : WizardFragment(TAG) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TreatmentWizardViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(TreatmentWizardViewModel::class.java)
+        initializeDropdowns()
+    }
 
+    private fun initializeDropdowns() {
         val basalAdapter =
             ArrayAdapter(ctx, android.R.layout.simple_spinner_item, basalInsulins.map { it.productName })
         basalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -53,5 +56,7 @@ class TreatmentWizardFragment private constructor() : WizardFragment(TAG) {
     }
 
     override fun saveInputs() {
+        viewModel.updateBasalInsulin(basalInsulins[spBasalInsulins.selectedItemPosition].code)
+        viewModel.updateBolusInsulin(bolusInsulins[spBolusInsulins.selectedItemPosition].code)
     }
 }

@@ -7,6 +7,7 @@ import com.alharoof.diabetracker.data.base.AppDatabase
 import com.alharoof.diabetracker.data.logbook.LogEntryRepository
 import com.alharoof.diabetracker.data.logbook.LogEntryRepositoryImpl
 import com.alharoof.diabetracker.data.logbook.db.LogEntryDao
+import com.alharoof.diabetracker.data.settings.PrefManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -29,4 +30,8 @@ class AppModule {
     @Singleton
     @Provides
     fun provideLogEntryRepository(logEntryDao: LogEntryDao): LogEntryRepository = LogEntryRepositoryImpl(logEntryDao)
+
+    @Singleton
+    @Provides
+    fun providePrefManager(context: Context): PrefManager = PrefManager(context)
 }

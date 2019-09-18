@@ -31,7 +31,7 @@ class TargetRangesWizardFragment private constructor() : WizardFragment(TAG) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TargetRangesWizardViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(TargetRangesWizardViewModel::class.java)
 
         setInitialValues()
     }
@@ -48,5 +48,15 @@ class TargetRangesWizardFragment private constructor() : WizardFragment(TAG) {
     }
 
     override fun saveInputs() {
+        //  todo: add validation checks
+        viewModel.updateBglTargetAndRanges(
+            target = etTarget.text.toString().toInt(),
+            low = etLow.text.toString().toInt(),
+            hypo = etHypo.text.toString().toInt(),
+            high = etHigh.text.toString().toInt(),
+            hyper = etHyper.text.toString().toInt()
+        )
+        viewModel.updateInsulinSensitivityFactor(etIsf.text.toString().toFloat())
+        viewModel.updateInsulinToCarbRatio(etIcr.text.toString().toFloat())
     }
 }

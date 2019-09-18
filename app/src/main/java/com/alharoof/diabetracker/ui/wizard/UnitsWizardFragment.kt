@@ -38,12 +38,11 @@ class UnitsWizardFragment private constructor() : WizardFragment(TAG) {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(UnitsWizardViewModel::class.java)
-
-        initializeViews()
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(UnitsWizardViewModel::class.java)
+        initializeDropdowns()
     }
 
-    private fun initializeViews() {
+    private fun initializeDropdowns() {
         val unitsOfMeasurementAdapter = ArrayAdapter(ctx, layout.simple_spinner_item,
             unitsOfMeasurement.map { "${it.title} (${it.desc})" })
         unitsOfMeasurementAdapter.setDropDownViewResource(layout.simple_spinner_dropdown_item)
@@ -58,5 +57,7 @@ class UnitsWizardFragment private constructor() : WizardFragment(TAG) {
     }
 
     override fun saveInputs() {
+        viewModel.updateBglUnit(bglUnits[spBglUnit.selectedItemPosition].code)
+        viewModel.updateUnitOfMeasurement(unitsOfMeasurement[spUnitsOfMeasurement.selectedItemPosition].code)
     }
 }

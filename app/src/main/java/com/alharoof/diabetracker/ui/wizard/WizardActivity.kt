@@ -3,19 +3,19 @@ package com.alharoof.diabetracker.ui.wizard
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.alharoof.diabetracker.MainActivity
 import com.alharoof.diabetracker.R
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_wizard.btnBack
 import kotlinx.android.synthetic.main.activity_wizard.btnNext
 import kotlinx.android.synthetic.main.activity_wizard.tvTitle
 import kotlinx.android.synthetic.main.activity_wizard.vpWizard
 
-class WizardActivity : AppCompatActivity() {
+class WizardActivity : DaggerAppCompatActivity() {
     private lateinit var wizardPagerAdapter: WizardPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
