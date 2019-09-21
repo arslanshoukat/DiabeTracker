@@ -13,5 +13,14 @@ abstract class WizardFragment(tagForLog: String) : BaseFragment(tagForLog) {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    abstract fun saveInputs()
+    /**
+     * This method performs validation checks on all input fields and then save them as user preferences.
+     * It returns true only when all inputs are saved successfully.
+     */
+    abstract fun saveInputs(): Boolean
+
+    /**
+     * Clear error messages for input fields validated previously.
+     */
+    abstract fun clearErrors()
 }

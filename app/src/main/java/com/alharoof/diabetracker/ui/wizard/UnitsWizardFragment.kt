@@ -56,8 +56,11 @@ class UnitsWizardFragment private constructor() : WizardFragment(TAG) {
         spBglUnit.adapter = bglUnitAdapter
     }
 
-    override fun saveInputs() {
+    override fun clearErrors() {}
+
+    override fun saveInputs(): Boolean {
         viewModel.updateBglUnit(bglUnits[spBglUnit.selectedItemPosition].code)
         viewModel.updateUnitOfMeasurement(unitsOfMeasurement[spUnitsOfMeasurement.selectedItemPosition].code)
+        return true
     }
 }

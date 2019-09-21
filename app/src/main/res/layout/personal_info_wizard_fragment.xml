@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3">
+        app:layout_constraintVertical_bias="0.4">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -47,8 +47,9 @@
                 android:id="@+id/tilFirstName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:hint="First Name"
+                app:errorEnabled="true"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true"
                 app:layout_constraintBottom_toTopOf="@+id/tilLastName"
@@ -71,10 +72,12 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilLastName"
                 android:layout_width="0dp"
+                style="TextInput"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="@dimen/margin_micro"
+                android:layout_marginBottom="@dimen/margin_micro"
                 android:hint="Last Name"
+                app:errorEnabled="true"
                 app:layout_constraintBottom_toTopOf="@+id/tilWeight"
                 app:layout_constraintEnd_toStartOf="@+id/guideEnd"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -94,8 +97,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="@dimen/margin_micro"
                 android:hint="Weight"
+                app:errorEnabled="true"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -119,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:hint="Height"
+                app:errorEnabled="true"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true"
                 app:layout_constraintBottom_toBottomOf="@+id/tilWeight"

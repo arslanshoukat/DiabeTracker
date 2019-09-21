@@ -20,4 +20,20 @@ class PersonalInfoWizardViewModel @Inject constructor(
     fun updateWeight(weight: Float) {
         prefManager.setWeight(weight)
     }
+
+    fun getFirstName(): String? {
+        return prefManager.getFirstName()
+    }
+
+    fun getLastName(): String? {
+        return prefManager.getLastName()
+    }
+
+    fun getWeight(): Float {
+        return prefManager.getWeight()
+    }
+
+    fun getHeight(): Float {
+        return prefManager.getHeight()
+    }
 }

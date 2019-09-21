@@ -66,14 +66,17 @@ class WizardActivity : DaggerAppCompatActivity() {
         btnNext.setOnClickListener {
             var currentItem = vpWizard.currentItem
             if (currentItem < wizardPagerAdapter.count - 1) {
-                //  save inputs in visible fragments
-                (wizardPagerAdapter.getItem(currentItem) as? WizardFragment)?.saveInputs()
-                //  and open next fragment
-                vpWizard.currentItem = ++currentItem
-
-                if (currentItem >= 1) {
-                    //  show pager back button
-                    btnBack.visibility = View.VISIBLE
+                val wizardFragment = wizardPagerAdapter.getItem(currentItem) as? WizardFragment
+                //  save inputs of visible fragments
+                if (wizardFragment?.saveInputs() == true) {
+                    //  if all fields are validated and saved, open next fragment
+                    vpWizard.currentItem = ++currentItem
+                    //  clear errors as next fragment only opens after validating and saving inputs
+                    wizardFragment.clearErrors()
+                    if (currentItem >= 1) {
+                        //  show pager back button
+                        btnBack.visibility = View.VISIBLE
+                    }
                 }
             } else if (currentItem == wizardPagerAdapter.count - 1) {
                 //  if  current fragment is last one in adapter
@@ -86,6 +89,7 @@ class WizardActivity : DaggerAppCompatActivity() {
 
         btnBack.setOnClickListener {
             if (vpWizard.currentItem > 0) {
+                (wizardPagerAdapter.getItem(vpWizard.currentItem) as? WizardFragment)?.clearErrors()
                 vpWizard.currentItem--
             }
         }

@@ -47,7 +47,10 @@ class TargetRangesWizardFragment private constructor() : WizardFragment(TAG) {
         etIsf.setText("${Constants.DEFAULT_INSULIN_SENSITIVITY_FACTOR}")
     }
 
-    override fun saveInputs() {
+    override fun clearErrors() {
+    }
+
+    override fun saveInputs(): Boolean {
         //  todo: add validation checks
         viewModel.updateBglTargetAndRanges(
             target = etTarget.text.toString().toInt(),
@@ -58,5 +61,7 @@ class TargetRangesWizardFragment private constructor() : WizardFragment(TAG) {
         )
         viewModel.updateInsulinSensitivityFactor(etIsf.text.toString().toFloat())
         viewModel.updateInsulinToCarbRatio(etIcr.text.toString().toFloat())
+
+        return true
     }
 }

@@ -55,8 +55,12 @@ class TreatmentWizardFragment private constructor() : WizardFragment(TAG) {
         spBolusInsulins.adapter = bolusAdapter
     }
 
-    override fun saveInputs() {
+    override fun clearErrors() {
+    }
+
+    override fun saveInputs(): Boolean {
         viewModel.updateBasalInsulin(basalInsulins[spBasalInsulins.selectedItemPosition].code)
         viewModel.updateBolusInsulin(bolusInsulins[spBolusInsulins.selectedItemPosition].code)
+        return true
     }
 }
