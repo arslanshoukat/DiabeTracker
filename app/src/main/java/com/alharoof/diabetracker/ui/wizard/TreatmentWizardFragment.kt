@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProviders
 import com.alharoof.diabetracker.R
+import com.alharoof.diabetracker.util.Constants
+import com.alharoof.diabetracker.util.Converters
 import com.alharoof.diabetracker.util.getBasalInsulins
 import com.alharoof.diabetracker.util.getBolusInsulins
-import kotlinx.android.synthetic.main.treatment_wizard_fragment.spBasalInsulins
-import kotlinx.android.synthetic.main.treatment_wizard_fragment.spBolusInsulins
+import kotlinx.android.synthetic.main.treatment_wizard_fragment.actvBasal
+import kotlinx.android.synthetic.main.treatment_wizard_fragment.actvBolus
 
 class TreatmentWizardFragment private constructor() : WizardFragment(TAG) {
 
@@ -42,25 +44,47 @@ class TreatmentWizardFragment private constructor() : WizardFragment(TAG) {
     }
 
     private fun initializeDropdowns() {
-        val basalAdapter =
-            ArrayAdapter(ctx, android.R.layout.simple_spinner_item, basalInsulins.map { it.productName })
-        basalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spBasalInsulins.prompt = "Intermediate/Long Acting Insulin"
-        spBasalInsulins.adapter = basalAdapter
+        val initialBasal = viewModel.getBasalInsulin()
+        val initialBolus = viewModel.getBolusInsulin()
+        val basalList = basalInsulins.map { it.productName }
+        val bolusList = bolusInsulins.map { it.productName }
 
-        val bolusAdapter =
-            ArrayAdapter(ctx, android.R.layout.simple_spinner_item, bolusInsulins.map { it.productName })
-        bolusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spBolusInsulins.prompt = "Rapid/Short Acting Insulin"
-        spBolusInsulins.adapter = bolusAdapter
+        val basalAdapter = ArrayAdapter(ctx, R.layout.dropdown_menu_popup_item, basalList)
+        actvBasal.setAdapter(basalAdapter)
+        if (initialBasal != Constants.INVALID_INT) {
+            //  set dropdown to user selected value if user saved basal before
+            actvBasal.setText(
+                Converters.fromMedicationCodeToEnum(initialBasal)?.productName ?: basalList[0],
+                false
+            )
+        } else {
+            //  set dropdown to default value if user never selected basal before
+            actvBasal.setText(basalList[0], false)
+        }
+
+        val bolusAdapter = ArrayAdapter(ctx, R.layout.dropdown_menu_popup_item, bolusList)
+        actvBolus.setAdapter(bolusAdapter)
+        if (initialBolus != Constants.INVALID_INT) {
+            //  set dropdown to user selected value if user saved bolus before
+            actvBolus.setText(
+                Converters.fromMedicationCodeToEnum(initialBolus)?.productName ?: bolusList[0],
+                false
+            )
+        } else {
+            //  set dropdown to default value if user never selected bolus before
+            actvBolus.setText(bolusList[0], false)
+        }
     }
 
-    override fun clearErrors() {
-    }
+    override fun clearErrors() {}
 
     override fun saveInputs(): Boolean {
-        viewModel.updateBasalInsulin(basalInsulins[spBasalInsulins.selectedItemPosition].code)
-        viewModel.updateBolusInsulin(bolusInsulins[spBolusInsulins.selectedItemPosition].code)
+        Converters.getMedicationFromProductName(actvBasal.text.toString())?.code?.let {
+            viewModel.updateBasalInsulin(it)
+        }
+        Converters.getMedicationFromProductName(actvBolus.text.toString())?.code?.let {
+            viewModel.updateBolusInsulin(it)
+        }
         return true
     }
 }

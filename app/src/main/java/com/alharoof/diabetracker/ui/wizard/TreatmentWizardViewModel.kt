@@ -15,4 +15,12 @@ class TreatmentWizardViewModel @Inject constructor(
     fun updateBolusInsulin(bolus: Int) {
         prefManager.setBolusInsulin(bolus)
     }
+
+    fun getBasalInsulin(): Int {
+        return prefManager.getBasalInsulin()
+    }
+
+    fun getBolusInsulin(): Int {
+        return prefManager.getBolusInsulin()
+    }
 }
