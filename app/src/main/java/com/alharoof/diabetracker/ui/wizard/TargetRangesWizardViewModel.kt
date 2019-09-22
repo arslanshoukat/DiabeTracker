@@ -23,4 +23,32 @@ class TargetRangesWizardViewModel @Inject constructor(
     fun updateInsulinToCarbRatio(icr: Float) {
         prefManager.setInsulinToCarbRatio(icr)
     }
+
+    fun getTargetBgl(): Int {
+        return prefManager.getTargetBgl()
+    }
+
+    fun getLowBgl(): Int {
+        return prefManager.getLowBgl()
+    }
+
+    fun getHypoBgl(): Int {
+        return prefManager.getHypoBgl()
+    }
+
+    fun getHighBgl(): Int {
+        return prefManager.getHighBgl()
+    }
+
+    fun getHyperBgl(): Int {
+        return prefManager.getHyperBgl()
+    }
+
+    fun getInsulinSensitivityFactor(): Float {
+        return prefManager.getInsulinSensitivityFactor()
+    }
+
+    fun getInsulinToCarbRatio(): Float {
+        return prefManager.getInsulinToCarbRatio()
+    }
 }

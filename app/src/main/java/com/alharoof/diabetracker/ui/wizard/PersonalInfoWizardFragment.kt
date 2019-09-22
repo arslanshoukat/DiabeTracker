@@ -58,10 +58,10 @@ class PersonalInfoWizardFragment private constructor() : WizardFragment(TAG) {
         val isHeightZero = height == 0.0f
 
         //  set appropriate error or hide error if valid input is entered
-        tilFirstName.error = if (isFirstNameBlank) "* required" else ""
-        tilLastName.error = if (isLastNameBlank) "* required" else ""
-        tilHeight.error = if (isHeightZero) "value must be non-zero" else ""
-        tilWeight.error = if (isWeightZero) "value must be non-zero" else ""
+        tilFirstName.error = if (isFirstNameBlank) getString(R.string.error_required) else ""
+        tilLastName.error = if (isLastNameBlank) getString(R.string.error_required) else ""
+        tilHeight.error = if (isHeightZero) getString(R.string.error_required) else ""
+        tilWeight.error = if (isWeightZero) getString(R.string.error_required) else ""
 
         //  if any of above checks is true, that means at least one input is invalid
         return isFirstNameBlank || isLastNameBlank || isHeightZero || isWeightZero

@@ -65,25 +65,29 @@ class WizardActivity : DaggerAppCompatActivity() {
 
         btnNext.setOnClickListener {
             var currentItem = vpWizard.currentItem
-            if (currentItem < wizardPagerAdapter.count - 1) {
+            if (currentItem < wizardPagerAdapter.count) {
                 val wizardFragment = wizardPagerAdapter.getItem(currentItem) as? WizardFragment
-                //  save inputs of visible fragments
+
+                //  save inputs of visible fragments and check if operation was successful
                 if (wizardFragment?.saveInputs() == true) {
                     //  if all fields are validated and saved, open next fragment
                     vpWizard.currentItem = ++currentItem
                     //  clear errors as next fragment only opens after validating and saving inputs
                     wizardFragment.clearErrors()
+
                     if (currentItem >= 1) {
                         //  show pager back button
                         btnBack.visibility = View.VISIBLE
                     }
+
+                    //  if current fragment is last one in adapter
+                    if (currentItem >= wizardPagerAdapter.count) {
+                        //  start main activity
+                        startActivity(Intent(this, MainActivity::class.java))
+                        //  finish this to restrict coming back to this activity when user presses back button
+                        finish()
+                    }
                 }
-            } else if (currentItem == wizardPagerAdapter.count - 1) {
-                //  if  current fragment is last one in adapter
-                //  start main activity
-                startActivity(Intent(this, MainActivity::class.java))
-                //  finish this to restrict coming back to this activity when user presses back button
-                finish()
             }
         }
 
@@ -100,7 +104,8 @@ class WizardActivity : DaggerAppCompatActivity() {
      * information / inputs from user that are stored as user preferences. Appropriate values (units) /
      * experience is provided to user based on these preferences.
      */
-    class WizardPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+    class WizardPagerAdapter(fm: FragmentManager) :
+        FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         private val fragmentList: List<WizardFragment> = listOf(
             UnitsWizardFragment.newInstance(),

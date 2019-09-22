@@ -1,4 +1,4 @@
-package com.alharoof.diabetracker.util
+package com.alharoof.diabetracker.extensions
 
 import android.content.Context
 import android.widget.Toast

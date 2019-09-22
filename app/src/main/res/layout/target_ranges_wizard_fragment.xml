@@ -12,13 +12,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:contentPadding="16dp"
+        app:contentPadding="12dp"
         app:layout_constraintBottom_toTopOf="@+id/cvRatios"
-        app:layout_constraintVertical_bias="0.3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
         app:layout_constraintVertical_chainStyle="packed">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,6 +46,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
                 android:hint="Low"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
                 app:layout_constraintBottom_toTopOf="@+id/tilHypo"
                 app:layout_constraintEnd_toStartOf="@+id/guideStart"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -67,6 +69,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:hint="High"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
                 app:layout_constraintBottom_toBottomOf="@+id/tilLow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideEnd"
@@ -88,6 +92,9 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
                 android:hint="Target"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:layout_constraintBottom_toBottomOf="@+id/tilLow"
                 app:layout_constraintEnd_toStartOf="@+id/guideEnd"
                 app:layout_constraintStart_toStartOf="@+id/guideStart"
                 app:layout_constraintTop_toTopOf="@+id/tilLow">
@@ -108,6 +115,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="4dp"
                 android:hint="Hypoglycemia"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideStart"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -129,6 +138,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:hint="Hyperglycemia"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
                 app:layout_constraintBottom_toBottomOf="@+id/tilHypo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideEnd"
@@ -167,24 +178,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="Insulin Sensitivity Factor"
-                app:layout_constraintBottom_toBottomOf="@+id/etIsf"
+                app:layout_constraintBottom_toBottomOf="@+id/tilIsf"
                 app:layout_constraintEnd_toStartOf="@+id/guideline4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/etIsf" />
+                app:layout_constraintTop_toTopOf="@+id/tilIsf" />
 
-            <EditText
-                android:id="@+id/etIsf"
-                style="@style/AppEditText.RatioWizard"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilIsf"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="16dp"
-                android:ems="10"
-                android:hint="00.0"
-                app:layout_constraintBottom_toTopOf="@+id/etIcr"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="12dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:layout_constraintBottom_toTopOf="@+id/tilIcr"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etIsf"
+                    style="@style/AppEditText.RatioWizard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline4"
@@ -200,25 +220,34 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="Insulin to Carb Ratio"
-                app:layout_constraintBottom_toBottomOf="@+id/etIcr"
+                app:layout_constraintBottom_toBottomOf="@+id/tilIcr"
                 app:layout_constraintEnd_toStartOf="@+id/guideline4"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/etIcr" />
+                app:layout_constraintTop_toTopOf="@+id/tilIcr" />
 
-            <EditText
-                android:id="@+id/etIcr"
-                style="@style/AppEditText.RatioWizard"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilIcr"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:ems="10"
-                android:hint="00.0"
-                android:imeOptions="actionDone"
+                android:layout_marginStart="16dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/etIsf" />
+                app:layout_constraintTop_toBottomOf="@+id/tilIsf">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etIcr"
+                    style="@style/AppEditText.RatioWizard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:imeOptions="actionDone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,3 +5,5 @@ import android.widget.EditText
 fun EditText.intTextOrNull(): Int? = this.text.toString().toIntOrNull()
 
 fun EditText.isTextNotZero(): Boolean = this.text.isNotBlank() && (this.text.toString().toIntOrNull() ?: 0) != 0
+
+fun EditText.intText(): Int = this.text.toString().toInt()

@@ -1,6 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="InputLabelText" parent="TextAppearance.AppTheme.Body1" />
+    <style name="InputLabelText" parent="TextAppearance.AppTheme.Body1">
+        <item name="android:gravity">end</item>
+    </style>
 
     <style name="UnitsWizardLabelTextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textAppearance">?textAppearanceHeadline5</item>

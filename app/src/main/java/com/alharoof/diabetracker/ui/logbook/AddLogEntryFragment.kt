@@ -26,10 +26,10 @@ import com.alharoof.diabetracker.data.logbook.model.DoseUnit
 import com.alharoof.diabetracker.data.logbook.model.Medication
 import com.alharoof.diabetracker.extensions.intTextOrNull
 import com.alharoof.diabetracker.extensions.isTextNotZero
+import com.alharoof.diabetracker.extensions.showToast
 import com.alharoof.diabetracker.util.CustomDividerItemDecoration
 import com.alharoof.diabetracker.util.getBasalInsulins
 import com.alharoof.diabetracker.util.getBolusInsulins
-import com.alharoof.diabetracker.util.showToast
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.add_log_entry_fragment.etBasalDose
 import kotlinx.android.synthetic.main.add_log_entry_fragment.etBolusDose

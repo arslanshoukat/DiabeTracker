@@ -5,4 +5,6 @@
     <string name="title_log_book">LogBook</string>
     <string name="title_main">Main</string>
     <string name="title_activity_wizard">WizardActivity</string>
+    <string name="error_value_non_zero">value must be non-zero</string>
+    <string name="error_required">* required</string>
 </resources>
