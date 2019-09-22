@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        app:contentPadding="16dp"
+        app:contentPadding="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,53 +23,48 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tvUnitsLbl"
-                style="@style/UnitsWizardLabelTextView"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUnitOfMeasurement"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:drawableStart="@drawable/ic_ruler"
-                android:text="Units of Measurement"
-                app:layout_constraintBottom_toTopOf="@+id/spUnitsOfMeasurement"
+                android:hint="Units of Measurement"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:layout_constraintBottom_toTopOf="@id/tilBglUnit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <Spinner
-                android:id="@+id/spUnitsOfMeasurement"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="32dp"
-                app:layout_constraintBottom_toTopOf="@+id/tvBglUnitLbl"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvUnitsLbl" />
+                <AutoCompleteTextView
+                    android:id="@+id/actvUnitOfMeasurement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:padding="8dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tvBglUnitLbl"
-                style="@style/UnitsWizardLabelTextView"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilBglUnit"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_blood_black_24dp"
-                android:drawableTint="@color/red_700"
-                android:text="Unit of Blood Glucose Level"
-                app:layout_constraintBottom_toTopOf="@+id/spBglUnit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spUnitsOfMeasurement" />
-
-            <Spinner
-                android:id="@+id/spBglUnit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
+                android:hint="Blood Glucose Level Unit"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvBglUnitLbl" />
+                app:layout_constraintTop_toBottomOf="@id/tilUnitOfMeasurement">
+
+                <AutoCompleteTextView
+                    android:id="@+id/actvBglUnit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:padding="8dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

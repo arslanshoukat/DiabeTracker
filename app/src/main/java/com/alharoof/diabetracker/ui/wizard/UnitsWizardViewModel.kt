@@ -15,4 +15,12 @@ class UnitsWizardViewModel @Inject constructor(
     fun updateUnitOfMeasurement(unitOfMeasurement: Int) {
         prefManager.setUnitOfMeasurement(unitOfMeasurement)
     }
+
+    fun getUnitOfMeasurement(): Int {
+        return prefManager.getUnitOfMeasurement()
+    }
+
+    fun getBglUnit(): Int {
+        return prefManager.getBglUnit()
+    }
 }

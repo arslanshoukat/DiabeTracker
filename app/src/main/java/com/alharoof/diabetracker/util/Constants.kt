@@ -12,4 +12,5 @@ object Constants {
 
     const val INVALID_INT = -1
     const val INVALID_FLOAT = -1.0f
+    const val INITIAL_SPINNER_POS = 0
 }

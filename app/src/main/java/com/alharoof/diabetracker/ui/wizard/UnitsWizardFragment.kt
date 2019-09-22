@@ -1,6 +1,5 @@
 package com.alharoof.diabetracker.ui.wizard
 
-import android.R.layout
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +10,11 @@ import androidx.lifecycle.ViewModelProviders
 import com.alharoof.diabetracker.R
 import com.alharoof.diabetracker.data.logbook.model.BglUnit
 import com.alharoof.diabetracker.data.logbook.model.UnitOfMeasurement
-import kotlinx.android.synthetic.main.units_wizard_fragment.spBglUnit
-import kotlinx.android.synthetic.main.units_wizard_fragment.spUnitsOfMeasurement
+import com.alharoof.diabetracker.util.Constants
+import com.alharoof.diabetracker.util.Constants.INITIAL_SPINNER_POS
+import com.alharoof.diabetracker.util.Converters
+import kotlinx.android.synthetic.main.units_wizard_fragment.actvBglUnit
+import kotlinx.android.synthetic.main.units_wizard_fragment.actvUnitOfMeasurement
 
 class UnitsWizardFragment private constructor() : WizardFragment(TAG) {
 
@@ -43,24 +45,48 @@ class UnitsWizardFragment private constructor() : WizardFragment(TAG) {
     }
 
     private fun initializeDropdowns() {
-        val unitsOfMeasurementAdapter = ArrayAdapter(ctx, layout.simple_spinner_item,
-            unitsOfMeasurement.map { "${it.title} (${it.desc})" })
-        unitsOfMeasurementAdapter.setDropDownViewResource(layout.simple_spinner_dropdown_item)
-        spUnitsOfMeasurement.prompt = "Units of Measurement"
-        spUnitsOfMeasurement.adapter = unitsOfMeasurementAdapter
+        val initialUnitOfMeasurementCode = viewModel.getUnitOfMeasurement()
+        val initialBglUnitCode = viewModel.getBglUnit()
 
-        val bglUnitAdapter = ArrayAdapter(ctx, layout.simple_spinner_item,
-            bglUnits.map { "${it.title} (${it.symbol})" })
-        bglUnitAdapter.setDropDownViewResource(layout.simple_spinner_dropdown_item)
-        spBglUnit.prompt = "Unit of Blood Glucose Level"
-        spBglUnit.adapter = bglUnitAdapter
+        val unitOfMeasurementDropdownValues = unitsOfMeasurement.map { "${it.title} (${it.desc})" }
+        val bglUnitDropdownValues = bglUnits.map { "${it.title} (${it.symbol})" }
+
+        val unitsOfMeasurementAdapter =
+            ArrayAdapter(ctx, R.layout.dropdown_menu_popup_item, unitOfMeasurementDropdownValues)
+        actvUnitOfMeasurement.setAdapter(unitsOfMeasurementAdapter)
+        //  setting initial dropdown value
+        if (initialUnitOfMeasurementCode != Constants.INVALID_INT) {
+            val unitOfMeasurement =
+                Converters.fromUnitOfMeasurementCodeToEnum(initialUnitOfMeasurementCode)
+                    ?.let { "${it.title} (${it.desc})" }
+                    ?: unitOfMeasurementDropdownValues[INITIAL_SPINNER_POS] // if failed to convert, set to default
+            actvUnitOfMeasurement.setText(unitOfMeasurement, false)
+        } else {
+            actvUnitOfMeasurement.setText(unitOfMeasurementDropdownValues[INITIAL_SPINNER_POS], false)
+        }
+
+        val bglUnitAdapter = ArrayAdapter(ctx, R.layout.dropdown_menu_popup_item, bglUnitDropdownValues)
+        actvBglUnit.setAdapter(bglUnitAdapter)
+        //  setting initial dropdown value
+        if (initialBglUnitCode != Constants.INVALID_INT) {
+            val bglUnit = Converters.fromBglUnitCodeToEnum(initialBglUnitCode)
+                ?.let { "${it.title} (${it.symbol})" }
+                ?: bglUnitDropdownValues[INITIAL_SPINNER_POS] // if failed to convert, set to default
+            actvBglUnit.setText(bglUnit, false)
+        } else {
+            actvBglUnit.setText(bglUnitDropdownValues[INITIAL_SPINNER_POS], false)
+        }
     }
 
     override fun clearErrors() {}
 
     override fun saveInputs(): Boolean {
-        viewModel.updateBglUnit(bglUnits[spBglUnit.selectedItemPosition].code)
-        viewModel.updateUnitOfMeasurement(unitsOfMeasurement[spUnitsOfMeasurement.selectedItemPosition].code)
+        Converters.getUnitOfMeasurementFromTitle(actvUnitOfMeasurement.text.toString())?.code?.let {
+            viewModel.updateUnitOfMeasurement(it)
+        }
+        Converters.getBglUnitFromTitle(actvBglUnit.text.toString())?.code?.let {
+            viewModel.updateBglUnit(it)
+        }
         return true
     }
 }
