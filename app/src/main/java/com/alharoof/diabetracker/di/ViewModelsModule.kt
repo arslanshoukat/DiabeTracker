@@ -3,6 +3,7 @@ package com.alharoof.diabetracker.di
 import androidx.lifecycle.ViewModel
 import com.alharoof.diabetracker.ui.logbook.AddLogEntryViewModel
 import com.alharoof.diabetracker.ui.logbook.LogBookViewModel
+import com.alharoof.diabetracker.ui.main.DashboardViewModel
 import com.alharoof.diabetracker.ui.main.MainViewModel
 import com.alharoof.diabetracker.ui.wizard.PersonalInfoWizardViewModel
 import com.alharoof.diabetracker.ui.wizard.TargetRangesWizardViewModel
@@ -53,4 +54,9 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(UnitsWizardViewModel::class)
     abstract fun bindUnitsWizardViewModel(unitsWizardViewModel: UnitsWizardViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DashboardViewModel::class)
+    abstract fun bindDashboardViewModel(dashboardViewModel: DashboardViewModel): ViewModel
 }

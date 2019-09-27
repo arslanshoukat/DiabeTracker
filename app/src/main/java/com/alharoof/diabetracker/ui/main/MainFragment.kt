@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.alharoof.diabetracker.R
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.main_fragment.btnAddLogEntry
+import kotlinx.android.synthetic.main.main_fragment.btnOpenDashboard
 import kotlinx.android.synthetic.main.main_fragment.btnOpenLogBook
 import javax.inject.Inject
 
@@ -40,10 +41,12 @@ class MainFragment : DaggerFragment() {
     private fun setListeners() {
         btnAddLogEntry.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_addLogEntryFragment)
-
         }
         btnOpenLogBook.setOnClickListener {
             findNavController().navigate(R.id.action_global_logBookFragment)
+        }
+        btnOpenDashboard.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_dashboardFragment)
         }
     }
 }

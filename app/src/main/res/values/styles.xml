@@ -65,4 +65,17 @@
     <style name="AppEditText.NamePersonalInfo" parent="AppEditText.SingleLineText">
         <item name="android:inputType">textPersonName</item>
     </style>
+
+    <style name="DashboardCardCaption" parent="TextAppearance.AppTheme.Caption">
+        <item name="android:textColor">?colorOnSurface</item>
+    </style>
+
+    <style name="DashboardTitle" parent="TextAppearance.AppTheme.Body1"></style>
+
+    <style name="DashboardCardValue" parent="TextAppearance.AppTheme.Headline5">
+        <item name="android:textColor">?colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
 </resources>

@@ -30,9 +30,17 @@
         <action
             android:id="@+id/action_mainFragment_to_logBookFragment"
             app:destination="@id/logBookFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
 
     <action
         android:id="@+id/action_global_logBookFragment"
         app:destination="@id/logBookFragment" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.alharoof.diabetracker.ui.main.DashboardFragment"
+        android:label="dashboard_fragment"
+        tools:layout="@layout/dashboard_fragment" />
 </navigation>

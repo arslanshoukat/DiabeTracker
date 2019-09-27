@@ -50,4 +50,14 @@
         app:layout_constraintStart_toEndOf="@+id/btnAddLogEntry"
         app:layout_constraintTop_toTopOf="@+id/btnAddLogEntry" />
 
+    <Button
+        android:id="@+id/btnOpenDashboard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Open Dashboard"
+        app:layout_constraintEnd_toEndOf="@+id/btnOpenLogBook"
+        app:layout_constraintStart_toStartOf="@+id/btnAddLogEntry"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddLogEntry" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

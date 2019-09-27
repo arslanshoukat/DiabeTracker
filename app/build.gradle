@@ -83,6 +83,8 @@ dependencies {
 
     //  Page indicator view
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+    //  MPAndroidChart for reporting, graphs, charts
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     //  Testing libs
     testImplementation "junit:junit:${versions.jUnit}"
