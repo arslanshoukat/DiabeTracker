@@ -6,11 +6,11 @@ import androidx.room.PrimaryKey
 import com.alharoof.diabetracker.data.logbook.model.BglUnit
 import com.alharoof.diabetracker.data.logbook.model.Category
 import com.alharoof.diabetracker.data.logbook.model.Medication
-import org.threeten.bp.ZonedDateTime
+import org.threeten.bp.OffsetDateTime
 
 @Entity
 data class LogEntry(
-    val dateTime: ZonedDateTime,
+    val dateTime: OffsetDateTime,
     val bgl: Int? = null,
     val bglUnit: BglUnit? = null,
     @Embedded(prefix = "basal_")

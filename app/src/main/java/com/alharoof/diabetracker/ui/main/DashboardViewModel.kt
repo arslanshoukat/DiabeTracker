@@ -4,23 +4,25 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.alharoof.diabetracker.data.logbook.db.LogEntry
+import com.alharoof.diabetracker.data.logbook.model.DateTimeRange
 import com.alharoof.diabetracker.data.settings.PrefManager
 import com.alharoof.diabetracker.domain.dashboard.LoadLastBglUseCase
 import com.alharoof.diabetracker.domain.dashboard.LoadLastCarbIntakeUseCase
 import com.alharoof.diabetracker.domain.dashboard.LoadLastMedicationUseCase
-import com.alharoof.diabetracker.domain.report.LoadWeeklyLogEntriesUseCase
+import com.alharoof.diabetracker.domain.report.LoadBglWithinUseCase
 import com.alharoof.diabetracker.util.Converters
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import org.threeten.bp.OffsetDateTime
 import javax.inject.Inject
 
 class DashboardViewModel @Inject constructor(
     private val loadLastBglUseCase: LoadLastBglUseCase,
     private val loadLastMedicationUseCase: LoadLastMedicationUseCase,
     private val loadLastCarbIntakeUseCase: LoadLastCarbIntakeUseCase,
-    private val loadWeeklyLogEntriesUseCase: LoadWeeklyLogEntriesUseCase,
+    private val loadBglWithinUseCase: LoadBglWithinUseCase,
     private val prefManager: PrefManager
 ) : ViewModel() {
 
@@ -37,7 +39,7 @@ class DashboardViewModel @Inject constructor(
         loadLastBgl()
         loadLastMedication()
         loadLastCarbIntake()
-        loadWeeklyLogEntries()
+        loadWeeklyLogEntries(OffsetDateTime.now())
     }
 
     private fun loadLastBgl() {
@@ -94,8 +96,13 @@ class DashboardViewModel @Inject constructor(
             })
     }
 
-    private fun loadWeeklyLogEntries() {
-        loadWeeklyLogEntriesUseCase.execute()
+    private fun loadWeeklyLogEntries(currentDateTime: OffsetDateTime) {
+        loadBglWithinUseCase.execute(
+            DateTimeRange(
+                startDateTime = currentDateTime.minusDays(7),
+                endDateTime = currentDateTime
+            )
+        )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<List<LogEntry>> {

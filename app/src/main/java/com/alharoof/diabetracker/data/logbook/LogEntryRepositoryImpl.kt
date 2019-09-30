@@ -4,10 +4,15 @@ import com.alharoof.diabetracker.data.logbook.db.LogEntry
 import com.alharoof.diabetracker.data.logbook.db.LogEntryDao
 import io.reactivex.Completable
 import io.reactivex.Observable
+import org.threeten.bp.OffsetDateTime
 
 class LogEntryRepositoryImpl(
     private val logEntryDao: LogEntryDao
 ) : LogEntryRepository {
+
+    override fun getBglWithin(from: OffsetDateTime, to: OffsetDateTime): Observable<List<LogEntry>> {
+        return logEntryDao.getBglForDateTimeRange(from, to)
+    }
 
     override fun getLastBgl(): Observable<LogEntry> {
         return logEntryDao.getLastBgl()

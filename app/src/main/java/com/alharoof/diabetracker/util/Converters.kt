@@ -6,21 +6,19 @@ import com.alharoof.diabetracker.data.logbook.model.Category
 import com.alharoof.diabetracker.data.logbook.model.DoseUnit
 import com.alharoof.diabetracker.data.logbook.model.MedicationEnum
 import com.alharoof.diabetracker.data.logbook.model.UnitOfMeasurement
-import org.threeten.bp.ZonedDateTime
+import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.format.DateTimeFormatter
 
 object Converters {
+    private val dateTimeFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME
 
     @TypeConverter
     @JvmStatic
-    fun fromStringToZonedDateTime(timestamp: String?): ZonedDateTime? {
-        return if (timestamp.isNullOrEmpty()) null else ZonedDateTime.parse(timestamp)
-    }
+    fun toOffsetDateTime(value: String?): OffsetDateTime? = value?.let { OffsetDateTime.parse(it, dateTimeFormatter) }
 
     @TypeConverter
     @JvmStatic
-    fun fromZonedDateTimeToString(zonedDateTime: ZonedDateTime?): String? {
-        return zonedDateTime?.toString()
-    }
+    fun fromOffsetDateTime(dateTime: OffsetDateTime?): String? = dateTime?.format(dateTimeFormatter)
 
     @TypeConverter
     @JvmStatic

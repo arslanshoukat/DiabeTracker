@@ -6,7 +6,7 @@ import com.alharoof.diabetracker.domain.dashboard.LoadLastCarbIntakeUseCase
 import com.alharoof.diabetracker.domain.dashboard.LoadLastMedicationUseCase
 import com.alharoof.diabetracker.domain.logbook.AddLogEntryUseCase
 import com.alharoof.diabetracker.domain.logbook.LoadLogEntriesUseCase
-import com.alharoof.diabetracker.domain.report.LoadWeeklyLogEntriesUseCase
+import com.alharoof.diabetracker.domain.report.LoadBglWithinUseCase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -42,5 +42,5 @@ class UseCaseModule {
     @Provides
     @Singleton
     internal fun provideLoadWeeklyLogEntriesUseCase(logEntryRepository: LogEntryRepository)
-            : LoadWeeklyLogEntriesUseCase = LoadWeeklyLogEntriesUseCase(logEntryRepository)
+            : LoadBglWithinUseCase = LoadBglWithinUseCase(logEntryRepository)
 }

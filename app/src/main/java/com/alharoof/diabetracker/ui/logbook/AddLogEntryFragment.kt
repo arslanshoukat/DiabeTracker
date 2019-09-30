@@ -42,8 +42,7 @@ import kotlinx.android.synthetic.main.add_log_entry_fragment.spBolusMedication
 import kotlinx.android.synthetic.main.add_log_entry_fragment.tvBgl
 import kotlinx.android.synthetic.main.add_log_entry_fragment.tvDate
 import kotlinx.android.synthetic.main.add_log_entry_fragment.tvTime
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
+import org.threeten.bp.OffsetDateTime
 import javax.inject.Inject
 
 class AddLogEntryFragment : DaggerFragment() {
@@ -67,8 +66,8 @@ class AddLogEntryFragment : DaggerFragment() {
 
     private var isSliderStartTextVisible: Boolean = true
     private var isSliderEndTextVisible: Boolean = true
-    private val currentDateTime: ZonedDateTime = ZonedDateTime.now()
-    private var selectedDateTime: ZonedDateTime = currentDateTime
+    private val currentDateTime: OffsetDateTime = OffsetDateTime.now()
+    private var selectedDateTime: OffsetDateTime = currentDateTime
     private var selectedCategory: Category? = null
 
     private var datePickerDialog: DatePickerDialog? = null
@@ -141,17 +140,17 @@ class AddLogEntryFragment : DaggerFragment() {
     }
 
     private fun updateSelectedTime(hour: Int, minute: Int) {
-        selectedDateTime = ZonedDateTime.of(
+        selectedDateTime = OffsetDateTime.of(
             selectedDateTime.year, selectedDateTime.monthValue, selectedDateTime.dayOfMonth,
-            hour, minute, selectedDateTime.second, selectedDateTime.nano, ZoneId.systemDefault()
+            hour, minute, selectedDateTime.second, selectedDateTime.nano, OffsetDateTime.now().offset
         )
         tvTime.text = String.format("%02d:%02d", selectedDateTime.hour, selectedDateTime.minute)
     }
 
     private fun updateSelectedDate(selectedYear: Int, selectedMonth: Int, selectedDay: Int) {
-        selectedDateTime = ZonedDateTime.of(
+        selectedDateTime = OffsetDateTime.of(
             selectedYear, selectedMonth, selectedDay, selectedDateTime.hour, selectedDateTime.minute,
-            selectedDateTime.second, selectedDateTime.nano, ZoneId.systemDefault()
+            selectedDateTime.second, selectedDateTime.nano, OffsetDateTime.now().offset
         )
         tvDate.text =
             String.format("%02d %s, %04d", selectedDateTime.dayOfMonth, selectedDateTime.month, selectedDateTime.year)

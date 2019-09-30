@@ -70,7 +70,11 @@
         <item name="android:textColor">?colorOnSurface</item>
     </style>
 
-    <style name="DashboardTitle" parent="TextAppearance.AppTheme.Body1"></style>
+    <style name="DashboardChartCardCaption" parent="TextAppearance.AppTheme.Body2">
+        <item name="android:textColor">?colorOnSurface</item>
+    </style>
+
+    <style name="DashboardTitle" parent="TextAppearance.AppTheme.Body1" />
 
     <style name="DashboardCardValue" parent="TextAppearance.AppTheme.Headline5">
         <item name="android:textColor">?colorPrimary</item>
