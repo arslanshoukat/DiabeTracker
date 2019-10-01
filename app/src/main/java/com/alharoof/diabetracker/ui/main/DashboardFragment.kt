@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -37,13 +39,13 @@ import kotlinx.android.synthetic.main.dashboard_fragment.tvLastMedicationTitle
 import kotlinx.android.synthetic.main.dashboard_fragment.tvLastMedicationValue
 import kotlinx.android.synthetic.main.dashboard_fragment.tvName
 import kotlinx.android.synthetic.main.dashboard_fragment_start.clDashboard
-import kotlinx.android.synthetic.main.dashboard_fragment_start.tvRecentLbl
 import javax.inject.Inject
 
 class DashboardFragment : BaseFragment(TAG) {
 
     companion object {
         private const val TAG = "DashboardFragment"
+        private const val TRANSITION_DURATION = 800
 
         fun newInstance() = DashboardFragment()
     }
@@ -88,9 +90,9 @@ class DashboardFragment : BaseFragment(TAG) {
     override fun onResume() {
         super.onResume()
         (activity as? AppCompatActivity)?.supportActionBar?.hide()
-        tvRecentLbl.setOnClickListener {
-            if (isViewShown) animateCards(R.layout.dashboard_fragment_start)
-            else animateCards(R.layout.dashboard_fragment)
+
+        Handler(Looper.getMainLooper()).post {
+            animateCards(R.layout.dashboard_fragment)
         }
     }
 
@@ -105,7 +107,7 @@ class DashboardFragment : BaseFragment(TAG) {
 
         val transition = ChangeBounds()
         transition.interpolator = AnticipateOvershootInterpolator(1.0f)
-        transition.duration = 1000
+        transition.duration = TRANSITION_DURATION.toLong()
 
         TransitionManager.beginDelayedTransition(clDashboard, transition)
         constraintSet.applyTo(clDashboard)
@@ -211,7 +213,7 @@ class DashboardFragment : BaseFragment(TAG) {
 
         chartBgl.data = lineData
 
-        chartBgl.animateXY(1000, 1000)
+        chartBgl.animateY(TRANSITION_DURATION)
         // refresh the drawing
         chartBgl.invalidate()
     }
