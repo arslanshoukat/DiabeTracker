@@ -74,7 +74,7 @@
         android:lines="2"
         android:text="Back"
         android:visibility="invisible"
-        app:icon="@drawable/ic_navigate_back_black_24dp"
+        app:icon="@drawable/ic_navigate_back"
         app:layout_constraintBottom_toBottomOf="@+id/btnNext"
         app:layout_constraintEnd_toStartOf="@+id/btnNext"
         app:layout_constraintHorizontal_bias="0.5"

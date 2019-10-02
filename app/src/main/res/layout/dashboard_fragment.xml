@@ -156,7 +156,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tvLastBglLbl"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tvLastBglLbl"
-                app:srcCompat="@drawable/ic_blood_black_24dp" />
+                app:srcCompat="@drawable/ic_blood" />
 
             <TextView
                 android:id="@+id/tvLastBglValue"
@@ -330,7 +330,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:clickable="true"
-        android:src="@drawable/ic_add_black_24dp"
+        android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

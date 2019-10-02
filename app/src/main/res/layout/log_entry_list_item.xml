@@ -51,7 +51,7 @@
         app:layout_constraintStart_toStartOf="@+id/divider"
         app:layout_constraintTop_toTopOf="@+id/cvLogEntry"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_time_black_24dp" />
+        app:srcCompat="@drawable/ic_time" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvLogEntry"
@@ -111,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:tint="@color/colorIconsGray"
-                        app:srcCompat="@drawable/ic_blood_black_24dp" />
+                        app:srcCompat="@drawable/ic_blood" />
 
                     <TextView
                         android:id="@+id/tvBglLbl"
@@ -151,7 +151,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:tint="@color/colorIconsGray"
-                        app:srcCompat="@drawable/ic_category_black_24dp" />
+                        app:srcCompat="@drawable/ic_category" />
 
                     <TextView
                         android:id="@+id/tvBasalMedication"
@@ -191,7 +191,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:tint="@color/colorIconsGray"
-                        app:srcCompat="@drawable/ic_category_black_24dp" />
+                        app:srcCompat="@drawable/ic_category" />
 
                     <TextView
                         android:id="@+id/tvBolusMedication"
