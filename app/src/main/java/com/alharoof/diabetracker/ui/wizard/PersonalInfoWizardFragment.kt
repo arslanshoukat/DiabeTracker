@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.personal_info_wizard_fragment.tilHeight
 import kotlinx.android.synthetic.main.personal_info_wizard_fragment.tilLastName
 import kotlinx.android.synthetic.main.personal_info_wizard_fragment.tilWeight
 
-class PersonalInfoWizardFragment private constructor() : WizardFragment(TAG) {
+class PersonalInfoWizardFragment private constructor() : BaseWizardFragment(TAG) {
 
     companion object {
         private const val TAG = "PersonalInfoWizardFrag"

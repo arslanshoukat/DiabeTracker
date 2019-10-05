@@ -31,9 +31,9 @@
 
     <fragment
         android:id="@+id/nav_wizard"
-        android:name="com.alharoof.diabetracker.ui.wizard.PersonalInfoWizardFragment"
+        android:name="com.alharoof.diabetracker.ui.wizard.WizardFragment"
         android:label="@string/title_wizard"
-        tools:layout="@layout/personal_info_wizard_fragment" />
+        tools:layout="@layout/wizard_fragment" />
 
     <fragment
         android:id="@+id/nav_import_export"

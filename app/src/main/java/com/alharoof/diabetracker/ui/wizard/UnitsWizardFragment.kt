@@ -16,7 +16,7 @@ import com.alharoof.diabetracker.util.Converters
 import kotlinx.android.synthetic.main.units_wizard_fragment.actvBglUnit
 import kotlinx.android.synthetic.main.units_wizard_fragment.actvUnitOfMeasurement
 
-class UnitsWizardFragment private constructor() : WizardFragment(TAG) {
+class UnitsWizardFragment private constructor() : BaseWizardFragment(TAG) {
 
     companion object {
         private const val TAG = "UnitsWizardFrag"

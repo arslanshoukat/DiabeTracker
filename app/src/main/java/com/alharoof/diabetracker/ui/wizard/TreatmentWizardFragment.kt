@@ -15,7 +15,7 @@ import com.alharoof.diabetracker.util.getBolusInsulins
 import kotlinx.android.synthetic.main.treatment_wizard_fragment.actvBasal
 import kotlinx.android.synthetic.main.treatment_wizard_fragment.actvBolus
 
-class TreatmentWizardFragment private constructor() : WizardFragment(TAG) {
+class TreatmentWizardFragment private constructor() : BaseWizardFragment(TAG) {
 
     companion object {
         private const val TAG = "TreatmentWizardFrag"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundGray"
-    tools:context=".ui.wizard.WizardActivity">
+    tools:context=".ui.wizard.WizardFragment">
 
     <com.rd.PageIndicatorView
         android:id="@+id/pageIndicatorView"

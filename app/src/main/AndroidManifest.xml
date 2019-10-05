@@ -11,12 +11,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.wizard.WizardActivity"
-            android:label="@string/title_wizard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
             android:name=".MainActivity"
             android:label="@string/title_main"
             android:theme="@style/AppTheme.NoActionBar"

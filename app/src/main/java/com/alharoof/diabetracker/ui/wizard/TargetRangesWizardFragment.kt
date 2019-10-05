@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.target_ranges_wizard_fragment.tilIsf
 import kotlinx.android.synthetic.main.target_ranges_wizard_fragment.tilLow
 import kotlinx.android.synthetic.main.target_ranges_wizard_fragment.tilTarget
 
-class TargetRangesWizardFragment private constructor() : WizardFragment(TAG) {
+class TargetRangesWizardFragment private constructor() : BaseWizardFragment(TAG) {
     companion object {
         private const val TAG = "TargetRangesWizardFrag"
 
