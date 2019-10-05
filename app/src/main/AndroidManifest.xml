@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.alharoof.diabetracker">
+<manifest package="com.alharoof.diabetracker"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:name=".DiabeTrackerApp"
@@ -12,13 +12,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.wizard.WizardActivity"
-            android:label="@string/title_activity_wizard"
-            android:windowSoftInputMode="stateAlwaysHidden"
+            android:label="@string/title_wizard"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/title_main"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>

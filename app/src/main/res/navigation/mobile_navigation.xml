@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation android:id="@+id/mobile_navigation"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.alharoof.diabetracker.ui.main.DashboardFragment"
+        android:label="@string/title_main"
+        tools:layout="@layout/dashboard_fragment_start" />
+
+    <fragment
+        android:id="@+id/nav_logbook"
+        android:name="com.alharoof.diabetracker.ui.logbook.LogBookFragment"
+        android:label="@string/title_log_book"
+        tools:layout="@layout/log_book_fragment" />
+
+    <fragment
+        android:id="@+id/nav_reports"
+        android:name="com.alharoof.diabetracker.ui.reports.ReportsFragment"
+        android:label="@string/title_Reports"
+        tools:layout="@layout/reports_fragment" />
+
+    <fragment
+        android:id="@+id/nav_calculator"
+        android:name="com.alharoof.diabetracker.ui.calculator.CalculatorFragment"
+        android:label="@string/title_calculator"
+        tools:layout="@layout/calculator_fragment" />
+
+    <fragment
+        android:id="@+id/nav_wizard"
+        android:name="com.alharoof.diabetracker.ui.wizard.PersonalInfoWizardFragment"
+        android:label="@string/title_wizard"
+        tools:layout="@layout/personal_info_wizard_fragment" />
+
+    <fragment
+        android:id="@+id/nav_import_export"
+        android:name="com.alharoof.diabetracker.ui.import_export.ImportExportFragment"
+        android:label="@string/title_import_export"
+        tools:layout="@layout/import_export_fragment" />
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="com.alharoof.diabetracker.ui.about.AboutFragment"
+        android:label="@string/title_about"
+        tools:layout="@layout/about_fragment" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.alharoof.diabetracker.ui.settings.SettingsFragment"
+        android:label="@string/title_settings"
+        tools:layout="@layout/settings_fragment" />
+</navigation>

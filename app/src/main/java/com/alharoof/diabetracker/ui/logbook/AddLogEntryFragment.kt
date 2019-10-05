@@ -105,7 +105,7 @@ class AddLogEntryFragment : DaggerFragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_add_log_entry_fragment, menu)
+        inflater.inflate(R.menu.add_log_entry_fragment, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

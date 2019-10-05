@@ -45,9 +45,6 @@ dependencies {
     implementation "androidx.room:room-runtime:${versions.room}"
     implementation "androidx.room:room-ktx:${versions.room}"
     implementation "androidx.room:room-rxjava2:${versions.room}"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
     kapt "androidx.room:room-compiler:${versions.room}"
 
     //  ViewModel and LiveData
@@ -59,6 +56,8 @@ dependencies {
     //  Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:${versions.navigation}"
     implementation "androidx.navigation:navigation-ui-ktx:${versions.navigation}"
+    implementation "androidx.navigation:navigation-fragment:${versions.navigation}"
+    implementation "androidx.navigation:navigation-ui:${versions.navigation}"
 
     //  Reactive libs
     implementation "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}"

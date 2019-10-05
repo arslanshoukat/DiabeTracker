@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/nav_first_group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/title_home" />
+        <item
+            android:id="@+id/nav_logbook"
+            android:icon="@drawable/ic_book"
+            android:title="@string/title_log_book" />
+        <item
+            android:id="@+id/nav_reports"
+            android:icon="@drawable/ic_pie_chart"
+            android:title="@string/title_Reports" />
+        <item
+            android:id="@+id/nav_calculator"
+            android:icon="@drawable/ic_calculator_keys"
+            android:title="@string/title_calculator" />
+        <item
+            android:id="@+id/nav_wizard"
+            android:icon="@drawable/ic_admin_settings"
+            android:title="@string/title_wizard" />
+        <item
+            android:id="@+id/nav_import_export"
+            android:icon="@drawable/ic_import_export"
+            android:title="@string/title_import_export" />
+    </group>
+
+    <group
+        android:id="@+id/nav_second_group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_info"
+            android:title="@string/title_about" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/title_settings" />
+    </group>
+</menu>
