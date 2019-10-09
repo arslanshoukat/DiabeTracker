@@ -40,6 +40,7 @@ import kotlinx.android.synthetic.main.add_log_entry_fragment.sliderBgl
 import kotlinx.android.synthetic.main.add_log_entry_fragment.spBasalMedication
 import kotlinx.android.synthetic.main.add_log_entry_fragment.spBolusMedication
 import kotlinx.android.synthetic.main.add_log_entry_fragment.tvBgl
+import kotlinx.android.synthetic.main.add_log_entry_fragment.tvBglUnit
 import kotlinx.android.synthetic.main.add_log_entry_fragment.tvDate
 import kotlinx.android.synthetic.main.add_log_entry_fragment.tvTime
 import org.threeten.bp.OffsetDateTime
@@ -262,6 +263,25 @@ class AddLogEntryFragment : DaggerFragment() {
                     context?.showToast("Failed to add new entry!!!")
                 }
             }
+        })
+        viewModel.bglUnit.observe(viewLifecycleOwner, Observer {
+            tvBglUnit.text = it?.symbol ?: "mg/dL"
+        })
+        /* viewModel.unitOfMeasurement.observe(viewLifecycleOwner, Observer {
+             val carbsUnit = when (it) {
+                 IMPERIAL -> "oz"
+                 METRIC -> "grams"
+                 else -> "grams"
+             }
+             tvCarbsUnit.text = carbsUnit
+         })*/
+        viewModel.basalMed.observe(viewLifecycleOwner, Observer {
+            val basalMedPosition = basalInsulins.indexOf(it ?: return@Observer)
+            spBasalMedication.setSelection(basalMedPosition)
+        })
+        viewModel.bolusMed.observe(viewLifecycleOwner, Observer {
+            val bolusMedPosition = bolusInsulins.indexOf(it ?: return@Observer)
+            spBolusMedication.setSelection(bolusMedPosition)
         })
     }
 }

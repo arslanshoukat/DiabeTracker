@@ -27,6 +27,7 @@ class PrefManager(context: Context) {
         const val PREF_WEIGHT = "weight"
         const val PREF_HEIGHT = "height"
     }
+    //  todo: make prefs observable
 
     private val prefs: SharedPreferences =
         context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
