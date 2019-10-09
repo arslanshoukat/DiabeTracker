@@ -254,7 +254,7 @@ class AddLogEntryFragment : DaggerFragment() {
                     setInitialValues()
 
                     //  navigate to log book
-                    findNavController().navigate(R.id.action_global_logBookFragment)
+                    findNavController().navigate(R.id.nav_logbook)
 
                     viewModel.resetStatus()
                 }

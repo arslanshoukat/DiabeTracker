@@ -3,263 +3,232 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/tvTime"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/cvLogEntry"
-        app:layout_constraintEnd_toStartOf="@+id/ivCategory"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cvLogEntry"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="09:47 PM" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@color/gray_300"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="1dp"
+    android:background="@color/color_surface">
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/keylineStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_begin="@dimen/activity_horizontal_margin" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="74dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_micro"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/keylineStart"
+        app:layout_constraintTop_toBottomOf="@+id/ivCategory"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="09:47 PM" />
 
     <ImageView
         android:id="@+id/ivCategory"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/gray_200"
-        android:padding="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cvLogEntry"
-        app:layout_constraintEnd_toStartOf="@+id/divider"
-        app:layout_constraintStart_toStartOf="@+id/divider"
-        app:layout_constraintTop_toTopOf="@+id/cvLogEntry"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:tint="?colorPrimary"
+        app:layout_constraintEnd_toEndOf="@+id/tvTime"
+        app:layout_constraintStart_toStartOf="@+id/tvTime"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_time" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvLogEntry"
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="tvTime,ivCategory"
+        tools:layout_editor_absoluteX="90dp" />
+
+    <LinearLayout
+        android:id="@+id/llLogEntry"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="2dp"
-        app:cardPreventCornerOverlap="true"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivCategory"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintStart_toEndOf="@+id/tvTime"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/llBgl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:weightSum="5">
 
-            <LinearLayout
-                android:id="@+id/llCategory"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvBglLbl"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="?colorPrimary"
-                android:padding="4dp">
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                android:gravity="end"
+                android:text="Glucose Level"
+                android:textAppearance="@style/LogbookEntryLabel" />
 
-                <TextView
-                    android:id="@+id/tvCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@android:color/white"
-                    tools:text="After Breakfast" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvBgl"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textAppearance="@style/LogbookEntryValue"
+                tools:text="198" />
 
-                <LinearLayout
-                    android:id="@+id/llBgl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="4dp">
-
-                    <ImageView
-                        android:id="@+id/ivBgl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:tint="@color/colorIconsGray"
-                        app:srcCompat="@drawable/ic_blood" />
-
-                    <TextView
-                        android:id="@+id/tvBglLbl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="8dp"
-                        android:text="Glucose Level:" />
-
-                    <TextView
-                        android:id="@+id/tvBgl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginStart="8dp"
-                        tools:text="198" />
-
-                    <TextView
-                        android:id="@+id/tvBglUnit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        tools:text="mg/dL" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llBasal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="4dp">
-
-                    <ImageView
-                        android:id="@+id/ivBasal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:tint="@color/colorIconsGray"
-                        app:srcCompat="@drawable/ic_category" />
-
-                    <TextView
-                        android:id="@+id/tvBasalMedication"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="8dp"
-                        tools:text="Novorapid:" />
-
-                    <TextView
-                        android:id="@+id/tvBasalDose"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginStart="8dp"
-                        tools:text="16" />
-
-                    <TextView
-                        android:id="@+id/tvBasalDoseUnit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        tools:text="U" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llBolus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="4dp">
-
-                    <ImageView
-                        android:id="@+id/ivBolus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:tint="@color/colorIconsGray"
-                        app:srcCompat="@drawable/ic_category" />
-
-                    <TextView
-                        android:id="@+id/tvBolusMedication"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="8dp"
-                        tools:text="Lantus:" />
-
-                    <TextView
-                        android:id="@+id/tvBolusDose"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginStart="8dp"
-                        tools:text="30" />
-
-                    <TextView
-                        android:id="@+id/tvBolusDoseUnit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        tools:text="U" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llCarbs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="4dp">
-
-                    <ImageView
-                        android:id="@+id/ivCarbs"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:tint="@color/colorIconsGray"
-                        app:srcCompat="@drawable/ic_grain" />
-
-                    <TextView
-                        android:id="@+id/tvCarbsLbl"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="8dp"
-                        android:text="Carbs:" />
-
-                    <TextView
-                        android:id="@+id/tvCarbs"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="4dp"
-                        android:layout_marginStart="8dp"
-                        tools:text="17" />
-
-                    <TextView
-                        android:id="@+id/tvCarbsUnit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="grams" />
-
-                </LinearLayout>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tvBglUnit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                tools:text="mg/dL" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/divBasal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_background" />
+
+        <LinearLayout
+            android:id="@+id/llBasal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/tvBasalMedication"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                android:gravity="end"
+                android:textAppearance="@style/LogbookEntryLabel"
+                tools:text="Humalog Mix 75/25" />
+
+            <TextView
+                android:id="@+id/tvBasalDose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textAppearance="@style/LogbookEntryValue"
+                tools:text="16" />
+
+            <TextView
+                android:id="@+id/tvBasalDoseUnit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                tools:text="U" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divBolus"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_background" />
+
+        <LinearLayout
+            android:id="@+id/llBolus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/tvBolusMedication"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                android:gravity="end"
+                android:textAppearance="@style/LogbookEntryLabel"
+                tools:text="Novorapid" />
+
+            <TextView
+                android:id="@+id/tvBolusDose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textAppearance="@style/LogbookEntryValue"
+                tools:text="30" />
+
+            <TextView
+                android:id="@+id/tvBolusDoseUnit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                tools:text="U" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divCarbs"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_background" />
+
+        <LinearLayout
+            android:id="@+id/llCarbs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/tvCarbsLbl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="3"
+                android:gravity="end"
+                android:text="Carbohydrates"
+                android:textAppearance="@style/LogbookEntryLabel" />
+
+            <TextView
+                android:id="@+id/tvCarbs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textAppearance="@style/LogbookEntryValue"
+                tools:text="17" />
+
+            <TextView
+                android:id="@+id/tvCarbsUnit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:paddingStart="8dp"
+                android:text="grams" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

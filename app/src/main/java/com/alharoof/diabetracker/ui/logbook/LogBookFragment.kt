@@ -67,7 +67,23 @@ class LogBookFragment : DaggerFragment() {
                     tvEmptyMessage.visibility = View.GONE
                     rvLogEntries.visibility = View.VISIBLE
 
-                    result.data?.let { logEntriesAdapter.updateLogEntries(it) }
+                    val list = mutableListOf<Any>()
+
+                    result.data?.let {
+                        var currentDay: Int? = null
+                        for (i in it.indices) {
+                            currentDay = it[i].dateTime.dayOfMonth
+                            //  if item is first one or date of current entry is different from previous one
+                            if (i == 0 || currentDay != it[i - 1].dateTime.dayOfMonth) {
+                                //  add date header
+                                list.add(it[i].dateTime)
+                            }
+                            //  add current log entry
+                            list.add(it[i])
+                        }
+                    }
+
+                    logEntriesAdapter.updateLogEntries(list)
                 }
                 is Error -> {
                     progressBar.visibility = View.GONE

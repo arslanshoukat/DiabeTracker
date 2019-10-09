@@ -5,27 +5,29 @@
     <!--colorPrimary colors map to components and elements, such as app bars and buttons. -->
     <color name="color_primary">@color/light_blue_900</color>
     <color name="color_primary_variant">@color/light_blue_900_dark</color>
-    <color name="color_primary_light">@color/light_blue_900_light</color>
+    <color name="colorPrimaryLight">@color/light_blue_900_light</color>
     <!--colorSecondary colors are most often used as accents on components, such as FABs and -->
     <!--selection controls.-->
     <color name="color_secondary">@color/cyan_a400</color>
     <color name="color_secondary_variant">@color/cyan_a400_dark</color>
-    <color name="color_secondary_light">@color/cyan_a400_light</color>
+    <color name="colorSecondaryLight">@color/cyan_a400_light</color>
 
     <!--colorBackground appears behind scrollable content and is used for the default window-->
     <!--background. colorSurface is mapped to the surface of components such as cards, sheets-->
     <!--and menus. colorError is used to indicate an error state for components such as-->
     <!--text fields.-->
-    <color name="color_background">#ffffff</color>
+    <color name="color_background">@color/gray_100</color>
     <color name="color_surface">#ffffff</color>
     <color name="color_error">#b00020</color>
 
     <!--"On" colors define how text, icons and strokes are colored in relation to the surface-->
     <!--on which they appear.-->
     <color name="color_on_primary">#FFFFFF</color>
-    <color name="color_on_secondary">#000000</color>
+    <color name="color_on_secondary">#FFFFFF</color>
     <color name="color_on_background">#000000</color>
+    <color name="colorOnBackgroundLight">@color/gray_900</color>
     <color name="color_on_surface">#000000</color>
+    <color name="colorOnSurfaceLight">@color/gray_900</color>
     <color name="color_on_error">#ffffff</color>
 
     <!--    custom colors   -->
@@ -36,22 +38,10 @@
     <color name="cyan_a400_light">#62ebff</color>
     <color name="cyan_a400_dark">#0088a3</color>
 
-    <color name="colorPrimaryText">#212121</color>
-    <color name="colorSecondaryText">#757575</color>
-
-    <color name="colorIconsGray">@color/gray_800</color>
+    <color name="colorTextSecondary">@color/gray_600</color>
+    <color name="colorIconsGray">@color/gray_900</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
-
-    <color name="colorBackgroundLightGray">@color/gray_50</color>
-    <color name="colorBackgroundGray">@color/gray_100</color>
-
-    <!--other-->
-    <color name="red_700">#D32F2F</color>
-    <color name="red_100">#FFCDD2</color>
-
-    <color name="green_500">#4CAF50</color>
-    <color name="green_700">#388E3C</color>
 
     <color name="gray_50">#FAFAFA</color>
     <color name="gray_100">#F5F5F5</color>

@@ -32,14 +32,14 @@ class DashboardViewModel @Inject constructor(
     val lastMedicationLogEntry = _lastMedicationLogEntry as LiveData<LogEntry>
     private val _lastCarbIntakeLogEntry = MutableLiveData<LogEntry>()
     val lastCarbIntakeLogEntry = _lastCarbIntakeLogEntry as LiveData<LogEntry>
-    private val _weeklyLogEntries = MutableLiveData<List<LogEntry>>()
-    val weeklyLogEntries = _weeklyLogEntries as LiveData<List<LogEntry>>
+    private val _logEntries = MutableLiveData<List<LogEntry>>()
+    val logEntries = _logEntries as LiveData<List<LogEntry>>
 
     init {
         loadLastBgl()
         loadLastMedication()
         loadLastCarbIntake()
-        loadWeeklyLogEntries(OffsetDateTime.now())
+        loadLogEntriesWithin(OffsetDateTime.now(), 4)
     }
 
     private fun loadLastBgl() {
@@ -96,10 +96,10 @@ class DashboardViewModel @Inject constructor(
             })
     }
 
-    private fun loadWeeklyLogEntries(currentDateTime: OffsetDateTime) {
+    private fun loadLogEntriesWithin(currentDateTime: OffsetDateTime, days: Long) {
         loadBglWithinUseCase.execute(
             DateTimeRange(
-                startDateTime = currentDateTime.minusDays(7),
+                startDateTime = currentDateTime.minusDays(days),
                 endDateTime = currentDateTime
             )
         )
@@ -112,7 +112,7 @@ class DashboardViewModel @Inject constructor(
                 }
 
                 override fun onNext(list: List<LogEntry>) {
-                    _weeklyLogEntries.value = list
+                    _logEntries.value = list
                 }
 
                 override fun onError(e: Throwable) {}

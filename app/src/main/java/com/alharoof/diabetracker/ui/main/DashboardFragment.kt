@@ -6,9 +6,9 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.view.animation.AnticipateOvershootInterpolator
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +18,7 @@ import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.transition.ChangeBounds
 import androidx.transition.TransitionManager
 import com.alharoof.diabetracker.R
@@ -32,6 +33,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.data.LineDataSet.Mode.CUBIC_BEZIER
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import kotlinx.android.synthetic.main.dashboard_fragment.chartBgl
+import kotlinx.android.synthetic.main.dashboard_fragment.fabAdd
 import kotlinx.android.synthetic.main.dashboard_fragment.tvLastBglUnit
 import kotlinx.android.synthetic.main.dashboard_fragment.tvLastBglValue
 import kotlinx.android.synthetic.main.dashboard_fragment.tvLastCarbIntakeValue
@@ -39,9 +41,10 @@ import kotlinx.android.synthetic.main.dashboard_fragment.tvLastMedicationTitle
 import kotlinx.android.synthetic.main.dashboard_fragment.tvLastMedicationValue
 import kotlinx.android.synthetic.main.dashboard_fragment.tvName
 import kotlinx.android.synthetic.main.dashboard_fragment_start.clDashboard
+import org.threeten.bp.OffsetDateTime
 import javax.inject.Inject
 
-class DashboardFragment : BaseFragment(TAG) {
+class DashboardFragment : BaseFragment(TAG), OnClickListener {
 
     companion object {
         private const val TAG = "DashboardFragment"
@@ -85,6 +88,7 @@ class DashboardFragment : BaseFragment(TAG) {
         initializeStyleResources()
         setupChart()
         setObservers()
+        setListeners()
     }
 
     override fun onResume() {
@@ -122,7 +126,7 @@ class DashboardFragment : BaseFragment(TAG) {
         axisLineColor = ColorUtils.setAlphaComponent(colorOnSurface, 128)
         lineColor = activity?.resources?.getColor(R.color.color_primary) ?: Color.BLUE
         lineCircleColor = lineColor
-        lineFillColor = activity?.resources?.getColor(R.color.color_primary_light) ?: lineColor
+        lineFillColor = activity?.resources?.getColor(R.color.colorPrimaryLight) ?: lineColor
         highlightColor =
             ColorUtils.setAlphaComponent(activity?.resources?.getColor(R.color.color_secondary) ?: lineColor, 196)
         chartTypefaceLight = ResourcesCompat.getFont(ctx, R.font.titillium_web_light) ?: Typeface.DEFAULT
@@ -219,12 +223,11 @@ class DashboardFragment : BaseFragment(TAG) {
     }
 
     private fun setObservers() {
-        viewModel.weeklyLogEntries.observe(viewLifecycleOwner, Observer<List<LogEntry>> { data ->
+        viewModel.logEntries.observe(viewLifecycleOwner, Observer<List<LogEntry>> { data ->
             val weeklyBglList: List<Pair<String, Int>> =
                 data.map { Pair(DateTimeUtils.getDateForDashboardChart(it.dateTime), it.bgl ?: 0) }.toList()
             val weeklyBglMap = LinkedHashMap<String, Int>()
 
-            //  todo: change logic to get list of average bgl for last 7 days
             for (pair in weeklyBglList) {
                 if (weeklyBglMap.contains(pair.first)) {
                     weeklyBglMap[pair.first] = (weeklyBglMap[pair.first] ?: 0) + pair.second / 2
@@ -233,7 +236,14 @@ class DashboardFragment : BaseFragment(TAG) {
                 }
             }
 
-            Log.d(TAG, weeklyBglMap.toString())
+            //  enter zero bgl for days with no entry in db
+            val currentDt = OffsetDateTime.now()
+            for (i in 0L..4L) {
+                val dtStr = DateTimeUtils.getDateForDashboardChart(currentDt.minusDays(i))
+                if (!weeklyBglMap.contains(dtStr)) {
+                    weeklyBglMap[dtStr] = 0
+                }
+            }
 
             updateChartData(weeklyBglMap)
         })
@@ -252,5 +262,19 @@ class DashboardFragment : BaseFragment(TAG) {
         viewModel.lastCarbIntakeLogEntry.observe(viewLifecycleOwner, Observer<LogEntry> {
             tvLastCarbIntakeValue.text = "${it.carbs ?: "-"}"
         })
+    }
+
+    private fun setListeners() {
+        fabAdd.setOnClickListener(this)
+    }
+
+    override fun onClick(view: View?) {
+        when (view?.id) {
+            R.id.fabAdd -> {
+                findNavController().navigate(R.id.action_nav_home_to_addLogEntryFragment)
+            }
+            else -> {
+            }
+        }
     }
 }

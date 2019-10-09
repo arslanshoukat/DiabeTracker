@@ -9,7 +9,11 @@
         android:id="@+id/nav_home"
         android:name="com.alharoof.diabetracker.ui.main.DashboardFragment"
         android:label="@string/title_main"
-        tools:layout="@layout/dashboard_fragment_start" />
+        tools:layout="@layout/dashboard_fragment_start">
+        <action
+            android:id="@+id/action_nav_home_to_addLogEntryFragment"
+            app:destination="@id/addLogEntryFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_logbook"
@@ -52,4 +56,12 @@
         android:name="com.alharoof.diabetracker.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/settings_fragment" />
+
+    <fragment
+        android:id="@+id/addLogEntryFragment"
+        android:name="com.alharoof.diabetracker.ui.logbook.AddLogEntryFragment"
+        android:label="add_log_entry_fragment"
+        tools:layout="@layout/add_log_entry_fragment" />
+
+    <!--    global action to open logbook   -->
 </navigation>

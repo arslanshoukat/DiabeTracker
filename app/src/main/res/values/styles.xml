@@ -81,5 +81,14 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="LogbookEntryValue" parent="TextAppearance.AppTheme.Body1">
+        <item name="android:textColor">?colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LogbookEntryLabel" parent="TextAppearance.AppTheme.Body1">
+        <item name="android:textColor">@color/colorOnSurfaceLight</item>
+    </style>
+
 
 </resources>

@@ -20,8 +20,8 @@
         <item name="colorOnError">@color/color_on_error</item>
 
         <!-- fonts -->
-        <!-- <item name="android:fontFamily">@font/titillium_web_regular</item> -->
-        <!-- <item name="fontFamily">@font/titillium_web_regular</item> -->
+        <item name="android:fontFamily">@font/titillium_web_regular</item>
+        <item name="fontFamily">@font/titillium_web_regular</item>
 
         <!-- Material type attributes -->
         <item name="textAppearanceHeadline1">@style/TextAppearance.AppTheme.Headline1</item>
