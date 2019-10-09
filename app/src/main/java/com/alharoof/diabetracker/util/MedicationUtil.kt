@@ -30,6 +30,6 @@ fun getLongActingInsulins(): List<MedicationEnum> {
     return MedicationEnum.values().filter { it.type == Medication.LONG_ACTING_INSULIN }.toList()
 }
 
-fun getPills(): List<MedicationEnum> {
-    return MedicationEnum.values().filter { it.type == Medication.PILLS }.toList()
+fun getDrugs(): List<MedicationEnum> {
+    return MedicationEnum.values().filter { it.type == Medication.DRUGS }.toList()
 }

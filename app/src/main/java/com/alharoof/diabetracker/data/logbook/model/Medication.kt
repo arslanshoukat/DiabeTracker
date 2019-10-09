@@ -9,7 +9,7 @@ data class Medication(
 
     companion object {
         const val OTHER = 0
-        const val PILLS = 1
+        const val DRUGS = 1
         const val RAPID_ACTING_INSULIN = 2
         const val SHORT_ACTING_INSULIN = 3
         const val INTERMEDIATE_ACTING_INSULIN = 4

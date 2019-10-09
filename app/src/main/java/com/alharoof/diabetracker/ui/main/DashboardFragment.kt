@@ -245,6 +245,7 @@ class DashboardFragment : BaseFragment(TAG), OnClickListener {
                 }
             }
 
+            //  todo: sort bgl by day
             updateChartData(weeklyBglMap)
         })
 

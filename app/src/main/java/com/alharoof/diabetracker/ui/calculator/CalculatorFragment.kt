@@ -26,6 +26,5 @@ class CalculatorFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(CalculatorViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 }
