@@ -36,4 +36,7 @@ interface LogEntryDao : BaseDao<LogEntry> {
 
     @Query("DELETE FROM LogEntry")
     fun deleteAll()
+
+    @Query("SELECT SUM(bolus_dose) FROM LogEntry WHERE bolus_medCode IS NOT NULL AND datetime(dateTime) >= datetime(:start) AND datetime(dateTime) <= datetime(:end)")
+    fun getActiveInsulinForTimeRange(start: OffsetDateTime, end: OffsetDateTime): Observable<Int>
 }

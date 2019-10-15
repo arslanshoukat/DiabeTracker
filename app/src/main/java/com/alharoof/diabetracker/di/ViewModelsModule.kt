@@ -1,6 +1,7 @@
 package com.alharoof.diabetracker.di
 
 import androidx.lifecycle.ViewModel
+import com.alharoof.diabetracker.ui.calculator.CalculatorViewModel
 import com.alharoof.diabetracker.ui.logbook.AddLogEntryViewModel
 import com.alharoof.diabetracker.ui.logbook.LogBookViewModel
 import com.alharoof.diabetracker.ui.main.DashboardViewModel
@@ -59,4 +60,9 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(DashboardViewModel::class)
     abstract fun bindDashboardViewModel(dashboardViewModel: DashboardViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CalculatorViewModel::class)
+    abstract fun bindCalculatorViewModel(calculatorViewModel: CalculatorViewModel): ViewModel
 }

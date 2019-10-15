@@ -38,6 +38,16 @@
     <color name="cyan_a400_light">#62ebff</color>
     <color name="cyan_a400_dark">#0088a3</color>
 
+    <color name="light_blue_50">#e1f5fe</color>
+    <color name="light_blue_100">#B3E5FC</color>
+    <color name="light_blue_200">#82d5fa</color>
+    <color name="light_blue_300">#50c4f7</color>
+    <color name="light_blue_400">#2bb7f6</color>
+    <color name="light_blue_500">#08aaf4</color>
+    <color name="light_blue_600">#069ce5</color>
+    <color name="light_blue_700">#0389d1</color>
+    <color name="light_blue_800">#0378bd</color>
+
     <color name="colorTextSecondary">@color/gray_600</color>
     <color name="colorIconsGray">@color/gray_900</color>
     <color name="colorIcons">#FFFFFF</color>
@@ -59,4 +69,5 @@
     <color name="bgl_high">#F44336</color>
 
     <color name="black_overlay">#66000000</color>
+    <color name="transparent">#0fff</color>
 </resources>

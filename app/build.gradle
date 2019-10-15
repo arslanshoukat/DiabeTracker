@@ -78,6 +78,7 @@ dependencies {
 
     //  Ramotion Fluid Slider for setting bgl
     implementation 'com.ramotion.fluidslider:fluid-slider:0.3.1'
+    //  ShapeOfView for custom views
     implementation 'com.github.florent37:shapeofview:1.4.7'
 
     //  Page indicator view

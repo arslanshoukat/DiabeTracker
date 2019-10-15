@@ -1,5 +1,6 @@
 package com.alharoof.diabetracker.di
 
+import com.alharoof.diabetracker.ui.calculator.CalculatorFragment
 import com.alharoof.diabetracker.ui.logbook.AddLogEntryFragment
 import com.alharoof.diabetracker.ui.logbook.LogBookFragment
 import com.alharoof.diabetracker.ui.main.DashboardFragment
@@ -49,4 +50,7 @@ abstract class FragmentsModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeDashboardFragment(): DashboardFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeCalculatorFragment(): CalculatorFragment
 }

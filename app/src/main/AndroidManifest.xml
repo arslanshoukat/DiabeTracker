@@ -13,7 +13,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_main"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

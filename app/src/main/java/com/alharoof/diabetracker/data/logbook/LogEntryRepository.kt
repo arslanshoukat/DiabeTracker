@@ -22,4 +22,6 @@ interface LogEntryRepository {
     fun getLastMedication(): Observable<LogEntry>
 
     fun getLastCarbIntake(): Observable<LogEntry>
+
+    fun getActiveInsulinWithin(startDateTime: OffsetDateTime, endDateTime: OffsetDateTime): Observable<Int>
 }

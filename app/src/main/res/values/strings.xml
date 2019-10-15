@@ -23,4 +23,9 @@
     <string name="nav_header_title">Arslan Shoukat</string>
     <string name="nav_header_subtitle">example@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
+
+    <string name="calculator_instruction_need_input">Enter blood glucose level or carbs intake to get instruction for reaching target blood glucose level.</string>
+    <string name="calculator_instruction_dose_needed">Inject %1$d U of insulin to reach target blood glucose level.</string>
+    <string name="calculator_instruction_carbs_needed">Immediately eat %1$d grams of carbohydrates to reach target blood glucose level.</string>
+    <string name="calculator_instruction_no_dose_needed">You don\'t need any more insulin to reach target blood glucose level.</string>
 </resources>

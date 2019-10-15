@@ -1,6 +1,7 @@
 package com.alharoof.diabetracker.di
 
 import com.alharoof.diabetracker.data.logbook.LogEntryRepository
+import com.alharoof.diabetracker.domain.calculator.LoadActiveInsulinWithinUseCase
 import com.alharoof.diabetracker.domain.dashboard.LoadLastBglUseCase
 import com.alharoof.diabetracker.domain.dashboard.LoadLastCarbIntakeUseCase
 import com.alharoof.diabetracker.domain.dashboard.LoadLastMedicationUseCase
@@ -43,4 +44,9 @@ class UseCaseModule {
     @Singleton
     internal fun provideLoadWeeklyLogEntriesUseCase(logEntryRepository: LogEntryRepository)
             : LoadBglWithinUseCase = LoadBglWithinUseCase(logEntryRepository)
+
+    @Provides
+    @Singleton
+    internal fun provideLoadActiveInsulinWithinUseCase(logEntryRepository: LogEntryRepository)
+            : LoadActiveInsulinWithinUseCase = LoadActiveInsulinWithinUseCase(logEntryRepository)
 }

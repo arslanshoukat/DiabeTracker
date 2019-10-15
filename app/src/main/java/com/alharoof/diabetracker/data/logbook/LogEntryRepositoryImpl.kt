@@ -41,4 +41,8 @@ class LogEntryRepositoryImpl(
     override fun addLogEntry(logEntry: LogEntry): Completable {
         return logEntryDao.insert(logEntry)
     }
+
+    override fun getActiveInsulinWithin(startDateTime: OffsetDateTime, endDateTime: OffsetDateTime): Observable<Int> {
+        return logEntryDao.getActiveInsulinForTimeRange(startDateTime, endDateTime)
+    }
 }
