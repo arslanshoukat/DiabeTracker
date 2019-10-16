@@ -36,6 +36,7 @@ dependencies {
     //  AndroidX Support Libs
     implementation "androidx.appcompat:appcompat:${versions.appCompat}"
     implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
+    implementation "androidx.gridlayout:gridlayout:${versions.gridLayout}"
     implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
     implementation "com.google.android.material:material:${versions.material}"
     implementation "androidx.legacy:legacy-support-v4:${versions.legacyV4}"

@@ -20,4 +20,10 @@
     <!-- <dimen name="alpha_emphasis_high">@dimen/material_emphasis_high_type</dimen>-->
     <!-- <dimen name="alpha_emphasis_medium">@dimen/material_emphasis_medium</dimen>-->
     <!-- <dimen name="alpha_emphasis_disabled">@dimen/material_emphasis_disabled</dimen>-->
+
+    <!-- Navigation -->
+    <dimen name="nav_item_background_corner_radius_left">0dp</dimen>
+    <dimen name="nav_item_background_corner_radius_right">100dp</dimen>
+    <dimen name="nav_item_background_inset_left">0dp</dimen>
+    <dimen name="nav_item_background_inset_right">8dp</dimen>>
 </resources>

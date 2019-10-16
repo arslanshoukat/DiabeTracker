@@ -2,6 +2,7 @@ package com.alharoof.diabetracker.logbook
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.alharoof.diabetracker.data.base.Result
+import com.alharoof.diabetracker.data.settings.PrefManager
 import com.alharoof.diabetracker.domain.logbook.AddLogEntryUseCase
 import com.alharoof.diabetracker.ui.logbook.AddLogEntryViewModel
 import com.alharoof.diabetracker.util.LiveDataTestUtil
@@ -29,12 +30,14 @@ class AddLogEntryViewModelTest {
 
     @Mock
     private lateinit var addLogEntryUseCase: AddLogEntryUseCase
+    @Mock
+    private lateinit var prefManager: PrefManager
 
     private lateinit var addLogEntryViewModel: AddLogEntryViewModel
 
     @Before
     fun setUp() {
-        addLogEntryViewModel = AddLogEntryViewModel(addLogEntryUseCase)
+        addLogEntryViewModel = AddLogEntryViewModel(addLogEntryUseCase, prefManager)
     }
 
     @Test

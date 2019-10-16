@@ -1,6 +1,6 @@
 package com.alharoof.diabetracker.di
 
-import com.alharoof.diabetracker.MainActivity
+import com.alharoof.diabetracker.ui.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
