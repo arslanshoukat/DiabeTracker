@@ -41,6 +41,7 @@ dependencies {
     implementation "com.google.android.material:material:${versions.material}"
     implementation "androidx.legacy:legacy-support-v4:${versions.legacyV4}"
     implementation "androidx.annotation:annotation:${versions.annotation}"
+    implementation "androidx.preference:preference:${versions.preference}"
 
     //  Room for database
     implementation "androidx.room:room-runtime:${versions.room}"

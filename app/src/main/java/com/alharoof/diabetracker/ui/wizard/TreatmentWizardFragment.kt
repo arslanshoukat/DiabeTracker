@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProviders
 import com.alharoof.diabetracker.R
-import com.alharoof.diabetracker.util.Constants
 import com.alharoof.diabetracker.util.Converters
 import com.alharoof.diabetracker.util.getBasalInsulins
 import com.alharoof.diabetracker.util.getBolusInsulins
@@ -51,29 +50,19 @@ class TreatmentWizardFragment private constructor() : BaseWizardFragment(TAG) {
 
         val basalAdapter = ArrayAdapter(ctx, R.layout.dropdown_menu_popup_item, basalList)
         actvBasal.setAdapter(basalAdapter)
-        if (initialBasal != Constants.INVALID_INT) {
-            //  set dropdown to user selected value if user saved basal before
-            actvBasal.setText(
-                Converters.fromMedicationCodeToEnum(initialBasal)?.productName ?: basalList[0],
-                false
-            )
-        } else {
-            //  set dropdown to default value if user never selected basal before
-            actvBasal.setText(basalList[0], false)
-        }
+        //  set dropdown to user selected value if user saved basal before or to default(first) if not set
+        actvBasal.setText(
+            Converters.fromMedicationCodeToEnum(initialBasal)?.productName ?: basalList[0],
+            false
+        )
 
         val bolusAdapter = ArrayAdapter(ctx, R.layout.dropdown_menu_popup_item, bolusList)
         actvBolus.setAdapter(bolusAdapter)
-        if (initialBolus != Constants.INVALID_INT) {
-            //  set dropdown to user selected value if user saved bolus before
-            actvBolus.setText(
-                Converters.fromMedicationCodeToEnum(initialBolus)?.productName ?: bolusList[0],
-                false
-            )
-        } else {
-            //  set dropdown to default value if user never selected bolus before
-            actvBolus.setText(bolusList[0], false)
-        }
+        //  set dropdown to user selected value if user saved bolus before or to default(first) if not set
+        actvBolus.setText(
+            Converters.fromMedicationCodeToEnum(initialBolus)?.productName ?: bolusList[0],
+            false
+        )
     }
 
     override fun clearErrors() {}

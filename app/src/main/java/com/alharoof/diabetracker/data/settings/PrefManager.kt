@@ -2,155 +2,182 @@ package com.alharoof.diabetracker.data.settings
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.preference.PreferenceManager
+import com.alharoof.diabetracker.R
+import com.alharoof.diabetracker.data.logbook.model.BglUnit
+import com.alharoof.diabetracker.data.logbook.model.UnitOfMeasurement
 import com.alharoof.diabetracker.util.Constants
+import com.alharoof.diabetracker.util.getBasalInsulins
+import com.alharoof.diabetracker.util.getBolusInsulins
 
-class PrefManager(context: Context) {
-    companion object {
-        const val PREFS_NAME = "diabetracker"
-
-        const val PREF_LOW_BGL = "lowBgl"
-        const val PREF_HYPO_BGL = "hypoBgl"
-        const val PREF_TARGET_BGL = "targetBgl"
-        const val PREF_HIGH_BGL = "highBgl"
-        const val PREF_HYPER_BGL = "hyperBgl"
-        const val PREF_INSULIN_SENSITIVITY_FACTOR = "insulinSensitivityFactor"
-        const val PREF_INSULIN_TO_CARB_RATIO = "insulinToCarbRatio"
-
-        const val PREF_BASAL_INSULIN_CODE = "basalInsulinCode"
-        const val PREF_BOLUS_INSULIN_CODE = "bolusInsulinCode"
-
-        const val PREF_UNIT_OF_MEASUREMENT_CODE = "unitOfMeasurementCode"
-        const val PREF_BGL_UNIT_CODE = "bglUnitCode"
-
-        const val PREF_FIRST_NAME = "firstName"
-        const val PREF_LAST_NAME = "lastName"
-        const val PREF_WEIGHT = "weight"
-        const val PREF_HEIGHT = "height"
-    }
+class PrefManager(val context: Context) {
     //  todo: make prefs observable
 
     private val prefs: SharedPreferences =
-        context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        PreferenceManager.getDefaultSharedPreferences(context)
 
     fun setLowBgl(lowBgl: Int) {
-        prefs.edit().putInt(PREF_LOW_BGL, lowBgl).apply()
+        prefs.edit().putString(context.getString(R.string.pref_low_bgl_key), "$lowBgl").apply()
     }
 
     fun getLowBgl(): Int {
-        return prefs.getInt(PREF_LOW_BGL, Constants.DEFAULT_LOW_BGL)
+        //  return user set low bgl or default if not set
+        return prefs.getString(
+            context.getString(R.string.pref_low_bgl_key),
+            "${Constants.DEFAULT_LOW_BGL}"
+        )?.toIntOrNull() ?: Constants.DEFAULT_LOW_BGL
     }
 
     fun setHypoBgl(HypoBgl: Int) {
-        prefs.edit().putInt(PREF_HYPO_BGL, HypoBgl).apply()
+        prefs.edit().putString(context.getString(R.string.pref_hypo_bgl_key), "$HypoBgl").apply()
     }
 
     fun getHypoBgl(): Int {
-        return prefs.getInt(PREF_HYPO_BGL, Constants.DEFAULT_HYPO_BGL)
+        return prefs.getString(
+            context.getString(R.string.pref_hypo_bgl_key),
+            "${Constants.DEFAULT_HYPO_BGL}"
+        )?.toIntOrNull() ?: Constants.DEFAULT_HYPO_BGL
     }
 
     fun setTargetBgl(TargetBgl: Int) {
-        prefs.edit().putInt(PREF_TARGET_BGL, TargetBgl).apply()
+        prefs.edit().putString(context.getString(R.string.pref_target_bgl_key), "$TargetBgl").apply()
     }
 
     fun getTargetBgl(): Int {
-        return prefs.getInt(PREF_TARGET_BGL, Constants.DEFAULT_TARGET_BGL)
+        return prefs.getString(
+            context.getString(R.string.pref_target_bgl_key),
+            "${Constants.DEFAULT_TARGET_BGL}"
+        )?.toIntOrNull() ?: Constants.DEFAULT_TARGET_BGL
     }
 
     fun setHighBgl(HighBgl: Int) {
-        prefs.edit().putInt(PREF_HIGH_BGL, HighBgl).apply()
+        prefs.edit().putString(context.getString(R.string.pref_high_bgl_key), "$HighBgl").apply()
     }
 
     fun getHighBgl(): Int {
-        return prefs.getInt(PREF_HIGH_BGL, Constants.DEFAULT_HIGH_BGL)
+        return prefs.getString(
+            context.getString(R.string.pref_high_bgl_key),
+            "${Constants.DEFAULT_HIGH_BGL}"
+        )?.toIntOrNull() ?: Constants.DEFAULT_HIGH_BGL
     }
 
     fun setHyperBgl(HyperBgl: Int) {
-        prefs.edit().putInt(PREF_HYPER_BGL, HyperBgl).apply()
+        prefs.edit().putString(context.getString(R.string.pref_hyper_bgl_key), "$HyperBgl").apply()
     }
 
     fun getHyperBgl(): Int {
-        return prefs.getInt(PREF_HYPER_BGL, Constants.DEFAULT_HYPER_BGL)
+        return prefs.getString(
+            context.getString(R.string.pref_hyper_bgl_key),
+            "${Constants.DEFAULT_HYPER_BGL}"
+        )?.toIntOrNull() ?: Constants.DEFAULT_HYPER_BGL
     }
 
     fun setInsulinSensitivityFactor(isf: Float) {
-        prefs.edit().putFloat(PREF_INSULIN_SENSITIVITY_FACTOR, isf).apply()
+        prefs.edit().putString(context.getString(R.string.pref_insulin_sensitivity_factor_key), "$isf").apply()
     }
 
     fun getInsulinSensitivityFactor(): Float {
-        return prefs.getFloat(PREF_INSULIN_SENSITIVITY_FACTOR, Constants.DEFAULT_INSULIN_SENSITIVITY_FACTOR)
+        return prefs.getString(
+            context.getString(R.string.pref_insulin_sensitivity_factor_key),
+            "${Constants.DEFAULT_INSULIN_SENSITIVITY_FACTOR}"
+        )?.toFloatOrNull() ?: Constants.DEFAULT_INSULIN_SENSITIVITY_FACTOR
     }
 
     fun setInsulinToCarbRatio(icr: Float) {
-        prefs.edit().putFloat(PREF_INSULIN_TO_CARB_RATIO, icr).apply()
+        prefs.edit().putString(context.getString(R.string.pref_insulin_to_carb_ratio_key), "$icr").apply()
     }
 
     fun getInsulinToCarbRatio(): Float {
-        return prefs.getFloat(PREF_INSULIN_TO_CARB_RATIO, Constants.DEFAULT_INSULIN_TO_CARB_RATIO)
+        return prefs.getString(
+            context.getString(R.string.pref_insulin_to_carb_ratio_key),
+            "${Constants.DEFAULT_INSULIN_TO_CARB_RATIO}"
+        )?.toFloatOrNull() ?: Constants.DEFAULT_INSULIN_TO_CARB_RATIO
     }
 
     fun setBasalInsulin(basalInsulinCode: Int) {
-        prefs.edit().putInt(PREF_BASAL_INSULIN_CODE, basalInsulinCode).apply()
+        prefs.edit().putString(context.getString(R.string.pref_basal_insulin_code_key), "$basalInsulinCode").apply()
     }
 
     fun getBasalInsulin(): Int {
-        return prefs.getInt(PREF_BASAL_INSULIN_CODE, Constants.INVALID_INT)
+        //  return basal insulin set by user or first basal insulin if not set
+        val defaultBasal = getBasalInsulins()[0].code
+        return prefs.getString(
+            context.getString(R.string.pref_basal_insulin_code_key),
+            "$defaultBasal"
+        )?.toIntOrNull() ?: defaultBasal
     }
 
     fun setBolusInsulin(bolusInsulinCode: Int) {
-        prefs.edit().putInt(PREF_BOLUS_INSULIN_CODE, bolusInsulinCode).apply()
+        prefs.edit().putString(context.getString(R.string.pref_bolus_insulin_code_key), "$bolusInsulinCode").apply()
     }
 
     fun getBolusInsulin(): Int {
-        return prefs.getInt(PREF_BOLUS_INSULIN_CODE, Constants.INVALID_INT)
+        //  return bolus insulin set by user or first bolus insulin if not set
+        val defaultBolus = getBolusInsulins()[0].code
+        return prefs.getString(
+            context.getString(R.string.pref_bolus_insulin_code_key),
+            "$defaultBolus"
+        )?.toIntOrNull() ?: defaultBolus
     }
 
     fun setUnitOfMeasurement(unitOfMeasurement: Int) {
-        prefs.edit().putInt(PREF_UNIT_OF_MEASUREMENT_CODE, unitOfMeasurement).apply()
+        prefs.edit().putString(context.getString(R.string.pref_unit_of_measurement_code_key), "$unitOfMeasurement")
+            .apply()
         //  todo: convert height, weight and other related attributes to selected unit
     }
 
     fun getUnitOfMeasurement(): Int {
-        return prefs.getInt(PREF_UNIT_OF_MEASUREMENT_CODE, Constants.INVALID_INT)
+        val defaultUnitOfMeasurement = UnitOfMeasurement.METRIC.code
+        return prefs.getString(
+            context.getString(R.string.pref_unit_of_measurement_code_key),
+            "$defaultUnitOfMeasurement"
+        )?.toIntOrNull() ?: defaultUnitOfMeasurement
     }
 
     fun setBglUnit(bglUnit: Int) {
-        prefs.edit().putInt(PREF_BGL_UNIT_CODE, bglUnit).apply()
+        prefs.edit().putString(context.getString(R.string.pref_bgl_unit_code_key), "$bglUnit").apply()
         //  todo: convert bgl to selected unit
     }
 
     fun getBglUnit(): Int {
-        return prefs.getInt(PREF_BGL_UNIT_CODE, Constants.INVALID_INT)
+        val defaultBglUnit = BglUnit.MILLIGRAMS_PER_DECILITRE.code
+        return prefs.getString(context.getString(R.string.pref_bgl_unit_code_key), "$defaultBglUnit")?.toIntOrNull()
+            ?: defaultBglUnit
     }
 
     fun setFirstName(firstName: String) {
-        prefs.edit().putString(PREF_FIRST_NAME, firstName).apply()
+        prefs.edit().putString(context.getString(R.string.pref_first_name_key), firstName).apply()
     }
 
     fun getFirstName(): String? {
-        return prefs.getString(PREF_FIRST_NAME, null)
+        return prefs.getString(context.getString(R.string.pref_first_name_key), null)
     }
 
     fun setLastName(lastName: String) {
-        prefs.edit().putString(PREF_LAST_NAME, lastName).apply()
+        prefs.edit().putString(context.getString(R.string.pref_last_name_key), lastName).apply()
     }
 
     fun getLastName(): String? {
-        return prefs.getString(PREF_LAST_NAME, null)
+        return prefs.getString(context.getString(R.string.pref_last_name_key), null)
     }
 
     fun setHeight(height: Float) {
-        prefs.edit().putFloat(PREF_HEIGHT, height).apply()
+        prefs.edit().putString(context.getString(R.string.pref_height_key), "$height").apply()
     }
 
     fun getHeight(): Float {
-        return prefs.getFloat(PREF_HEIGHT, Constants.INVALID_FLOAT)
+        return prefs.getString(context.getString(R.string.pref_height_key), null)?.toFloatOrNull()
+        //  return invalid float to indicate height not set yet
+            ?: Constants.INVALID_FLOAT
     }
 
     fun setWeight(weight: Float) {
-        prefs.edit().putFloat(PREF_WEIGHT, weight).apply()
+        prefs.edit().putString(context.getString(R.string.pref_weight_key), "$weight").apply()
     }
 
     fun getWeight(): Float {
-        return prefs.getFloat(PREF_WEIGHT, Constants.INVALID_FLOAT)
+        return prefs.getString(context.getString(R.string.pref_weight_key), null)?.toFloatOrNull()
+        //  return invalid float to indicate weight not set yet
+            ?: Constants.INVALID_FLOAT
     }
 }

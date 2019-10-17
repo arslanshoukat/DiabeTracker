@@ -28,4 +28,21 @@
     <string name="calculator_instruction_dose_needed">Inject %1$d U of insulin to reach target blood glucose level.</string>
     <string name="calculator_instruction_carbs_needed">Immediately eat %1$d grams of carbohydrates to reach target blood glucose level.</string>
     <string name="calculator_instruction_no_dose_needed">You don\'t need any more insulin to reach target blood glucose level.</string>
+
+    <string name="pref_low_bgl_key">lowBgl</string>
+    <string name="pref_hypo_bgl_key">hypoBgl</string>
+    <string name="pref_target_bgl_key">targetBgl</string>
+    <string name="pref_high_bgl_key">highBgl</string>
+    <string name="pref_hyper_bgl_key">hyperBgl</string>
+    <string name="pref_insulin_sensitivity_factor_key">insulinSensitivityFactor</string>
+    <string name="pref_insulin_to_carb_ratio_key">insulinToCarbRatio</string>
+    <string name="pref_basal_insulin_code_key">basalInsulinCode</string>
+    <string name="pref_bolus_insulin_code_key">bolusInsulinCode</string>
+    <string name="pref_unit_of_measurement_code_key">unitOfMeasurementCode</string>
+    <string name="pref_bgl_unit_code_key">bglUnitCode</string>
+    <string name="pref_first_name_key">firstName</string>
+    <string name="pref_last_name_key">lastName</string>
+    <string name="pref_weight_key">weight</string>
+    <string name="pref_height_key">height</string>
+
 </resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="unit_of_measurement_entries">
+        <item>Metric (kg, gram, cm)</item>
+        <item>Imperial (lb, oz, inch)</item>
+    </string-array>
+
+    <string-array name="unit_of_measurement_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="bgl_unit_entries">
+        <item>Milligrams Per Decilitre (mg/dL)</item>
+        <item>Millimoles Per Litre (mmol/L)</item>
+    </string-array>
+
+    <string-array name="bgl_unit_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="bolus_insulin_entries">
+        <item>Afrezza</item>
+        <item>Apidra</item>
+        <item>Humalog Mix 50/50</item>
+        <item>Humalog Mix 75/25</item>
+        <item>Humalog R</item>
+        <item>Humulin R</item>
+        <item>Novolin</item>
+        <item>NovoLog</item>
+        <item>NovoRapid</item>
+        <item>Velosulin</item>
+    </string-array>
+
+    <string-array name="bolus_insulin_values">
+        <item>100</item>
+        <item>101</item>
+        <item>102</item>
+        <item>103</item>
+        <item>104</item>
+        <item>105</item>
+        <item>106</item>
+        <item>107</item>
+        <item>108</item>
+        <item>109</item>
+    </string-array>
+
+    <string-array name="basal_insulin_entries">
+        <item>Basaglar</item>
+        <item>Humulin N</item>
+        <item>Humulin 50/50</item>
+        <item>Humulin 70/30</item>
+        <item>Lantus</item>
+        <item>Levemir</item>
+        <item>Novolin N</item>
+        <item>Novolin 70/30</item>
+        <item>NovoLog Mix 70/30</item>
+        <item>NPH</item>
+        <item>Toujeo</item>
+        <item>Tresiba</item>
+    </string-array>
+
+    <string-array name="basal_insulin_values">
+        <item>200</item>
+        <item>201</item>
+        <item>202</item>
+        <item>203</item>
+        <item>204</item>
+        <item>205</item>
+        <item>206</item>
+        <item>207</item>
+        <item>208</item>
+        <item>209</item>
+        <item>210</item>
+        <item>211</item>
+    </string-array>
+</resources>

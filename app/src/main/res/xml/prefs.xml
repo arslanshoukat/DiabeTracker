@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:key="pref_units_category"
+        android:title="Units">
+
+        <ListPreference
+            android:entries="@array/unit_of_measurement_entries"
+            android:entryValues="@array/unit_of_measurement_values"
+            android:key="@string/pref_unit_of_measurement_code_key"
+            android:title="Unit of Measurement"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            android:entries="@array/bgl_unit_entries"
+            android:entryValues="@array/bgl_unit_values"
+            android:key="@string/pref_bgl_unit_code_key"
+            android:title="Blood Glucose Level Unit"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_glucose_levels_category"
+        android:title="Glucose Levels">
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="@string/pref_target_bgl_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Target"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="@string/pref_hypo_bgl_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Hypoglycemia"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="@string/pref_low_bgl_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Low"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="@string/pref_high_bgl_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="High"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="@string/pref_hyper_bgl_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Hyperglycemia"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_treatment_category"
+        android:title="Treatment">
+
+        <ListPreference
+            android:entries="@array/basal_insulin_entries"
+            android:entryValues="@array/basal_insulin_values"
+            android:key="@string/pref_basal_insulin_code_key"
+            android:title="Basal Insulin"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            android:entries="@array/bolus_insulin_entries"
+            android:entryValues="@array/bolus_insulin_values"
+            android:key="@string/pref_bolus_insulin_code_key"
+            android:title="Bolus Insulin"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="@string/pref_insulin_sensitivity_factor_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Insulin Sensitivity Factor"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="@string/pref_insulin_to_carb_ratio_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Insulin to Carb Ratio"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_personal_information_category"
+        android:title="Personal Information">
+
+        <EditTextPreference
+            android:key="@string/pref_first_name_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="First Name"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:key="@string/pref_last_name_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Last Name"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="@string/pref_weight_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Weight"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            android:inputType="number"
+            android:key="@string/pref_height_key"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Height"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+</PreferenceScreen>
