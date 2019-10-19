@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.alharoof.diabetracker.R
 import com.alharoof.diabetracker.base.BaseFragment
+import com.alharoof.diabetracker.ui.MainActivity
 import kotlinx.android.synthetic.main.calculator_fragment.etBgl
 import kotlinx.android.synthetic.main.calculator_fragment.etCarbs
 import kotlinx.android.synthetic.main.calculator_fragment.tvActiveInsulin
@@ -52,6 +53,18 @@ class CalculatorFragment : BaseFragment(TAG) {
 
         setObservers()
         setListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //  remove elevation of toolbar to merge it with active insulin view
+        (activity as? MainActivity)?.setToolbarElevation(0f)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        //  set elevation of toolbar to default for all other fragments
+        (activity as? MainActivity)?.setToolbarElevation(4f)
     }
 
     private fun setObservers() {

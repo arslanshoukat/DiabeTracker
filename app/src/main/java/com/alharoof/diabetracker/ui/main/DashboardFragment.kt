@@ -11,7 +11,6 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.view.animation.AnticipateOvershootInterpolator
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.ColorUtils
@@ -93,16 +92,9 @@ class DashboardFragment : BaseFragment(TAG), OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        (activity as? AppCompatActivity)?.supportActionBar?.hide()
-
         Handler(Looper.getMainLooper()).post {
             animateCards(R.layout.dashboard_fragment)
         }
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as? AppCompatActivity)?.supportActionBar?.show()
     }
 
     private fun animateCards(layoutId: Int) {

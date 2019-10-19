@@ -17,6 +17,7 @@ import com.alharoof.diabetracker.util.navigationItemBackground
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.main_activity.drawerLayout
 import kotlinx.android.synthetic.main.main_activity.navView
+import kotlinx.android.synthetic.main.main_app_bar.appBarLayout
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -57,6 +58,10 @@ class MainActivity : DaggerAppCompatActivity() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
         setObservers()
+    }
+
+    fun setToolbarElevation(elevation: Float) {
+        appBarLayout.elevation = elevation
     }
 
     private fun setObservers() {
