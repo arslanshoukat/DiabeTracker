@@ -4,7 +4,6 @@ import com.alharoof.diabetracker.ui.calculator.CalculatorFragment
 import com.alharoof.diabetracker.ui.logbook.AddLogEntryFragment
 import com.alharoof.diabetracker.ui.logbook.LogBookFragment
 import com.alharoof.diabetracker.ui.main.DashboardFragment
-import com.alharoof.diabetracker.ui.main.MainFragment
 import com.alharoof.diabetracker.ui.wizard.BaseWizardFragment
 import com.alharoof.diabetracker.ui.wizard.PersonalInfoWizardFragment
 import com.alharoof.diabetracker.ui.wizard.TargetRangesWizardFragment
@@ -20,9 +19,6 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class FragmentsModule {
-
-    @ContributesAndroidInjector
-    internal abstract fun contributeMainFragment(): MainFragment
 
     @ContributesAndroidInjector
     internal abstract fun contributeAddLogEntryFragment(): AddLogEntryFragment

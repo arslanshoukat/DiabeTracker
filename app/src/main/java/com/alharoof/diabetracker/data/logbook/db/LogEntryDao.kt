@@ -10,6 +10,9 @@ import org.threeten.bp.OffsetDateTime
 @Dao
 interface LogEntryDao : BaseDao<LogEntry> {
 
+    @Query("SELECT COUNT(*) FROM LogEntry WHERE bgl IS NOT NULL")
+    fun getTotalCount(): Observable<Int>
+
     @Query("SELECT * FROM LogEntry ORDER BY datetime(dateTime) DESC")
     fun getAll(): Observable<List<LogEntry>>
 
@@ -18,6 +21,9 @@ interface LogEntryDao : BaseDao<LogEntry> {
 
     @Query("SELECT * FROM LogEntry WHERE date(dateTime) >= date(:start) AND date(dateTime) <= date(:end) ORDER BY datetime(dateTime) ASC")
     fun getBglForDateTimeRange(start: OffsetDateTime, end: OffsetDateTime): Observable<List<LogEntry>>
+
+    @Query("SELECT AVG(bgl) FROM LogEntry WHERE bgl IS NOT NULL AND date(dateTime) >= date(:start) AND date(dateTime) <= date(:end)")
+    fun getAverageBglForDateRange(start: OffsetDateTime, end: OffsetDateTime): Observable<Float>
 
     @Query("SELECT * FROM LogEntry WHERE bgl IS NOT NULL ORDER BY datetime(dateTime) DESC LIMIT :count")
     fun getBglWithCount(count: Int): Observable<List<LogEntry>>

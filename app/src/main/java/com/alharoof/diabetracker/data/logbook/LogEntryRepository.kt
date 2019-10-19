@@ -24,4 +24,8 @@ interface LogEntryRepository {
     fun getLastCarbIntake(): Observable<LogEntry>
 
     fun getActiveInsulinWithin(startDateTime: OffsetDateTime, endDateTime: OffsetDateTime): Observable<Int>
+
+    fun getLogEntriesTotalCount(): Observable<Int>
+
+    fun getAverageBglForDateRange(start: OffsetDateTime, end: OffsetDateTime): Observable<Float>
 }

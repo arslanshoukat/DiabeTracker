@@ -23,8 +23,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="?colorPrimary"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/main_nav_header"
+        app:itemIconTint="@color/navigation_item_color"
+        app:itemTextColor="@color/navigation_item_color"
         app:menu="@menu/main_drawer_activity" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

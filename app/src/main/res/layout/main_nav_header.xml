@@ -9,113 +9,70 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:theme="@style/AppTheme.PopupOverlay">
 
-    <ImageView
-        android:id="@+id/ivProfilePhoto"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/nav_header_desc"
-        app:layout_constraintEnd_toEndOf="@+id/tvName"
-        app:layout_constraintStart_toStartOf="@+id/tvName"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_person_outline" />
-
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:text="@string/nav_header_title"
-        android:textAlignment="center"
-        android:textAppearance="?textAppearanceBody1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfilePhoto" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cvHeaderInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
         app:contentPadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvName">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.30" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.63" />
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tvHbA1cLbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HbA1c"
-                android:textAppearance="@style/TextAppearance.NavHeader.Card"
-                app:layout_constraintBottom_toTopOf="@+id/tvHbA1c"
-                app:layout_constraintEnd_toStartOf="@+id/guide1"
+                android:text="Est. HbA1c %"
+                android:textAppearance="@style/TextAppearance.NavHeader.Card.Title"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvAverageBglLbl"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/tvAverageBglLbl" />
 
             <TextView
                 android:id="@+id/tvHbA1c"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-"
-                android:textAppearance="@style/TextAppearance.NavHeader.Card"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guide1"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvHbA1cLbl"
-                tools:text="6.3 %" />
+                android:textAppearance="@style/TextAppearance.NavHeader.Card.Value"
+                app:layout_constraintBottom_toTopOf="@+id/tvHbA1cLbl"
+                app:layout_constraintEnd_toEndOf="@+id/tvHbA1cLbl"
+                app:layout_constraintStart_toStartOf="@+id/tvHbA1cLbl"
+                tools:text="6.3" />
 
             <TextView
                 android:id="@+id/tvAverageBglLbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BGL"
-                android:textAppearance="@style/TextAppearance.NavHeader.Card"
-                app:layout_constraintBottom_toTopOf="@+id/tvAverageBgl"
-                app:layout_constraintEnd_toStartOf="@+id/guide2"
+                android:text="Ave. BGL"
+                android:textAppearance="@style/TextAppearance.NavHeader.Card.Title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvHbA1cLbl"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/guide1"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@+id/tvTotalLogEntriesLbl" />
 
             <TextView
                 android:id="@+id/tvAverageBgl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-"
-                android:textAppearance="@style/TextAppearance.NavHeader.Card"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guide2"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/guide1"
-                app:layout_constraintTop_toBottomOf="@+id/tvAverageBglLbl"
+                android:textAppearance="@style/TextAppearance.NavHeader.Card.Value"
+                app:layout_constraintBottom_toTopOf="@+id/tvAverageBglLbl"
+                app:layout_constraintEnd_toEndOf="@+id/tvAverageBglLbl"
+                app:layout_constraintStart_toStartOf="@+id/tvAverageBglLbl"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
                 tools:text="127 mg/dL" />
 
             <TextView
@@ -123,24 +80,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Log Entries"
-                android:textAppearance="@style/TextAppearance.NavHeader.Card"
-                app:layout_constraintBottom_toTopOf="@+id/tvTotalLogEntries"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textAppearance="@style/TextAppearance.NavHeader.Card.Title"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvAverageBglLbl"
+                app:layout_constraintEnd_toStartOf="@+id/tvAverageBglLbl"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/guide2"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvTotalLogEntries"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-"
-                android:textAppearance="@style/TextAppearance.NavHeader.Card"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/guide2"
-                app:layout_constraintTop_toBottomOf="@+id/tvTotalLogEntriesLbl"
+                android:textAppearance="@style/TextAppearance.NavHeader.Card.Value"
+                app:layout_constraintBottom_toTopOf="@+id/tvTotalLogEntriesLbl"
+                app:layout_constraintEnd_toEndOf="@+id/tvTotalLogEntriesLbl"
+                app:layout_constraintStart_toStartOf="@+id/tvTotalLogEntriesLbl"
                 tools:text="485" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

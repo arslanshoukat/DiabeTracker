@@ -90,8 +90,10 @@
         <item name="android:textColor">@color/colorOnSurfaceLight</item>
     </style>
 
-    <style name="TextAppearance.NavHeader.Card" parent="TextAppearance.AppTheme.Body2">
-        <item name="android:textColor">@color/colorTextSecondary</item>
+    <style name="TextAppearance.NavHeader.Card.Title" parent="TextAppearance.AppTheme.Caption" />
+
+    <style name="TextAppearance.NavHeader.Card.Value" parent="TextAppearance.AppTheme.Subtitle1">
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

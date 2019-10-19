@@ -1,11 +1,11 @@
 package com.alharoof.diabetracker.di
 
 import androidx.lifecycle.ViewModel
+import com.alharoof.diabetracker.ui.MainViewModel
 import com.alharoof.diabetracker.ui.calculator.CalculatorViewModel
 import com.alharoof.diabetracker.ui.logbook.AddLogEntryViewModel
 import com.alharoof.diabetracker.ui.logbook.LogBookViewModel
 import com.alharoof.diabetracker.ui.main.DashboardViewModel
-import com.alharoof.diabetracker.ui.main.MainViewModel
 import com.alharoof.diabetracker.ui.wizard.PersonalInfoWizardViewModel
 import com.alharoof.diabetracker.ui.wizard.TargetRangesWizardViewModel
 import com.alharoof.diabetracker.ui.wizard.TreatmentWizardViewModel

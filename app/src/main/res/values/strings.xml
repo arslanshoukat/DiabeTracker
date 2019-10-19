@@ -20,8 +20,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="nav_header_title">Arslan Shoukat</string>
-    <string name="nav_header_subtitle">example@gmail.com</string>
+    <string name="nav_header_title">Nav Header</string>
+    <string name="nav_header_subtitle">nav.subtitle@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="calculator_instruction_need_input">Enter blood glucose level or carbs intake to get instruction for reaching target blood glucose level.</string>

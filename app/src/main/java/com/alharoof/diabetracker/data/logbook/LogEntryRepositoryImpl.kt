@@ -45,4 +45,12 @@ class LogEntryRepositoryImpl(
     override fun getActiveInsulinWithin(startDateTime: OffsetDateTime, endDateTime: OffsetDateTime): Observable<Int> {
         return logEntryDao.getActiveInsulinForTimeRange(startDateTime, endDateTime)
     }
+
+    override fun getLogEntriesTotalCount(): Observable<Int> {
+        return logEntryDao.getTotalCount()
+    }
+
+    override fun getAverageBglForDateRange(start: OffsetDateTime, end: OffsetDateTime): Observable<Float> {
+        return logEntryDao.getAverageBglForDateRange(start, end)
+    }
 }

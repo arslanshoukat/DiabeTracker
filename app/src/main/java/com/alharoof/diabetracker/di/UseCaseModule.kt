@@ -7,6 +7,8 @@ import com.alharoof.diabetracker.domain.dashboard.LoadLastCarbIntakeUseCase
 import com.alharoof.diabetracker.domain.dashboard.LoadLastMedicationUseCase
 import com.alharoof.diabetracker.domain.logbook.AddLogEntryUseCase
 import com.alharoof.diabetracker.domain.logbook.LoadLogEntriesUseCase
+import com.alharoof.diabetracker.domain.main.LoadAverageBglWithinUseCase
+import com.alharoof.diabetracker.domain.main.LoadLogEntriesTotalCountUseCase
 import com.alharoof.diabetracker.domain.report.LoadBglWithinUseCase
 import dagger.Module
 import dagger.Provides
@@ -49,4 +51,14 @@ class UseCaseModule {
     @Singleton
     internal fun provideLoadActiveInsulinWithinUseCase(logEntryRepository: LogEntryRepository)
             : LoadActiveInsulinWithinUseCase = LoadActiveInsulinWithinUseCase(logEntryRepository)
+
+    @Provides
+    @Singleton
+    internal fun provideLoadAverageBglWithinUseCase(logEntryRepository: LogEntryRepository)
+            : LoadAverageBglWithinUseCase = LoadAverageBglWithinUseCase(logEntryRepository)
+
+    @Provides
+    @Singleton
+    internal fun provideLoadLogEntriesTotalCountUseCase(logEntryRepository: LogEntryRepository)
+            : LoadLogEntriesTotalCountUseCase = LoadLogEntriesTotalCountUseCase(logEntryRepository)
 }
