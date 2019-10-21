@@ -7,6 +7,9 @@ DiabeTracker is an android app created for people with diabetics to facilitate i
 - Easy information sharing with consultant / doctor
 - Smart calculator to measure insulin dose or carbs intake when target glucose level is not achieved
 
+## Preview
+<img src="images/navigation_menu.png" alt="Dashboard" width="250" style="float: left; margin-right: 10px" /> <img src="images/dashboard.png" alt="Dashboard" width="250" style="float: left; margin-right: 10px" /> <img src="images/logbook.png" alt="Dashboard" width="250" style="float: left; margin-right: 10px" />
+
 ## Built With
 - [Kotlin](https://developer.android.com/kotlin) - Android Development
 - [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/) - Room, LiveData, Lifecycles, ViewModel and Navigation
